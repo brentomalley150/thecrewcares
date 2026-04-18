@@ -843,7 +843,7 @@
   function bookingModal(){
     const b = state.bookingModal;
     return '<div class="booking-overlay" data-action="close-booking-backdrop">' +
-      '<div class="booking-sheet" onclick="event.stopPropagation();">' +
+      '<div class="booking-sheet">' +
         '<h3>Book ' + b.name + '</h3>' +
         '<p class="booking-sub">' + b.business + '</p>' +
 
@@ -1073,9 +1073,16 @@
       };
       render();
     }
-    else if (action === 'close-booking' || action === 'close-booking-backdrop') {
+    else if (action === 'close-booking') {
       state.bookingModal = null;
       render();
+    }
+    else if (action === 'close-booking-backdrop') {
+      // Only close if clicking the overlay itself, not its contents
+      if (e.target === tgt) {
+        state.bookingModal = null;
+        render();
+      }
     }
     else if (action === 'confirm-booking') {
       confirmBooking();
