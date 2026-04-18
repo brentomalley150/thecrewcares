@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewCares — Nova Commerce</title>
+<meta name="description" content="Nova suggests products based on care context, with Amazon affiliate integration. Feature proposal, revenue model, and risk analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4395a2;
+    --primary-dark: #2f7a86;
+    --primary-darker: #1e5861;
+    --primary-tint: #eaf4f5;
+    --primary-tint-2: #d4e8ec;
+    --green: #64a70b;
+    --green-dark: #3B6D11;
+    --green-tint: #eaf3de;
+    --green-tint-2: #f7fbf0;
+    --amber: #BA7517;
+    --amber-dark: #854F0B;
+    --amber-tint: #fef3e3;
+    --amber-tint-soft: #faf8f0;
+    --pink: #e99797;
+    --pink-dark: #993556;
+    --pink-tint: #fbeaea;
+    --ink: #2c2c2a;
+    --ink-soft: #5f5e5a;
+    --ink-quiet: #888780;
+    --surface: #ffffff;
+    --surface-soft: #F4F6F9;
+    --surface-softer: #F0F2F8;
+    --border-soft: #eff1f5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--surface-softer); color: var(--ink);
+    -webkit-font-smoothing: antialiased; line-height: 1.6;
+  }
+  .topbar {
+    background: var(--primary); color: #fff;
+    padding: 14px 0; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .topbar-inner {
+    max-width: 1040px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600; font-size: 17px; letter-spacing: -0.01em;
+  }
+  .brand-mark {
+    width: 32px; height: 32px; background: #fff;
+    border-radius: 8px; display: flex;
+    align-items: center; justify-content: center; color: var(--primary);
+  }
+  .topbar-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .topbar-nav a {
+    color: rgba(255,255,255,0.9); text-decoration: none;
+    font-size: 14px; padding: 6px 12px; border-radius: 6px;
+    transition: background 0.12s;
+  }
+  .topbar-nav a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--green-dark) 100%);
+    color: #fff; padding: 64px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1040px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 40px; align-items: center;
+  }
+  .hero-text { max-width: 640px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; background: rgba(255,255,255,0.18);
+    border-radius: 999px; margin-bottom: 20px; font-weight: 500;
+  }
+  h1 {
+    font-size: 44px; line-height: 1.1;
+    letter-spacing: -0.025em; margin: 0 0 14px; font-weight: 600;
+  }
+  .hero-sub {
+    font-size: 18px; opacity: 0.94;
+    margin: 0 0 24px; line-height: 1.5;
+  }
+  .hero-badge-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+  }
+  .hero-visual {
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px) {
+    h1 { font-size: 32px; }
+    .hero { padding: 48px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { width: 120px; height: 120px; margin: 0 auto; }
+  }
+
+  .container { max-width: 1040px; margin: 0 auto; padding: 56px 24px 96px; }
+  section { margin-bottom: 56px; scroll-margin-top: 72px; }
+  h2 {
+    font-size: 28px; line-height: 1.25;
+    letter-spacing: -0.015em; margin: 0 0 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 20px; margin: 28px 0 10px;
+    font-weight: 600; letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 14px; color: var(--ink-soft); font-size: 15.5px; }
+  p strong, li strong { color: var(--ink); font-weight: 600; }
+  ul { padding-left: 22px; margin: 0 0 16px; }
+  li { margin-bottom: 8px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; }
+
+  .tldr {
+    background: var(--green-tint-2);
+    border: 1px solid rgba(100, 167, 11, 0.22);
+    border-left: 4px solid var(--green);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px; margin: 0 0 48px;
+  }
+  .tldr-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--green-dark); margin-bottom: 6px;
+  }
+  .tldr p { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.6; }
+  .tldr p strong { color: var(--ink); }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  @media (max-width: 720px) { .three-col { grid-template-columns: 1fr; } }
+  .box {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 22px 24px;
+    border-top: 3px solid var(--green);
+  }
+  .box-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--green-tint); color: var(--green-dark);
+    font-weight: 600; font-size: 13px; margin-bottom: 10px;
+  }
+  .box h4 { font-size: 15px; margin: 0 0 6px; font-weight: 600; }
+  .box p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+  .walk {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 16px;
+  }
+  .walk-step {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 18px; padding: 14px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .walk-step:last-child { border-bottom: 0; padding-bottom: 0; }
+  .walk-step:first-child { padding-top: 0; }
+  .walk-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--primary); color: #fff;
+    font-weight: 600; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .walk-content h4 { margin: 2px 0 4px; font-size: 15.5px; font-weight: 600; }
+  .walk-content p { margin: 0; font-size: 14.5px; line-height: 1.55; }
+  .walk-example {
+    background: var(--surface-soft);
+    border-radius: 8px; padding: 10px 14px;
+    margin-top: 10px; font-size: 13.5px; color: var(--ink);
+    font-family: -apple-system, "SF Mono", Menlo, monospace;
+  }
+  .walk-example.nova {
+    background: var(--green-tint-2);
+    border: 1px solid rgba(100, 167, 11, 0.22);
+    color: var(--green-dark); font-family: inherit;
+  }
+
+  /* Revenue math table */
+  .math-table {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  .math-header {
+    background: var(--surface-soft);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: grid;
+    grid-template-columns: 1fr 120px 120px;
+    gap: 12px;
+  }
+  .math-row {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-soft);
+    display: grid;
+    grid-template-columns: 1fr 120px 120px;
+    gap: 12px;
+    font-size: 14.5px;
+    align-items: center;
+  }
+  .math-row:last-child { border-bottom: 0; }
+  .math-row.total {
+    background: var(--green-tint-2);
+    font-weight: 600; color: var(--ink);
+    border-top: 2px solid rgba(100, 167, 11, 0.3);
+  }
+  .math-row.header-sub {
+    background: var(--surface-soft);
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .math-label { color: var(--ink); }
+  .math-value { text-align: right; color: var(--ink-soft); font-family: "SF Mono", Menlo, monospace; font-size: 13.5px; }
+  .math-row.total .math-value { color: var(--green-dark); font-family: inherit; font-size: 14.5px; font-weight: 600; }
+
+  .callout {
+    background: var(--amber-tint-soft);
+    border: 1px solid rgba(186, 117, 23, 0.2);
+    border-left: 4px solid var(--amber);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .callout-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--amber-dark); margin-bottom: 4px;
+  }
+  .callout p { margin: 0; font-size: 14.5px; color: var(--ink); line-height: 1.55; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 16px;
+  }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+  .pro-con-card {
+    border-radius: 12px; padding: 22px 24px;
+  }
+  .pro-con-card.good {
+    background: var(--green-tint-2);
+    border: 1px solid rgba(100, 167, 11, 0.22);
+  }
+  .pro-con-card.bad {
+    background: var(--pink-tint);
+    border: 1px solid rgba(233, 151, 151, 0.35);
+  }
+  .pro-con-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .pro-con-card.good .pro-con-label { color: var(--green-dark); }
+  .pro-con-card.bad .pro-con-label { color: var(--pink-dark); }
+  .pro-con-card h3 { margin: 0 0 12px; color: var(--ink); }
+  .pro-con-card ul { margin: 0; padding-left: 18px; }
+  .pro-con-card li { font-size: 14.5px; }
+
+  .scope {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 16px;
+  }
+  @media (max-width: 720px) { .scope { grid-template-columns: 1fr; } }
+  .scope-card { border-radius: 12px; padding: 22px 24px; }
+  .scope-card.v1 { background: var(--green-tint-2); border: 1px solid rgba(100, 167, 11, 0.22); }
+  .scope-card.later { background: var(--primary-tint); border: 1px solid var(--primary-tint-2); }
+  .scope-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .scope-card.v1 .scope-label { color: var(--green-dark); }
+  .scope-card.later .scope-label { color: var(--primary-darker); }
+  .scope-card h3 { margin: 0 0 12px; color: var(--ink); }
+  .scope-card ul { margin: 0; padding-left: 18px; }
+  .scope-card li { font-size: 14.5px; }
+
+  .risk-row {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--pink);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px; margin-bottom: 10px;
+  }
+  .risk-row h4 {
+    font-size: 14.5px; font-weight: 600;
+    margin: 0 0 4px; color: var(--ink);
+  }
+  .risk-row p { font-size: 14px; margin: 0; }
+
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px; margin-top: 16px;
+  }
+  .pitch-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border-top: 3px solid var(--primary);
+  }
+  .pitch-card h4 {
+    margin: 0 0 8px; font-size: 15px; font-weight: 600;
+    color: var(--primary-dark);
+  }
+  .pitch-card p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--green-dark) 100%);
+    border-radius: 14px; padding: 32px 36px;
+    color: #fff; margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+  }
+  @media (max-width: 720px) {
+    .cta-box { grid-template-columns: 1fr; }
+  }
+  .cta-box h3 { color: #fff; margin: 0 0 6px; font-size: 22px; }
+  .cta-box p { color: rgba(255,255,255,0.9); margin: 0; }
+  .cta-btn {
+    background: #fff; color: var(--primary-dark);
+    padding: 12px 22px; border-radius: 10px;
+    text-decoration: none; font-weight: 600; font-size: 15px;
+    display: inline-flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+  }
+  .cta-btn:hover { background: var(--surface-softer); }
+
+  .scenarios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+  }
+  @media (max-width: 720px) { .scenarios { grid-template-columns: 1fr; } }
+  .scenario-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .scenario-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ink-quiet); margin-bottom: 6px;
+  }
+  .scenario-crews {
+    font-size: 24px; font-weight: 600;
+    color: var(--ink); margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .scenario-rev {
+    font-size: 15px; color: var(--green-dark); font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .scenario-card p {
+    font-size: 13.5px; margin: 0; line-height: 1.5;
+  }
+
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.7);
+    padding: 28px 24px; text-align: center; font-size: 13px;
+  }
+  .footer-brand { color: #fff; font-weight: 600; margin-bottom: 4px; display: block; }
+
+  ::selection { background: var(--primary-tint-2); color: var(--primary-darker); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+      </div>
+      <span>CrewCares</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="index.html">← Hub</a>
+      <a href="app.html">Prototype</a>
+      <a href="feature.html">Nova</a>
+      <a href="analysis.html">Analysis</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
+        New feature · Proposal
+      </span>
+      <h1>Nova knows what the crew needs — and where to get it</h1>
+      <p class="hero-sub">After a doctor's visit or medication change, Nova suggests products that genuinely help — pill organizers, BP monitors, grab bars. One tap to Amazon with full disclosure. The commerce model that doesn't compromise the brand.</p>
+      <div class="hero-badge-row">
+        <span class="hero-badge">Context-aware suggestions</span>
+        <span class="hero-badge">Amazon affiliate</span>
+        <span class="hero-badge">Full transparency</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" opacity="0.5"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tldr">
+    <div class="tldr-label">The short version</div>
+    <p>Nova proactively suggests care products when context warrants it — a pill organizer after a dose change, a BP monitor after a cardiology visit. Suggestions include clear reasoning ("recommended after Dr. Martinez's note"), Amazon links with an <strong>openly disclosed affiliate relationship</strong>, and a crew shopping list so the family coordinates who's buying what. The commerce earns revenue without turning the app into an ad platform.</p>
+  </div>
+
+  <section id="why">
+    <h2>Why this works for CrewCares specifically</h2>
+    <p>Amazon affiliate integration is common. Doing it in family caregiving without feeling gross is the actual product question. Three things make Nova's approach different:</p>
+
+    <div class="three-col">
+      <div class="box">
+        <div class="box-num">1</div>
+        <h4>Context-driven, not interest-driven</h4>
+        <p>Suggestions come from what the crew is actually doing — a doctor's visit, a new prescription. Not "people who liked this also bought" Amazon-style recommendations.</p>
+      </div>
+      <div class="box">
+        <div class="box-num">2</div>
+        <h4>The AI is already trusted</h4>
+        <p>Users already delegate tasks and scheduling to Nova. Asking Nova "what should I get for this?" is a natural extension of that relationship, not a new ad surface.</p>
+      </div>
+      <div class="box">
+        <div class="box-num">3</div>
+        <h4>Fully disclosed, every time</h4>
+        <p>"We earn a small referral fee" shown on every suggestion. Competitors hide this. We make it part of the feature. Transparency becomes a moat.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="walkthrough">
+    <h2>How it works</h2>
+    <p>Concrete walkthrough. It's November 8th. Dad had his cardiology follow-up this morning. Dr. Martinez adjusted his blood pressure medication.</p>
+
+    <div class="walk">
+      <div class="walk-step">
+        <div class="walk-num">1</div>
+        <div class="walk-content">
+          <h4>Nova picks up on the context</h4>
+          <p>The appointment was on the calendar. The medication change was discussed in crew chat. When Brent opens the app the next morning, Nova has already synthesized the situation.</p>
+          <div class="walk-example nova">Nova card: "After Dad's cardiology visit, these might help"</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">2</div>
+        <div class="walk-content">
+          <h4>Each product has a reason</h4>
+          <p>Not a generic product grid. Each item includes one sentence explaining why — and the reason ties to the specific care situation, not to the crew's purchase history.</p>
+          <div class="walk-example">
+            EZY DOSE 7-Day Pill Organizer<br/>
+            <em>"Recommended for the new dose schedule Dr. Martinez prescribed"</em><br/><br/>
+            Omron Silver BP Monitor<br/>
+            <em>"Approved by AHA; syncs readings so the crew can track trends"</em>
+          </div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">3</div>
+        <div class="walk-content">
+          <h4>Two-way choice on every item</h4>
+          <p>Every product has two buttons: "Buy on Amazon" (deep-link with affiliate tag) and "+ List" (add to the crew shopping list so someone else can pick it up locally). The app is agnostic about where the purchase happens.</p>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">4</div>
+        <div class="walk-content">
+          <h4>Disclosure is inline, not buried</h4>
+          <p>Every Nova recommendation card has a visible footer: "We earn a small referral fee when you buy through Amazon — it helps keep CrewCares running." Not in Terms of Service. Right on the recommendation.</p>
+          <div class="walk-example">ⓘ We earn a small referral fee when you buy through Amazon — it helps keep CrewCares running. Prices and availability are set by Amazon.</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">5</div>
+        <div class="walk-content">
+          <h4>The crew shopping list is the real coordination layer</h4>
+          <p>Even when Nova suggests Amazon, the list shows who added the item, who's buying, and where. Sarah added "low-sodium broth" — she'll grab it at Whole Foods. Linda's picking up adult briefs at CVS. Nova's pill organizer suggestion is on Amazon. All coordinated in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="revenue">
+    <h2>The revenue math</h2>
+    <p>Amazon Associates pays 1–10% depending on category. Health &amp; personal care (most caregiving products) sits around 1–3%. Home goods 3%. Grocery 5%. Using a conservative 3% blended rate and realistic conversion assumptions:</p>
+
+    <div class="math-table">
+      <div class="math-header">
+        <span>Per active crew / month</span>
+        <span>Value</span>
+        <span>Source</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Monthly spend on caregiving products</span>
+        <span class="math-value">$180</span>
+        <span class="math-value">AARP 2024</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">% of spend routed through app</span>
+        <span class="math-value">40%</span>
+        <span class="math-value">Est.</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Spend through affiliate links</span>
+        <span class="math-value">$72</span>
+        <span class="math-value">—</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Amazon conversion rate (24hr window)</span>
+        <span class="math-value">60%</span>
+        <span class="math-value">Industry avg</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Completed Amazon revenue attributed</span>
+        <span class="math-value">$43.20</span>
+        <span class="math-value">—</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Blended affiliate commission rate</span>
+        <span class="math-value">3.0%</span>
+        <span class="math-value">Amazon</span>
+      </div>
+      <div class="math-row total">
+        <span class="math-label">Revenue per active crew / month</span>
+        <span class="math-value">~$1.30</span>
+        <span class="math-value"></span>
+      </div>
+    </div>
+
+    <p style="margin-top: 20px;">Per-crew revenue looks small, but scale matters. And <strong>only a subset of crews will be commerce-active</strong>. Let's assume 50% of all installed crews use the shopping feature at least once a month:</p>
+
+    <div class="scenarios">
+      <div class="scenario-card">
+        <div class="scenario-label">Seed scenario</div>
+        <div class="scenario-crews">5K crews</div>
+        <div class="scenario-rev">~$40K / year</div>
+        <p>Small signal of product-market fit. Not a business model yet. Demonstrates the model works.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-label">Series A scenario</div>
+        <div class="scenario-crews">50K crews</div>
+        <div class="scenario-rev">~$400K / year</div>
+        <p>Meaningful secondary revenue stream. Supports the argument that affiliate scales with user base.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-label">Scale scenario</div>
+        <div class="scenario-crews">500K crews</div>
+        <div class="scenario-rev">~$4M / year</div>
+        <p>A real line of business. Still a secondary stream — subscription remains primary. But the unit economics matter.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Honest note on the math</div>
+      <p>These numbers are deliberately conservative. Real affiliate revenue depends heavily on category mix (health products pay less than home goods), conversion rates (caregivers are price-sensitive and shop around), and return rates (Amazon returns reduce payout). The model is real, but it's not going to be the primary business. Treat it as a supplementary stream, not a pitch headline.</p>
+    </div>
+  </section>
+
+  <section id="good-bad">
+    <h2>What could go right — and wrong</h2>
+    <p>Every feature has tradeoffs. Being honest about both is how we don't get surprised in investor Q&amp;A.</p>
+
+    <div class="two-col">
+      <div class="pro-con-card good">
+        <div class="pro-con-label">What could go right</div>
+        <h3>If this works, it compounds</h3>
+        <ul>
+          <li><strong>Feature moat deepens.</strong> Nova becomes more useful the more it knows — crew history, care context, product preferences. Hard for competitors to copy.</li>
+          <li><strong>Meaningful secondary revenue.</strong> Even conservative math shows $4M+ possible at 500K crews. Diversifies beyond subscription.</li>
+          <li><strong>It's ethically differentiated.</strong> Caring Village hasn't done this. Full disclosure + context-driven suggestions + non-exclusive buying = a position competitors can't easily match without looking dishonest by comparison.</li>
+          <li><strong>Data flywheel.</strong> What crews actually buy informs what Nova recommends next time. Category by category, the recommendations get sharper.</li>
+        </ul>
+      </div>
+      <div class="pro-con-card bad">
+        <div class="pro-con-label">What could go wrong</div>
+        <h3>Real risks to the brand</h3>
+        <ul>
+          <li><strong>Users could feel surveilled.</strong> "Nova knows I had a doctor's visit." The feature depends on reading calendar + chat. Privacy framing has to be tight.</li>
+          <li><strong>Bad recommendations erode trust fast.</strong> One generic or inappropriate product suggestion ("buy a wheelchair") after a routine checkup and the whole AI feels creepy.</li>
+          <li><strong>Investor perception.</strong> Affiliate revenue can read as "no real business model yet." Has to be framed as one of multiple revenue streams, not a primary thesis.</li>
+          <li><strong>Amazon dependency.</strong> If Amazon changes the affiliate program (they periodically cut rates), the feature economics shift. Diversify vendors over time.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="scope">
+    <h2>V1 scope vs. later</h2>
+    <p>Clear boundaries. What ships first is narrow on purpose.</p>
+
+    <div class="scope">
+      <div class="scope-card v1">
+        <div class="scope-label">V1 ships with</div>
+        <h3>Manual curation, narrow scope</h3>
+        <ul>
+          <li>Nova recommends products from a hand-curated list of ~50 caregiving items tied to specific care contexts (medications, mobility, monitoring)</li>
+          <li>Recommendations triggered by explicit events — "post-appointment," "new prescription," "mobility concern mentioned"</li>
+          <li>Amazon affiliate deep-links; inline disclosure on every card</li>
+          <li>Crew shopping list as a separate screen, accessible from home and menu</li>
+          <li>"+List" option on every recommendation so users can coordinate non-Amazon purchases</li>
+          <li>Dismiss button per recommendation; full feature on/off in settings</li>
+        </ul>
+      </div>
+      <div class="scope-card later">
+        <div class="scope-label">Later releases</div>
+        <h3>AI-authored, multi-vendor</h3>
+        <ul>
+          <li>Nova generates product suggestions dynamically based on full care context</li>
+          <li>Multi-vendor affiliate (Walmart, Target, CVS, Chewy for pet meds)</li>
+          <li>Price-comparison across vendors; "local pickup" integration where available</li>
+          <li>"Subscribe &amp; Save" setup for recurring items (adult briefs, supplements)</li>
+          <li>Category expansion: home modifications (grab bars, bathroom aids), durable medical equipment</li>
+          <li>Partnership model: pharmacy chains, home health suppliers for higher margin categories</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="risks">
+    <h2>Risks we're designing around</h2>
+    <p>How we prevent the predictable failure modes.</p>
+
+    <div class="risk-row">
+      <h4>The "my AI is upselling me" feeling</h4>
+      <p>Mitigation: every suggestion explains <em>why</em> specifically. If Nova can't articulate a care reason for recommending the product, it shouldn't surface. Recommendation generation starts narrow (curated list) and expands only with evidence of accuracy.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Privacy of chat + calendar data</h4>
+      <p>Mitigation: Nova's product recommendations can be toggled off entirely in settings (on by default but prominently toggleable). Nova only uses <em>care-relevant</em> signals — doctor appointments, medication changes, explicit care discussion. Not birthdays, not gift shopping, not personal conversation.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Wrong recommendation damages trust in Nova broadly</h4>
+      <p>Mitigation: V1 curation is tight (~50 items). Every item on the list is vetted for quality, ratings &gt; 4.2, and caregiver relevance. No long-tail products. Better to have fewer, well-matched suggestions than broad coverage with misses.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Amazon changes the program</h4>
+      <p>Mitigation: architect the recommendation engine to be vendor-agnostic from day one. Amazon is V1 because it's the easiest integration with broadest catalog. V2 adds Walmart and pharmacy chains. If Amazon cuts rates, we shift traffic.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Investor perception of affiliate as "not a real business"</h4>
+      <p>Mitigation: frame this as one of four revenue lines — subscription (primary), affiliate commerce (secondary), enterprise / employer benefits (future), partnerships (future). Show the math but don't lead with it.</p>
+    </div>
+  </section>
+
+  <section id="pitch">
+    <h2>The investor framing</h2>
+    <p>How to talk about this in a pitch without it undermining the company story.</p>
+
+    <div class="pitch-grid">
+      <div class="pitch-card">
+        <h4>It reinforces the AI story</h4>
+        <p>Nova is already our differentiator. Commerce is an expression of Nova becoming more useful — not a separate feature bolted on. Strengthens the thesis that AI is our wedge.</p>
+      </div>
+      <div class="pitch-card">
+        <h4>It's a secondary revenue stream</h4>
+        <p>Subscription stays primary. Affiliate is additive. Investors like to see multi-line revenue models, especially for consumer apps where subscription alone is hard.</p>
+      </div>
+      <div class="pitch-card">
+        <h4>Transparency is the moat</h4>
+        <p>"We earn a small referral fee" is a feature, not a disclosure. Competitors who hide their affiliate relationships look dishonest by comparison. We own the trustworthy position.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-box">
+    <div>
+      <h3>See the feature in the prototype</h3>
+      <p>Nova's product recommendation card is live on the home screen. Click "Buy on Amazon" or "+List" and watch the crew shopping list update.</p>
+    </div>
+    <a href="app.html" class="cta-btn">
+      Open prototype
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-brand">CrewCares</span>
+  <span>Feature proposal · Nova commerce &amp; crew shopping list · April 2026</span>
+</footer>
+
+</body>
+</html>

@@ -46,8 +46,8 @@
   }
   .nav-top-inner { max-width: 420px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; }
   .nav-top-brand { color: #fff; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; }
-  .nav-top-links { display: flex; gap: 4px; }
-  .nav-top-links a { color: rgba(255,255,255,0.95); text-decoration: none; font-size: 13px; padding: 5px 10px; border-radius: 6px; }
+  .nav-top-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .nav-top-links a { color: rgba(255,255,255,0.95); text-decoration: none; font-size: 12.5px; padding: 5px 9px; border-radius: 6px; }
   .nav-top-links a:hover { background: rgba(255,255,255,0.12); }
 
   h1.page-title { font-size: 18px; font-weight: 500; margin: 0 0 4px; }
@@ -60,12 +60,12 @@
     display: inline-flex; align-items: center; gap: 6px;
   }
 
-  .cc-reset-bar { max-width: 420px; margin: 0 auto 20px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .cc-reset-bar { max-width: 420px; margin: 0 auto 20px; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
   .cc-jump-btn {
     background: var(--color-background-secondary);
     border: 0.5px solid var(--color-border-tertiary);
-    border-radius: 999px; padding: 5px 13px;
-    font-size: 12px; color: var(--color-text-secondary);
+    border-radius: 999px; padding: 5px 12px;
+    font-size: 11.5px; color: var(--color-text-secondary);
     cursor: pointer; font-family: inherit;
   }
   .cc-jump-btn:hover { background: var(--color-background-primary); color: var(--color-text-primary); }
@@ -287,6 +287,129 @@
     font-weight: 500; vertical-align: middle; margin-left: 6px;
   }
 
+  /* Commerce styles */
+  .nova-rec-card {
+    margin: 12px 12px 4px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 0;
+    border: 1px solid rgba(100, 167, 11, 0.22);
+    overflow: hidden;
+  }
+  .nova-rec-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px 10px;
+    background: #f7fbf0;
+    border-bottom: 1px solid rgba(100, 167, 11, 0.15);
+  }
+  .nova-rec-header-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #64a70b; display: flex;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nova-rec-header-text { flex: 1; min-width: 0; }
+  .nova-rec-title { font-size: 13px; font-weight: 600; color: #2c2c2a; }
+  .nova-rec-context { font-size: 11.5px; color: #5f5e5a; margin-top: 1px; line-height: 1.35; }
+  .nova-rec-dismiss {
+    background: transparent; border: 0;
+    color: #888780; cursor: pointer;
+    font-size: 18px; padding: 0 4px;
+    line-height: 1;
+  }
+  .product-card {
+    display: flex; gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+  }
+  .product-card:last-of-type { border-bottom: 0; }
+  .product-image {
+    width: 64px; height: 64px;
+    border-radius: 8px;
+    background: #F4F6F9;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .product-image svg { color: #888780; }
+  .product-info { flex: 1; min-width: 0; }
+  .product-name {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #2c2c2a;
+    line-height: 1.35;
+    margin-bottom: 3px;
+  }
+  .product-why {
+    font-size: 11.5px;
+    color: #3B6D11;
+    margin-bottom: 4px;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+  }
+  .product-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #888780;
+    margin-bottom: 6px;
+  }
+  .product-stars { color: #BA7517; font-weight: 500; }
+  .product-actions {
+    display: flex; gap: 6px; align-items: center;
+  }
+  .product-price { font-size: 14px; font-weight: 600; color: #2c2c2a; }
+  .product-btn {
+    background: #64a70b; color: #fff;
+    border: 0; border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 12px; font-weight: 500;
+    cursor: pointer; font-family: inherit;
+    display: inline-flex; align-items: center; gap: 3px;
+  }
+  .product-btn:hover { background: #4d8208; }
+  .product-btn.secondary {
+    background: #fff; color: #5f5e5a;
+    border: 1px solid #D3D1C7;
+  }
+  .product-btn.secondary:hover { background: #F4F6F9; color: #2c2c2a; }
+  .affiliate-disclosure {
+    padding: 8px 14px;
+    background: #faf8f0;
+    font-size: 10.5px;
+    color: #5f5e5a;
+    line-height: 1.45;
+    border-top: 0.5px solid rgba(186, 117, 23, 0.15);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .affiliate-disclosure svg { color: #BA7517; flex-shrink: 0; margin-top: 1px; }
+
+  .shopping-item {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: #fff;
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+  }
+  .shopping-item:last-child { border-bottom: 0; }
+  .shopping-check {
+    width: 22px; height: 22px; border: 2px solid #B4B2A9;
+    border-radius: 6px; flex-shrink: 0;
+    cursor: pointer;
+  }
+  .shopping-check.checked {
+    background: #64a70b; border-color: #64a70b;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .shopping-content { flex: 1; min-width: 0; }
+  .shopping-name { font-size: 14.5px; color: #2c2c2a; margin-bottom: 2px; }
+  .shopping-name.checked { text-decoration: line-through; color: #888780; }
+  .shopping-meta { font-size: 11.5px; color: #888780; }
+
   ::selection { background: #d4e8ec; color: #1e5861; }
 </style>
 </head>
@@ -300,7 +423,8 @@
     </div>
     <div class="nav-top-links">
       <a href="index.html">← Hub</a>
-      <a href="feature.html">Feature</a>
+      <a href="feature.html">Nova</a>
+      <a href="commerce.html">Commerce</a>
       <a href="analysis.html">Analysis</a>
     </div>
   </div>
@@ -310,7 +434,7 @@
 <p class="page-sub">Investor demo · all data is mocked</p>
 <div class="feature-highlight">
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
-  New: Nova, your AI care coordinator
+  New: Nova suggests products after the cardiology visit · try it on Home
 </div>
 
 <div class="cc-reset-bar" id="jump-bar"></div>
@@ -336,7 +460,13 @@
     novaInput: '',
     novaPhase: 'idle',
     novaProposal: null,
+    recDismissed: false,
     completedTasks: new Set(['t2']),
+    shoppingList: [
+      { id: 's1', name: 'Low-sodium chicken broth', added_by: 'Sarah', bought: false, source: 'Amazon' },
+      { id: 's2', name: 'Adult briefs — Small', added_by: 'Linda', bought: true, source: 'CVS' },
+      { id: 's3', name: 'Pill organizer (7-day, large print)', added_by: 'Nova', bought: false, source: 'Amazon', aiSuggested: true }
+    ],
     tasks: [
       { id: 't1', title: 'Pick up prescription from CVS', status: 'todo', assignee: 'Sarah', due: 'Today' },
       { id: 't2', title: 'Call Dr. Martinez about follow-up', status: 'done', assignee: 'Brent', due: 'Yesterday' },
@@ -375,6 +505,7 @@
     { id: 'tasks', label: 'Tasks' },
     { id: 'calendar', label: 'Calendar' },
     { id: 'chat', label: 'Chat' },
+    { id: 'shopping', label: 'Shopping' },
     { id: 'members', label: 'Members' },
     { id: 'menu', label: 'Menu' }
   ];
@@ -382,7 +513,15 @@
   const SPARKLES = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>';
 
   function go(s){ state.screen = s; render(); }
-  function setTab(t){ state.tab = t; if (t === 'home') state.screen = 'home'; if (t === 'tasks') state.screen = 'tasks'; if (t === 'calendar') state.screen = 'calendar'; if (t === 'chat') state.screen = 'chat'; if (t === 'members') state.screen = 'members'; render(); }
+  function setTab(t){
+    state.tab = t;
+    if (t === 'home') state.screen = 'home';
+    if (t === 'tasks') state.screen = 'tasks';
+    if (t === 'calendar') state.screen = 'calendar';
+    if (t === 'chat') state.screen = 'chat';
+    if (t === 'members') state.screen = 'members';
+    render();
+  }
 
   function statusBar(){
     return '<div class="cc-status"><span>9:41</span><span class="cc-status-icons"><svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="currentColor"/><rect x="5" y="5" width="3" height="6" rx="0.5" fill="currentColor"/><rect x="10" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="15" y="0" width="2" height="11" rx="0.5" fill="currentColor" opacity="0.4"/></svg><svg width="16" height="11" viewBox="0 0 16 11"><path d="M8 2.5c2 0 3.8.7 5.2 2l1.4-1.4A9.5 9.5 0 0 0 8 0C5 0 2.3 1 .4 3.1l1.4 1.4C3.2 3.2 5 2.5 8 2.5z" fill="currentColor"/><path d="M8 6c1.2 0 2.3.5 3.1 1.3l1.4-1.4A6.5 6.5 0 0 0 8 4a6.5 6.5 0 0 0-4.5 1.9l1.4 1.4C5.7 6.5 6.8 6 8 6z" fill="currentColor"/><circle cx="8" cy="9.5" r="1.5" fill="currentColor"/></svg><svg width="26" height="11" viewBox="0 0 26 11"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" fill="none" stroke="currentColor" opacity="0.5"/><rect x="2" y="2" width="17" height="7" rx="1" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="currentColor" opacity="0.5"/></svg></span></div>';
@@ -598,9 +737,89 @@
     '</div>';
   }
 
+  function pillBoxSvg(){
+    return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="4" x2="12" y2="20"/><circle cx="7.5" cy="8" r="0.5" fill="currentColor"/><circle cx="16.5" cy="8" r="0.5" fill="currentColor"/><circle cx="7.5" cy="16" r="0.5" fill="currentColor"/><circle cx="16.5" cy="16" r="0.5" fill="currentColor"/></svg>';
+  }
+  function bpCuffSvg(){
+    return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M8 6h8a2 2 0 0 1 2 2v3H6V8a2 2 0 0 1 2-2z"/><rect x="4" y="11" width="16" height="9" rx="1.5"/><path d="M9 16l2 2 4-4"/></svg>';
+  }
+  function scaleSvg(){
+    return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="5"/><path d="M12 9v3l2 1"/></svg>';
+  }
+
+  function novaRecommendationCard(){
+    if (state.recDismissed) return '';
+    const products = [
+      {
+        name: 'EZY DOSE 7-Day Pill Organizer — Large Print',
+        why: 'Recommended for the new dose schedule Dr. Martinez prescribed',
+        rating: '4.6',
+        reviews: '12,847',
+        price: '$9.49',
+        icon: pillBoxSvg(),
+        id: 'rec1'
+      },
+      {
+        name: 'Omron Silver BP Monitor — Upper Arm, Bluetooth',
+        why: 'Approved by AHA; syncs readings so the crew can track trends',
+        rating: '4.5',
+        reviews: '8,204',
+        price: '$59.99',
+        icon: bpCuffSvg(),
+        id: 'rec2'
+      },
+      {
+        name: 'Digital Bathroom Scale with Large Display',
+        why: 'Weight check recommended after diuretic adjustment',
+        rating: '4.4',
+        reviews: '3,661',
+        price: '$24.99',
+        icon: scaleSvg(),
+        id: 'rec3'
+      }
+    ];
+
+    return '<div class="nova-rec-card">' +
+      '<div class="nova-rec-header">' +
+        '<div class="nova-rec-header-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg></div>' +
+        '<div class="nova-rec-header-text">' +
+          '<div class="nova-rec-title">After Dad\'s cardiology visit, these might help</div>' +
+          '<div class="nova-rec-context">Based on Dr. Martinez\'s notes and medication change</div>' +
+        '</div>' +
+        '<button class="nova-rec-dismiss" data-action="dismiss-rec" aria-label="Dismiss">×</button>' +
+      '</div>' +
+      products.map(function(p){
+        return '<div class="product-card">' +
+          '<div class="product-image">' + p.icon + '</div>' +
+          '<div class="product-info">' +
+            '<div class="product-name">' + p.name + '</div>' +
+            '<div class="product-why">' + SPARKLES + ' <span>' + p.why + '</span></div>' +
+            '<div class="product-meta">' +
+              '<span class="product-stars">★ ' + p.rating + '</span>' +
+              '<span>(' + p.reviews + ')</span>' +
+              '<span>·</span>' +
+              '<span>Amazon</span>' +
+            '</div>' +
+            '<div class="product-actions">' +
+              '<span class="product-price">' + p.price + '</span>' +
+              '<button class="product-btn" data-action="buy-product" data-product="' + p.id + '">Buy on Amazon →</button>' +
+              '<button class="product-btn secondary" data-action="add-to-list" data-product="' + p.id + '" data-name="' + p.name.replace(/"/g,'&quot;') + '">+ List</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('') +
+      '<div class="affiliate-disclosure">' +
+        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>' +
+        '<span>We earn a small referral fee when you buy through Amazon — it helps keep CrewCares running. Prices and availability are set by Amazon.</span>' +
+      '</div>' +
+    '</div>';
+  }
+
   function homeScreen(){
     const upcoming = state.events.slice(0, 2);
     const myTasks = state.tasks.filter(function(t){ return t.assignee === 'Brent' && t.status !== 'done'; }).slice(0, 2);
+    const pendingList = state.shoppingList.filter(function(s){ return !s.bought; }).length;
+
     return statusBar() +
       header(state.crewName, { menu: true }) +
       '<div class="cc-body" style="padding-bottom: 90px;">' +
@@ -609,6 +828,17 @@
           '<h2 style="font-size: 24px; font-weight: 500; margin: 0;">Brent 👋</h2>' +
         '</div>' +
         novaCard() +
+        novaRecommendationCard() +
+        '<div class="cc-section-head" style="display:flex; justify-content:space-between; align-items:center;"><span>Crew shopping list</span><button class="cc-header-btn" style="color:#4395a2; padding:0;" data-go="shopping">' + pendingList + ' pending ›</button></div>' +
+        state.shoppingList.filter(function(s){ return !s.bought; }).slice(0,2).map(function(s){
+          return '<div class="cc-card" style="margin-bottom:8px; display:flex; align-items:center; gap:10px;">' +
+            '<div style="width:30px; height:30px; border-radius:8px; background:#F0F2F8; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5f5e5a" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>' +
+            '<div style="flex:1;">' +
+              '<p style="font-size:14px; margin:0;">' + s.name + (s.aiSuggested ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p>' +
+              '<p style="font-size:11.5px; color:#888780; margin:2px 0 0;">Added by ' + s.added_by + ' · ' + s.source + '</p>' +
+            '</div>' +
+          '</div>';
+        }).join('') +
         '<div class="cc-section-head">Your tasks</div>' +
         myTasks.map(function(t){
           return '<div class="cc-card" style="margin-bottom: 8px;"><div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;"><div style="flex: 1;"><p style="font-size: 15px; margin: 0 0 4px; color: #2c2c2a;">' + t.title + (t.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><p style="font-size: 12px; color: #888780; margin: 0;">Due ' + t.due + '</p></div><span class="cc-pill ' + t.status + '">' + (t.status === 'inprogress' ? 'In Progress' : t.status === 'todo' ? 'To-Do' : t.status) + '</span></div></div>';
@@ -619,6 +849,48 @@
         }).join('') +
       '</div>' +
       tabBar();
+  }
+
+  function shoppingScreen(){
+    const pending = state.shoppingList.filter(function(s){ return !s.bought; });
+    const bought = state.shoppingList.filter(function(s){ return s.bought; });
+
+    return statusBar() +
+      header('Crew Shopping', { back: 'home' }) +
+      '<div class="cc-body" style="padding-bottom: 90px;">' +
+        '<div style="padding: 16px; background:#fff; border-bottom: 0.5px solid rgba(0,0,0,0.06);">' +
+          '<p style="font-size:13px; color:#5f5e5a; margin:0 0 4px;">Items the crew is buying for Dad.</p>' +
+          '<p style="font-size:12px; color:#888780; margin:0;">' + pending.length + ' pending · ' + bought.length + ' bought this month</p>' +
+        '</div>' +
+        (pending.length ? '<div class="cc-section-head">Pending</div>' +
+          '<div style="margin: 0 12px; background:#fff; border-radius:10px; overflow:hidden;">' +
+          pending.map(function(s){
+            return '<div class="shopping-item" data-shop="' + s.id + '">' +
+              '<div class="shopping-check"></div>' +
+              '<div class="shopping-content">' +
+                '<div class="shopping-name">' + s.name + (s.aiSuggested ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</div>' +
+                '<div class="shopping-meta">Added by ' + s.added_by + ' · ' + s.source + '</div>' +
+              '</div>' +
+              (s.source === 'Amazon' ? '<button class="product-btn" data-action="buy-item" data-shop="' + s.id + '">Amazon →</button>' : '') +
+            '</div>';
+          }).join('') + '</div>' : '') +
+        (bought.length ? '<div class="cc-section-head">Recently bought</div>' +
+          '<div style="margin: 0 12px; background:#fff; border-radius:10px; overflow:hidden;">' +
+          bought.map(function(s){
+            return '<div class="shopping-item" data-shop="' + s.id + '">' +
+              '<div class="shopping-check checked"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>' +
+              '<div class="shopping-content">' +
+                '<div class="shopping-name checked">' + s.name + '</div>' +
+                '<div class="shopping-meta">Bought by ' + s.added_by + ' · ' + s.source + '</div>' +
+              '</div>' +
+            '</div>';
+          }).join('') + '</div>' : '') +
+
+        '<div class="affiliate-disclosure" style="margin: 16px 12px 0; border-radius: 8px; border: 0.5px solid rgba(186, 117, 23, 0.2); border-top: 0.5px solid rgba(186, 117, 23, 0.2);">' +
+          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>' +
+          '<span>When you buy through Amazon links here, CrewCares earns a small referral fee. This helps keep the app free for your crew. You can always buy from any other store — the app doesn\'t care where.</span>' +
+        '</div>' +
+      '</div>';
   }
 
   function tasksScreen(){
@@ -705,6 +977,7 @@
         '<div style="padding: 20px 16px 12px; background:#fff;"><div style="display:flex; align-items:center; gap:12px;"><div class="cc-avatar lg" style="background:#4395a2;">B</div><div><p style="font-size:17px; font-weight:500; margin:0;">Brent</p><p style="font-size:13px; color:#888780; margin: 2px 0 0;">Crew Leader · ' + state.crewName + '</p></div></div></div>' +
         '<div style="margin: 12px 0 0;">' +
           '<div class="cc-menu-item" data-tab="members"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg><span style="flex:1;">Crew members</span><span style="color:#888780;">›</span></div>' +
+          '<div class="cc-menu-item" data-go="shopping"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span style="flex:1;">Crew shopping list</span><span style="color:#888780;">›</span></div>' +
           '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64a70b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg><span style="flex:1;">Nova settings</span><span style="color:#888780;">›</span></div>' +
           '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span style="flex:1;">Invite new member</span><span style="color:#888780;">›</span></div>' +
           '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6"/></svg><span style="flex:1;">Settings</span><span style="color:#888780;">›</span></div>' +
@@ -717,7 +990,8 @@
   const RENDERERS = {
     welcome: welcome, create: createScreen, 'code-sent': codeSentScreen,
     join: joinScreen, home: homeScreen, tasks: tasksScreen,
-    calendar: calendarScreen, chat: chatScreen, members: membersScreen, menu: menuScreen
+    calendar: calendarScreen, chat: chatScreen, members: membersScreen,
+    menu: menuScreen, shopping: shoppingScreen
   };
 
   function render(){
@@ -792,7 +1066,7 @@
   }
 
   document.addEventListener('click', function(e){
-    const tgt = e.target.closest('[data-go],[data-tab],[data-action],[data-task],[data-jump],[data-suggestion]');
+    const tgt = e.target.closest('[data-go],[data-tab],[data-action],[data-task],[data-jump],[data-suggestion],[data-shop]');
     if (!tgt) return;
     if (tgt.dataset.suggestion) {
       state.novaInput = tgt.dataset.suggestion;
@@ -819,6 +1093,24 @@
     else if (action === 'nova-send') novaSend();
     else if (action === 'nova-confirm') novaConfirm();
     else if (action === 'nova-dismiss') novaDismiss();
+    else if (action === 'dismiss-rec') { state.recDismissed = true; render(); }
+    else if (action === 'buy-product' || action === 'buy-item') {
+      alert('Demo: would open Amazon with affiliate tag. In production this deep-links to the product page.');
+    }
+    else if (action === 'add-to-list') {
+      const name = tgt.dataset.name;
+      if (name && !state.shoppingList.find(function(s){ return s.name === name; })) {
+        state.shoppingList.unshift({
+          id: 's' + Date.now(),
+          name: name,
+          added_by: 'Nova',
+          bought: false,
+          source: 'Amazon',
+          aiSuggested: true
+        });
+      }
+      render();
+    }
     else if (action === 'send-message') {
       const input = screen.querySelector('[data-field="chatDraft"]');
       const text = (input && input.value || '').trim();
