@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CrewCares — Meet Nova</title>
-<meta name="description" content="Nova — the AI care coordinator on the CrewCares home screen. Feature proposal and design rationale.">
+<title>CrewCares — Meet Kira</title>
+<meta name="description" content="Kira — the AI care coordinator on the CrewCares home screen. Feature proposal and design rationale.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -215,7 +215,7 @@
     color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "SF Mono", Menlo, monospace;
   }
-  .walk-example.nova {
+  .walk-example.kira {
     background: var(--green-tint-2);
     border: 1px solid rgba(100, 167, 11, 0.22);
     color: var(--green-dark);
@@ -348,8 +348,8 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
         New feature · Proposal
       </span>
-      <h1>Meet Nova — your crew's AI care coordinator</h1>
-      <p class="hero-sub">A warm, knowledgeable assistant on the home screen. Type what the crew needs in plain English — Nova creates the task, schedules the event, and lets the right person know.</p>
+      <h1>Meet Kira — your crew's AI care coordinator</h1>
+      <p class="hero-sub">A warm, knowledgeable assistant on the home screen. Type what the crew needs in plain English — Kira creates the task, schedules the event, and lets the right person know.</p>
       <div class="hero-badge-row">
         <span class="hero-badge">Natural language</span>
         <span class="hero-badge">Creates tasks &amp; events</span>
@@ -366,51 +366,51 @@
 
   <div class="tldr">
     <div class="tldr-label">The short version</div>
-    <p>Instead of navigating menus to add a task, invite someone, or check the calendar, crew members just type what they want. <strong>Nova reads the intent, proposes the action, and posts a note to chat so the whole crew stays in sync.</strong> It's one input field that replaces a dozen interactions.</p>
+    <p>Instead of navigating menus to add a task, invite someone, or check the calendar, crew members just type what they want. <strong>Kira reads the intent, proposes the action, and posts a note to chat so the whole crew stays in sync.</strong> It's one input field that replaces a dozen interactions.</p>
   </div>
 
   <section id="why">
     <h2>Why this feature</h2>
-    <p>Our competitive analysis surfaced a clear insight: Caring Village shipped an AI assistant called Julia in late 2025, and it's already moving AI from "nice differentiator" to "table stakes" in family caregiving. But Julia is built as a separate assistant tab — ask it a question, get an answer. Nova is different.</p>
+    <p>Our competitive analysis surfaced a clear insight: Caring Village shipped an AI assistant called Julia in late 2025, and it's already moving AI from "nice differentiator" to "table stakes" in family caregiving. But Julia is built as a separate assistant tab — ask it a question, get an answer. Kira is different.</p>
 
     <div class="three-beats">
       <div class="beat">
         <div class="beat-num">1</div>
         <h4>It's embedded, not separate</h4>
-        <p>Nova lives on the home screen as the primary input, not hidden behind a tab. It becomes the default way to do anything in the app.</p>
+        <p>Kira lives on the home screen as the primary input, not hidden behind a tab. It becomes the default way to do anything in the app.</p>
       </div>
       <div class="beat">
         <div class="beat-num">2</div>
         <h4>It does things, not just answers them</h4>
-        <p>Julia gives advice. Nova creates tasks, schedules events, and posts to crew chat. The difference between a help desk and a colleague.</p>
+        <p>Julia gives advice. Kira creates tasks, schedules events, and posts to crew chat. The difference between a help desk and a colleague.</p>
       </div>
       <div class="beat">
         <div class="beat-num">3</div>
         <h4>It's visible to the whole crew</h4>
-        <p>When Nova does something, it posts a short note in crew chat. No surveillance, no surprise — everyone sees what the AI did and why.</p>
+        <p>When Kira does something, it posts a short note in crew chat. No surveillance, no surprise — everyone sees what the AI did and why.</p>
       </div>
     </div>
   </section>
 
   <section id="walkthrough">
     <h2>How it works</h2>
-    <p>A concrete walkthrough. Brent opens CrewCares, sees the Nova card on the home screen, and types:</p>
+    <p>A concrete walkthrough. Brent opens CrewCares, sees the Kira card on the home screen, and types:</p>
 
     <div class="walk">
       <div class="walk-step">
         <div class="walk-num">1</div>
         <div class="walk-content">
           <h4>The user types a natural-language intent</h4>
-          <p>Plain English works. Specific details work. Vague works too — Nova will ask for clarification if it needs to.</p>
+          <p>Plain English works. Specific details work. Vague works too — Kira will ask for clarification if it needs to.</p>
           <div class="walk-example">"Remind Sarah to pick up Dad's prescription tomorrow"</div>
         </div>
       </div>
       <div class="walk-step">
         <div class="walk-num">2</div>
         <div class="walk-content">
-          <h4>Nova proposes actions before taking them</h4>
-          <p>Critical design choice: Nova always shows what it plans to do first. No surprise tasks appearing. Review, edit, then confirm.</p>
-          <div class="walk-example nova">Got it. Here's what I'll set up:<br/>✓ Pick up Dad's prescription — Assigned to Sarah · Tomorrow<br/>✓ Let Sarah know — Small note in crew chat</div>
+          <h4>Kira proposes actions before taking them</h4>
+          <p>Critical design choice: Kira always shows what it plans to do first. No surprise tasks appearing. Review, edit, then confirm.</p>
+          <div class="walk-example kira">Got it. Here's what I'll set up:<br/>✓ Pick up Dad's prescription — Assigned to Sarah · Tomorrow<br/>✓ Let Sarah know — Small note in crew chat</div>
         </div>
       </div>
       <div class="walk-step">
@@ -418,21 +418,21 @@
         <div class="walk-content">
           <h4>On confirm, actions execute simultaneously</h4>
           <p>The task appears in Sarah's list. A note appears in crew chat. The home screen updates. All visible to the whole crew.</p>
-          <div class="walk-example nova">In crew chat: "Nova added 'Pick up prescription' for Sarah based on Brent's note."</div>
+          <div class="walk-example kira">In crew chat: "Kira added 'Pick up prescription' for Sarah based on Brent's note."</div>
         </div>
       </div>
       <div class="walk-step">
         <div class="walk-num">4</div>
         <div class="walk-content">
-          <h4>Nova items are clearly labeled</h4>
-          <p>Every task, event, or chat message Nova created carries a small visible tag. Trust is built on transparency — the crew can always see what came from a human vs. the AI.</p>
+          <h4>Kira items are clearly labeled</h4>
+          <p>Every task, event, or chat message Kira created carries a small visible tag. Trust is built on transparency — the crew can always see what came from a human vs. the AI.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section id="what-else">
-    <h2>What else Nova handles</h2>
+    <h2>What else Kira handles</h2>
     <p>V1 supports three intent types — each solves a real friction in the current flow.</p>
 
     <h3>Create tasks</h3>
@@ -462,7 +462,7 @@
           <li>Generate weekly summaries on demand</li>
           <li>Post announcements to crew chat when actions happen</li>
           <li>"Confirm before action" pattern for all creations</li>
-          <li>Visible Nova tag on all AI-created items</li>
+          <li>Visible Kira tag on all AI-created items</li>
         </ul>
       </div>
       <div class="scope-card later">
@@ -482,7 +482,7 @@
 
   <section id="risks">
     <h2>Risks we've thought about</h2>
-    <p>Nova is the right feature, but there are real pitfalls. These are the ones we're designing around.</p>
+    <p>Kira is the right feature, but there are real pitfalls. These are the ones we're designing around.</p>
 
     <div class="risk-row">
       <h4>Demo magic vs. real-world reliability</h4>
@@ -490,13 +490,13 @@
     </div>
 
     <div class="risk-row">
-      <h4>Trust when Nova gets it wrong</h4>
-      <p>The AI will occasionally misassign or misdate something. Our approach: low-friction undo, clear "Nova made this" tags, and never post to chat without a confirm step. Mistakes should feel normal, not alarming.</p>
+      <h4>Trust when Kira gets it wrong</h4>
+      <p>The AI will occasionally misassign or misdate something. Our approach: low-friction undo, clear "Kira made this" tags, and never post to chat without a confirm step. Mistakes should feel normal, not alarming.</p>
     </div>
 
     <div class="risk-row">
       <h4>Privacy and scope boundaries</h4>
-      <p>Nova reads crew chat to generate summaries. We'll ship a clear toggle ("Let Nova read crew messages") and default to opt-in. The user controls what Nova sees.</p>
+      <p>Kira reads crew chat to generate summaries. We'll ship a clear toggle ("Let Kira read crew messages") and default to opt-in. The user controls what Kira sees.</p>
     </div>
 
     <div class="risk-row">
@@ -507,16 +507,16 @@
 
   <section id="pitch">
     <h2>The investor framing</h2>
-    <p>Three reasons Nova strengthens the CrewCares investor story.</p>
+    <p>Three reasons Kira strengthens the CrewCares investor story.</p>
 
     <div class="pitch-grid">
       <div class="pitch-card">
         <h4>It's our answer to Julia</h4>
-        <p>"We have AI too" is table stakes. "Our AI is the primary input, not a help desk" is a position. Nova reframes the AI conversation instead of losing it.</p>
+        <p>"We have AI too" is table stakes. "Our AI is the primary input, not a help desk" is a position. Kira reframes the AI conversation instead of losing it.</p>
       </div>
       <div class="pitch-card">
         <h4>It reinforces our wedge</h4>
-        <p>We compete on chat-first, family-first simplicity. Nova is an agentic extension of chat — not a clinical records feature. It makes the existing positioning stronger, not muddier.</p>
+        <p>We compete on chat-first, family-first simplicity. Kira is an agentic extension of chat — not a clinical records feature. It makes the existing positioning stronger, not muddier.</p>
       </div>
       <div class="pitch-card">
         <h4>It unlocks the "one surface" narrative</h4>
@@ -527,7 +527,7 @@
 
   <div class="cta-box">
     <div>
-      <h3>See Nova live in the prototype</h3>
+      <h3>See Kira live in the prototype</h3>
       <p>The AI card is embedded on the home screen. Type an intent, watch the proposal, confirm, and see chat update.</p>
     </div>
     <a href="app.html" class="cta-btn">
@@ -540,7 +540,7 @@
 
 <footer>
   <span class="footer-brand">CrewCares</span>
-  <span>Feature proposal · Nova AI care coordinator · April 2026</span>
+  <span>Feature proposal · Kira AI care coordinator · April 2026</span>
 </footer>
 
 </body>
