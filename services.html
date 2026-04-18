@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewCares — Home Services</title>
+<meta name="description" content="Thumbtack-powered home services for family caregivers. Book a pro, get completion photos in chat, close the coordination loop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4395a2;
+    --primary-dark: #2f7a86;
+    --primary-darker: #1e5861;
+    --primary-tint: #eaf4f5;
+    --primary-tint-2: #d4e8ec;
+    --green: #64a70b;
+    --green-dark: #3B6D11;
+    --green-tint: #eaf3de;
+    --green-tint-2: #f7fbf0;
+    --blue: #185FA5;
+    --blue-dark: #0C447C;
+    --blue-tint: #e6f1fb;
+    --blue-tint-2: #f0f6fc;
+    --amber: #BA7517;
+    --amber-dark: #854F0B;
+    --amber-tint: #fef3e3;
+    --amber-tint-soft: #faf8f0;
+    --pink: #e99797;
+    --pink-dark: #993556;
+    --pink-tint: #fbeaea;
+    --ink: #2c2c2a;
+    --ink-soft: #5f5e5a;
+    --ink-quiet: #888780;
+    --surface: #ffffff;
+    --surface-soft: #F4F6F9;
+    --surface-softer: #F0F2F8;
+    --border-soft: #eff1f5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--surface-softer); color: var(--ink);
+    -webkit-font-smoothing: antialiased; line-height: 1.6;
+  }
+  .topbar {
+    background: var(--primary); color: #fff;
+    padding: 14px 0; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .topbar-inner {
+    max-width: 1040px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600; font-size: 17px; letter-spacing: -0.01em;
+  }
+  .brand-mark {
+    width: 32px; height: 32px; background: #fff;
+    border-radius: 8px; display: flex;
+    align-items: center; justify-content: center; color: var(--primary);
+  }
+  .topbar-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .topbar-nav a {
+    color: rgba(255,255,255,0.9); text-decoration: none;
+    font-size: 14px; padding: 6px 12px; border-radius: 6px;
+    transition: background 0.12s;
+  }
+  .topbar-nav a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--blue-dark) 100%);
+    color: #fff; padding: 64px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1040px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 40px; align-items: center;
+  }
+  .hero-text { max-width: 640px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; background: rgba(255,255,255,0.18);
+    border-radius: 999px; margin-bottom: 20px; font-weight: 500;
+  }
+  h1 {
+    font-size: 44px; line-height: 1.1;
+    letter-spacing: -0.025em; margin: 0 0 14px; font-weight: 600;
+  }
+  .hero-sub {
+    font-size: 18px; opacity: 0.94;
+    margin: 0 0 24px; line-height: 1.5;
+  }
+  .hero-badge-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+  }
+  .hero-visual {
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px) {
+    h1 { font-size: 32px; }
+    .hero { padding: 48px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { width: 120px; height: 120px; margin: 0 auto; }
+  }
+
+  .container { max-width: 1040px; margin: 0 auto; padding: 56px 24px 96px; }
+  section { margin-bottom: 56px; scroll-margin-top: 72px; }
+  h2 {
+    font-size: 28px; line-height: 1.25;
+    letter-spacing: -0.015em; margin: 0 0 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 20px; margin: 28px 0 10px;
+    font-weight: 600; letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 14px; color: var(--ink-soft); font-size: 15.5px; }
+  p strong, li strong { color: var(--ink); font-weight: 600; }
+  ul { padding-left: 22px; margin: 0 0 16px; }
+  li { margin-bottom: 8px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; }
+
+  .tldr {
+    background: var(--blue-tint-2);
+    border: 1px solid rgba(12, 68, 124, 0.18);
+    border-left: 4px solid var(--blue);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px; margin: 0 0 48px;
+  }
+  .tldr-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--blue-dark); margin-bottom: 6px;
+  }
+  .tldr p { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.6; }
+  .tldr p strong { color: var(--ink); }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px; margin: 20px 0;
+  }
+  @media (max-width: 720px) { .three-col { grid-template-columns: 1fr; } }
+  .box {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 22px 24px;
+    border-top: 3px solid var(--blue);
+  }
+  .box-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--blue-tint); color: var(--blue-dark);
+    font-weight: 600; font-size: 13px; margin-bottom: 10px;
+  }
+  .box h4 { font-size: 15px; margin: 0 0 6px; font-weight: 600; }
+  .box p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+  .walk {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 28px 32px; margin-top: 16px;
+  }
+  .walk-step {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 18px; padding: 14px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .walk-step:last-child { border-bottom: 0; padding-bottom: 0; }
+  .walk-step:first-child { padding-top: 0; }
+  .walk-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--primary); color: #fff;
+    font-weight: 600; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .walk-content h4 { margin: 2px 0 4px; font-size: 15.5px; font-weight: 600; }
+  .walk-content p { margin: 0; font-size: 14.5px; line-height: 1.55; }
+  .walk-example {
+    background: var(--surface-soft);
+    border-radius: 8px; padding: 10px 14px;
+    margin-top: 10px; font-size: 13.5px; color: var(--ink);
+    font-family: -apple-system, "SF Mono", Menlo, monospace;
+  }
+  .walk-example.service {
+    background: var(--blue-tint-2);
+    border: 1px solid rgba(12, 68, 124, 0.22);
+    color: var(--blue-dark); font-family: inherit;
+  }
+
+  .math-table {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    overflow: hidden; margin-top: 20px;
+  }
+  .math-row {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-soft);
+    display: grid;
+    grid-template-columns: 1fr 120px 140px;
+    gap: 12px;
+    font-size: 14.5px;
+    align-items: center;
+  }
+  .math-row:last-child { border-bottom: 0; }
+  .math-row.header-sub {
+    background: var(--surface-soft);
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .math-row.total {
+    background: var(--blue-tint-2);
+    font-weight: 600; color: var(--ink);
+    border-top: 2px solid rgba(12, 68, 124, 0.25);
+  }
+  .math-label { color: var(--ink); }
+  .math-value { text-align: right; color: var(--ink-soft); font-family: "SF Mono", Menlo, monospace; font-size: 13.5px; }
+  .math-row.total .math-value { color: var(--blue-dark); font-family: inherit; font-size: 14.5px; font-weight: 600; }
+
+  .callout {
+    background: var(--amber-tint-soft);
+    border: 1px solid rgba(186, 117, 23, 0.2);
+    border-left: 4px solid var(--amber);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px; margin: 16px 0;
+  }
+  .callout-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--amber-dark); margin-bottom: 4px;
+  }
+  .callout p { margin: 0; font-size: 14.5px; color: var(--ink); line-height: 1.55; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 16px;
+  }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+  .pro-con-card { border-radius: 12px; padding: 22px 24px; }
+  .pro-con-card.good { background: var(--green-tint-2); border: 1px solid rgba(100, 167, 11, 0.22); }
+  .pro-con-card.bad { background: var(--pink-tint); border: 1px solid rgba(233, 151, 151, 0.35); }
+  .pro-con-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .pro-con-card.good .pro-con-label { color: var(--green-dark); }
+  .pro-con-card.bad .pro-con-label { color: var(--pink-dark); }
+  .pro-con-card h3 { margin: 0 0 12px; color: var(--ink); }
+  .pro-con-card ul { margin: 0; padding-left: 18px; }
+  .pro-con-card li { font-size: 14.5px; }
+
+  .scope {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 16px;
+  }
+  @media (max-width: 720px) { .scope { grid-template-columns: 1fr; } }
+  .scope-card { border-radius: 12px; padding: 22px 24px; }
+  .scope-card.v1 { background: var(--blue-tint-2); border: 1px solid rgba(12, 68, 124, 0.22); }
+  .scope-card.later { background: var(--primary-tint); border: 1px solid var(--primary-tint-2); }
+  .scope-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .scope-card.v1 .scope-label { color: var(--blue-dark); }
+  .scope-card.later .scope-label { color: var(--primary-darker); }
+  .scope-card h3 { margin: 0 0 12px; color: var(--ink); }
+  .scope-card ul { margin: 0; padding-left: 18px; }
+  .scope-card li { font-size: 14.5px; }
+
+  .risk-row {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--pink);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px; margin-bottom: 10px;
+  }
+  .risk-row h4 {
+    font-size: 14.5px; font-weight: 600;
+    margin: 0 0 4px; color: var(--ink);
+  }
+  .risk-row p { font-size: 14px; margin: 0; }
+
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px; margin-top: 16px;
+  }
+  .pitch-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border-top: 3px solid var(--primary);
+  }
+  .pitch-card h4 {
+    margin: 0 0 8px; font-size: 15px; font-weight: 600;
+    color: var(--primary-dark);
+  }
+  .pitch-card p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+  .scenarios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px; margin-top: 16px;
+  }
+  @media (max-width: 720px) { .scenarios { grid-template-columns: 1fr; } }
+  .scenario-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .scenario-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ink-quiet); margin-bottom: 6px;
+  }
+  .scenario-crews {
+    font-size: 24px; font-weight: 600;
+    color: var(--ink); margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .scenario-rev {
+    font-size: 15px; color: var(--blue-dark); font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .scenario-card p {
+    font-size: 13.5px; margin: 0; line-height: 1.5;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--blue-dark) 100%);
+    border-radius: 14px; padding: 32px 36px;
+    color: #fff; margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+  }
+  @media (max-width: 720px) { .cta-box { grid-template-columns: 1fr; } }
+  .cta-box h3 { color: #fff; margin: 0 0 6px; font-size: 22px; }
+  .cta-box p { color: rgba(255,255,255,0.9); margin: 0; }
+  .cta-btn {
+    background: #fff; color: var(--primary-dark);
+    padding: 12px 22px; border-radius: 10px;
+    text-decoration: none; font-weight: 600; font-size: 15px;
+    display: inline-flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+  }
+  .cta-btn:hover { background: var(--surface-softer); }
+
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.7);
+    padding: 28px 24px; text-align: center; font-size: 13px;
+  }
+  .footer-brand { color: #fff; font-weight: 600; margin-bottom: 4px; display: block; }
+
+  ::selection { background: var(--primary-tint-2); color: var(--primary-darker); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+      </div>
+      <span>CrewCares</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="index.html">← Hub</a>
+      <a href="app.html">Prototype</a>
+      <a href="feature.html">Nova</a>
+      <a href="commerce.html">Commerce</a>
+      <a href="analysis.html">Analysis</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        New feature · Proposal
+      </span>
+      <h1>Book a pro. See the job done. All inside the crew.</h1>
+      <p class="hero-sub">Thumbtack-powered home services, curated for caregivers. The provider sends a completion photo that lands in crew chat — so the whole family sees the job is done, even if only one person booked it.</p>
+      <div class="hero-badge-row">
+        <span class="hero-badge">Phase 1: home mods</span>
+        <span class="hero-badge">Completion photos in chat</span>
+        <span class="hero-badge">Thumbtack affiliate</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/><circle cx="8" cy="16" r="2" opacity="0.5"/><circle cx="16" cy="8" r="2" opacity="0.5"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tldr">
+    <div class="tldr-label">The short version</div>
+    <p>Family caregivers need local help (grab bar installs, ramps, bathroom safety) and hate finding it. Integrate with Thumbtack to surface vetted pros, pre-populated for caregiving contexts. The feature's signature move: <strong>when the job is done, the pro uploads a completion photo that posts automatically to crew chat</strong>. Sarah books the handyman; everyone sees the finished grab bar. Coordination loop closes.</p>
+  </div>
+
+  <section id="why">
+    <h2>Why services is different from product commerce</h2>
+    <p>We already shipped Amazon affiliate commerce. Stacking another revenue integration has risk — the product can start to feel like a marketplace. Services earn their place for three specific reasons:</p>
+
+    <div class="three-col">
+      <div class="box">
+        <div class="box-num">1</div>
+        <h4>It solves a coordination problem, not a purchase problem</h4>
+        <p>Buying a pill organizer is a 2-minute solo task. Finding, vetting, scheduling, and confirming a handyman takes weeks. This is what CrewCares is for.</p>
+      </div>
+      <div class="box">
+        <div class="box-num">2</div>
+        <h4>The completion photo is the actual innovation</h4>
+        <p>Thumbtack alone can't do this. The pro sending a photo to the family crew — not just the person who booked — closes a loop that currently stays open. Unique to us.</p>
+      </div>
+      <div class="box">
+        <div class="box-num">3</div>
+        <h4>Economics are meaningfully better</h4>
+        <p>Grab bar install is $250–400. Ramp is $1500–3000. One booking equals hundreds of Amazon affiliate purchases. Secondary revenue becomes meaningful.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="walkthrough">
+    <h2>How it works</h2>
+    <p>Concrete walkthrough. Dad's physical therapist mentioned a grab bar would help prevent a fall. Nobody in the family has a handyman on speed dial. Here's what happens:</p>
+
+    <div class="walk">
+      <div class="walk-step">
+        <div class="walk-num">1</div>
+        <div class="walk-content">
+          <h4>Nova proactively surfaces the need</h4>
+          <p>The PT visit's note mentions "fall risk." Nova already knows. On the next home screen visit, a suggestion card appears.</p>
+          <div class="walk-example service">"PT flagged a safety concern — grab bar needed. Want me to help you find a local pro to install a grab bar by the toilet? I've checked 12 verified installers within 20 miles."</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">2</div>
+        <div class="walk-content">
+          <h4>One tap to a curated list of local pros</h4>
+          <p>Not the full Thumbtack catalog. Only ADA-certified installers, aging-in-place specialists, and background-checked pros with 4+ star ratings. Pre-filtered for the caregiving context.</p>
+          <div class="walk-example">Mike R. · Denver Accessibility Solutions · 4.9★ (284) · 4.2 mi<br/>Alejandro V. · A&V Home Modifications · 4.8★ (156) · 7.1 mi<br/>Sarah J. · Safe Home Senior Living · 5.0★ (89) · 3.8 mi</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">3</div>
+        <div class="walk-content">
+          <h4>Booking notifies the crew — no surprises</h4>
+          <p>When a crew member books, a note goes to chat immediately: "Brent booked Mike R. for grab bar install, Thursday 10 AM, $289." The crew has 4 hours to object before it's final. Anyone can hire; nobody gets blindsided.</p>
+          <div class="walk-example service">System: "Brent booked Mike R. (Denver Accessibility Solutions) for grab bar installation, Thursday 10 AM. Estimated cost: $289. Crew can object within 4 hours."</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">4</div>
+        <div class="walk-content">
+          <h4>The pro completes the job — and sends a photo</h4>
+          <p>After the install, Mike takes a quick before/after photo through the CrewCares Pro app (mobile web for pros). The photo auto-posts to crew chat with a short summary. Sarah, Michael, and Linda all see it within seconds, even though Brent was the one who booked.</p>
+          <div class="walk-example service">[Photo of installed grab bar]<br/>Mike R. · "Grab bar installed by toilet. Standard 12" ADA-compliant bar, mounted to studs. Everything tested and stable. Cleaned up before leaving." · $289</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">5</div>
+        <div class="walk-content">
+          <h4>Nova closes the loop automatically</h4>
+          <p>Nova sees the completion message. It marks the task "Grab bar install" as done, logs $289 to the shared care expense tracker, and sends a small thanks message. The entire workflow — from need identified to coordination closure — took zero calls, zero texts, zero follow-ups.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="revenue">
+    <h2>The revenue math</h2>
+    <p>Thumbtack Pro's affiliate program historically pays 15–25% of lead value on converted bookings, plus recurring revenue for repeat hires. Home modification services average $250–1500 per job. Even conservative assumptions make this meaningful.</p>
+
+    <div class="math-table">
+      <div class="math-row header-sub">
+        <span>Per commerce-active crew / year</span>
+        <span>Value</span>
+        <span>Source</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Average caregiving household home-mod spend</span>
+        <span class="math-value">$1,840</span>
+        <span class="math-value">AARP 2025</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">% routed through CrewCares</span>
+        <span class="math-value">30%</span>
+        <span class="math-value">Est.</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">CrewCares-booked spend per crew/year</span>
+        <span class="math-value">$552</span>
+        <span class="math-value">—</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Thumbtack affiliate rate (blended)</span>
+        <span class="math-value">12%</span>
+        <span class="math-value">Thumbtack</span>
+      </div>
+      <div class="math-row total">
+        <span class="math-label">Revenue per active crew / year</span>
+        <span class="math-value">~$66</span>
+        <span class="math-value"></span>
+      </div>
+    </div>
+
+    <p style="margin-top: 20px;">The per-crew number is much higher than Amazon commerce — services are high-ticket, infrequent, but well-matched to caregiving urgency. Applied at three scales:</p>
+
+    <div class="scenarios">
+      <div class="scenario-card">
+        <div class="scenario-label">Seed scenario</div>
+        <div class="scenario-crews">5K crews</div>
+        <div class="scenario-rev">~$100K / year</div>
+        <p>Assumes 30% of crews use services annually. Early revenue stream; proves the business model works.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-label">Series A scenario</div>
+        <div class="scenario-crews">50K crews</div>
+        <div class="scenario-rev">~$1M / year</div>
+        <p>Services becomes a real line of business. Complements subscription without cannibalizing it.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-label">Scale scenario</div>
+        <div class="scenario-crews">500K crews</div>
+        <div class="scenario-rev">~$10M / year</div>
+        <p>Services revenue exceeds affiliate. At this scale, negotiate direct partnerships with Thumbtack Pro / Angi / vertical-specific providers.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Where the math could surprise you</div>
+      <p>Unlike Amazon (small repeat purchases), home services are infrequent — maybe 2–4 service bookings per family per year at peak caregiving intensity. The value per booking is much higher, but the number of crews who book in any given month is smaller. Revenue recognition looks lumpy. Investors who've seen other local-services plays will ask about LTV retention; the answer is "we don't compete on services retention — the service integration strengthens subscription retention."</p>
+    </div>
+  </section>
+
+  <section id="good-bad">
+    <h2>Real upside. Real risks.</h2>
+    <div class="two-col">
+      <div class="pro-con-card good">
+        <div class="pro-con-label">What could go right</div>
+        <h3>Unique product moat</h3>
+        <ul>
+          <li><strong>Completion photo in chat is a feature competitors can't easily copy.</strong> Thumbtack alone can't do it — they don't have the family crew layer. Caring Village doesn't have a services integration at all. This is a defensible differentiator.</li>
+          <li><strong>Aging-in-place is a $500B market.</strong> AARP estimates 90% of older adults want to age in place, but 60% of homes need modifications. We're perfectly positioned at the intersection.</li>
+          <li><strong>Anchors our "coordination closure" thesis.</strong> The whole product is about closing loops between family members. Services is the highest-stakes version of that story. Good pitch narrative.</li>
+          <li><strong>Enterprise/employer-benefits angle.</strong> Large employers (~20% of Fortune 500) are adding caregiving benefits. "Free home modifications audit" becomes a compelling benefit tie-in. Future B2B upside.</li>
+        </ul>
+      </div>
+      <div class="pro-con-card bad">
+        <div class="pro-con-label">What could go wrong</div>
+        <h3>Execution risk is real</h3>
+        <ul>
+          <li><strong>Bad pros hurt us, not Thumbtack.</strong> If a Thumbtack pro does shoddy work or scams a family, the user blames CrewCares. We need our own quality layer — curated pros, not raw Thumbtack catalog.</li>
+          <li><strong>Liability around elderly-occupied homes.</strong> A fall caused by a badly-installed grab bar is a lawsuit. Need clear terms that CrewCares is a referral service, not the contractor. Insurance matters.</li>
+          <li><strong>Photo privacy.</strong> A well-meaning pro takes a photo that includes Dad in the background, visibly confused. That's a privacy incident. In-app photo capture has to be tightly constrained to job-only.</li>
+          <li><strong>"Anyone can hire" could cause family conflict.</strong> Sarah books $400 service without asking. Brent is upset. We mitigated with the 4-hour objection window, but real families may still fight. Track this closely.</li>
+          <li><strong>Geographic coverage.</strong> Thumbtack is strong in metros, weaker in rural areas. Rural caregivers are a huge user base and may have fewer pros available. Risk of uneven experience.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="scope">
+    <h2>V1 scope vs. later</h2>
+    <p>Phase 1 is deliberately narrow — home modifications only. Home mods have clear care relevance, high-ticket economics, and limited liability compared to broader services.</p>
+
+    <div class="scope">
+      <div class="scope-card v1">
+        <div class="scope-label">V1 ships with</div>
+        <h3>Home modifications only</h3>
+        <ul>
+          <li><strong>Categories:</strong> grab bars, ramps, bathroom safety, doorway widening</li>
+          <li><strong>Vetting:</strong> only Thumbtack pros with 4.5+ stars, background checks, and aging-in-place or ADA certification</li>
+          <li><strong>Booking flow:</strong> any crew member can book; crew notified with 4-hour objection window</li>
+          <li><strong>Completion:</strong> pro uploads photo through mobile web; auto-posts to crew chat with summary + cost</li>
+          <li><strong>Integration:</strong> Nova marks related task complete, logs expense to shared tracker</li>
+          <li><strong>Disclosure:</strong> inline referral fee disclosure; pricing set by pro, not CrewCares</li>
+        </ul>
+      </div>
+      <div class="scope-card later">
+        <div class="scope-label">Phase 2 and beyond</div>
+        <h3>Broader services, deeper integration</h3>
+        <ul>
+          <li><strong>Categories:</strong> general handyman, cleaning, yard work, snow removal, transport, companion care</li>
+          <li><strong>Multi-vendor:</strong> Thumbtack + Angi + local service marketplaces</li>
+          <li><strong>Recurring services:</strong> weekly cleaning subscriptions with automatic crew notifications</li>
+          <li><strong>Employer benefits integration:</strong> B2B2C via HR benefits platforms</li>
+          <li><strong>Care-specific providers:</strong> home health aides, respite care (much higher liability — requires separate vetting process)</li>
+          <li><strong>Video walkthroughs:</strong> pro does a video assessment before booking, shared to crew for group decision</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="risks">
+    <h2>Risks we're designing around</h2>
+    <p>Not all risks are equal. These are the ones with specific mitigation baked into V1.</p>
+
+    <div class="risk-row">
+      <h4>Pro quality variance</h4>
+      <p>Mitigation: hand-curate V1 pros. Not the full Thumbtack catalog — only pros with 4.5+ stars, background checks, and a track record in aging-in-place modifications. We surface 3–5 pros per category, not 20. Fewer choices, higher quality.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Liability exposure</h4>
+      <p>Mitigation: clear terms that CrewCares is a referral platform, not the service provider. Pro carries their own insurance (required for listing). CrewCares carries E&O insurance for the referral layer. Require pro to acknowledge aging-in-place context before accepting job.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Photo privacy in elderly homes</h4>
+      <p>Mitigation: in-app photo capture with guided prompts ("photo of the completed work, not people or personal items"). Automated content screening to flag photos with faces before they post. Manual review for any flagged photo before the crew sees it.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Family conflict over spending decisions</h4>
+      <p>Mitigation: 4-hour crew objection window before booking is confirmed. All bookings appear in the shared expense tracker. Crew leaders can set spending thresholds that require consensus (optional feature, off by default).</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Rural coverage gaps</h4>
+      <p>Mitigation: surface local pros when available, gracefully fall back to "we couldn't find vetted pros in your area — here's a directory of state-level aging-in-place resources" when not. Don't show a bad experience; show an honest one.</p>
+    </div>
+  </section>
+
+  <section id="pitch">
+    <h2>The investor framing</h2>
+    <p>Services integration strengthens three different parts of the pitch.</p>
+
+    <div class="pitch-grid">
+      <div class="pitch-card">
+        <h4>Makes the "coordination closure" story concrete</h4>
+        <p>Before: "we help families coordinate care." After: "when Sarah books a handyman, the rest of the crew sees the finished grab bar photo — we close the loop." Specific beats abstract.</p>
+      </div>
+      <div class="pitch-card">
+        <h4>Unlocks a second revenue line at better economics</h4>
+        <p>Commerce is volume. Services is value. At 500K crews, services revenue could rival subscription revenue. Multi-line revenue is what investors want to see in consumer apps.</p>
+      </div>
+      <div class="pitch-card">
+        <h4>Opens the B2B door</h4>
+        <p>Home modifications is an HR benefits hook. "Free aging-in-place consultation through CrewCares" is exactly the kind of family-caregiving benefit large employers are adding. Services is the entry point to enterprise deals later.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-box">
+    <div>
+      <h3>See the flow in the prototype</h3>
+      <p>Click "Find a pro" on the home screen, browse the list, book Mike R., then jump to chat and watch the booking note, the completion photo, and Nova closing the loop.</p>
+    </div>
+    <a href="app.html" class="cta-btn">
+      Open prototype
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-brand">CrewCares</span>
+  <span>Feature proposal · Thumbtack services integration · April 2026</span>
+</footer>
+
+</body>
+</html>

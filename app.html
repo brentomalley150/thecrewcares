@@ -44,10 +44,10 @@
     margin-bottom: 16px;
     border-radius: 10px;
   }
-  .nav-top-inner { max-width: 420px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-top-brand { color: #fff; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; }
-  .nav-top-links { display: flex; gap: 4px; flex-wrap: wrap; }
-  .nav-top-links a { color: rgba(255,255,255,0.95); text-decoration: none; font-size: 12.5px; padding: 5px 9px; border-radius: 6px; }
+  .nav-top-inner { max-width: 420px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .nav-top-brand { color: #fff; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+  .nav-top-links { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
+  .nav-top-links a { color: rgba(255,255,255,0.95); text-decoration: none; font-size: 11.5px; padding: 4px 7px; border-radius: 6px; }
   .nav-top-links a:hover { background: rgba(255,255,255,0.12); }
 
   h1.page-title { font-size: 18px; font-weight: 500; margin: 0 0 4px; }
@@ -64,7 +64,7 @@
   .cc-jump-btn {
     background: var(--color-background-secondary);
     border: 0.5px solid var(--color-border-tertiary);
-    border-radius: 999px; padding: 5px 12px;
+    border-radius: 999px; padding: 5px 11px;
     font-size: 11.5px; color: var(--color-text-secondary);
     cursor: pointer; font-family: inherit;
   }
@@ -143,6 +143,7 @@
   .cc-chat-row.theirs { justify-content: flex-start; align-items: flex-end; gap: 6px; }
   .cc-chat-sender { font-size: 11px; color: #888780; margin: 6px 14px 2px; }
   .cc-chat-sender.ai { color: #3B6D11; font-weight: 500; display: flex; align-items: center; gap: 4px; margin-left: 50px; }
+  .cc-chat-sender.service { color: #0C447C; font-weight: 500; display: flex; align-items: center; gap: 4px; margin-left: 50px; }
   .cc-dot-ind { width: 8px; height: 8px; border-radius: 50%; background: #64a70b; display: inline-block; }
 
   .cc-code-boxes { display: flex; gap: 8px; justify-content: center; margin: 20px 0; }
@@ -170,213 +171,180 @@
 
   .cc-demo-dot { position: absolute; top: 14px; right: 14px; background: rgba(67, 149, 162, 0.95); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 999px; z-index: 15; font-weight: 500; pointer-events: none; }
 
-  .nova-card {
-    margin: 14px 12px 4px;
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 14px;
-    border: 1px solid rgba(100, 167, 11, 0.22);
-    box-shadow: 0 1px 4px rgba(100, 167, 11, 0.08);
-  }
+  .nova-card { margin: 14px 12px 4px; background: #ffffff; border-radius: 16px; padding: 14px; border: 1px solid rgba(100, 167, 11, 0.22); box-shadow: 0 1px 4px rgba(100, 167, 11, 0.08); }
   .nova-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-  .nova-icon {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #64a70b;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
+  .nova-icon { width: 36px; height: 36px; border-radius: 50%; background: #64a70b; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .nova-title { flex: 1; min-width: 0; }
   .nova-name { font-size: 14px; font-weight: 600; color: #2c2c2a; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .nova-badge { font-size: 10px; background: #eaf3de; color: #3B6D11; padding: 2px 7px; border-radius: 999px; font-weight: 500; }
   .nova-sub { font-size: 12px; color: #5f5e5a; margin-top: 1px; line-height: 1.35; }
-
   .nova-input-wrap { position: relative; }
-  .nova-input {
-    width: 100%;
-    border: 1px solid rgba(100, 167, 11, 0.25);
-    border-radius: 12px;
-    padding: 11px 44px 11px 14px;
-    font-size: 14.5px;
-    font-family: inherit; background: #fff; color: #2c2c2a;
-    resize: none; line-height: 1.4; box-sizing: border-box;
-  }
+  .nova-input { width: 100%; border: 1px solid rgba(100, 167, 11, 0.25); border-radius: 12px; padding: 11px 44px 11px 14px; font-size: 14.5px; font-family: inherit; background: #fff; color: #2c2c2a; resize: none; line-height: 1.4; box-sizing: border-box; }
   .nova-input:focus { outline: none; border-color: #64a70b; }
-  .nova-send {
-    position: absolute; right: 6px; top: 50%;
-    transform: translateY(-50%);
-    background: #64a70b; color: #fff;
-    border: 0; border-radius: 50%;
-    width: 30px; height: 30px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-  }
+  .nova-send { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: #64a70b; color: #fff; border: 0; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .nova-send:hover { background: #4d8208; }
   .nova-send:disabled { background: #B4B2A9; cursor: not-allowed; }
-
   .nova-suggestions { display: flex; gap: 6px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
   .nova-suggestions::-webkit-scrollbar { display: none; }
-  .nova-chip {
-    background: #f7fbf0;
-    border: 1px solid rgba(100, 167, 11, 0.3);
-    border-radius: 999px;
-    padding: 6px 12px; font-size: 12px; color: #3B6D11;
-    cursor: pointer; white-space: nowrap;
-    font-family: inherit; font-weight: 500; flex-shrink: 0;
-  }
+  .nova-chip { background: #f7fbf0; border: 1px solid rgba(100, 167, 11, 0.3); border-radius: 999px; padding: 6px 12px; font-size: 12px; color: #3B6D11; cursor: pointer; white-space: nowrap; font-family: inherit; font-weight: 500; flex-shrink: 0; }
   .nova-chip:hover { background: #eaf3de; }
-
-  .nova-thinking {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 2px 2px;
-    color: #5f5e5a; font-size: 13px;
-  }
+  .nova-thinking { display: flex; align-items: center; gap: 10px; padding: 10px 2px 2px; color: #5f5e5a; font-size: 13px; }
   .nova-dots { display: inline-flex; gap: 4px; }
-  .nova-dots span {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: #64a70b; animation: nova-pulse 1.2s infinite ease-in-out;
-  }
+  .nova-dots span { width: 7px; height: 7px; border-radius: 50%; background: #64a70b; animation: nova-pulse 1.2s infinite ease-in-out; }
   .nova-dots span:nth-child(2) { animation-delay: 0.15s; }
   .nova-dots span:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes nova-pulse {
-    0%, 60%, 100% { opacity: 0.3; transform: scale(0.85); }
-    30% { opacity: 1; transform: scale(1); }
-  }
-
-  .nova-result {
-    margin-top: 12px; background: #f7fbf0; border-radius: 10px;
-    padding: 12px 14px; border: 1px solid rgba(100, 167, 11, 0.22);
-    animation: nova-slide 0.3s ease-out;
-  }
+  @keyframes nova-pulse { 0%, 60%, 100% { opacity: 0.3; transform: scale(0.85); } 30% { opacity: 1; transform: scale(1); } }
+  .nova-result { margin-top: 12px; background: #f7fbf0; border-radius: 10px; padding: 12px 14px; border: 1px solid rgba(100, 167, 11, 0.22); animation: nova-slide 0.3s ease-out; }
   @keyframes nova-slide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   .nova-result-head { font-size: 12.5px; color: #3B6D11; font-weight: 500; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
-  .nova-result-item {
-    display: flex; gap: 10px; padding: 9px 0;
-    border-top: 0.5px solid rgba(100, 167, 11, 0.15);
-    font-size: 13.5px; align-items: flex-start;
-  }
+  .nova-result-item { display: flex; gap: 10px; padding: 9px 0; border-top: 0.5px solid rgba(100, 167, 11, 0.15); font-size: 13.5px; align-items: flex-start; }
   .nova-result-item:first-of-type { border-top: 0; padding-top: 0; }
-  .nova-result-icon {
-    width: 26px; height: 26px; border-radius: 7px;
-    background: #eaf3de; color: #3B6D11;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 1px;
-  }
+  .nova-result-icon { width: 26px; height: 26px; border-radius: 7px; background: #eaf3de; color: #3B6D11; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .nova-result-text { flex: 1; color: #2c2c2a; line-height: 1.45; }
   .nova-result-text small { display: block; color: #5f5e5a; font-size: 11.5px; margin-top: 2px; }
-
   .nova-actions { display: flex; gap: 8px; margin-top: 12px; }
-  .nova-btn-confirm {
-    flex: 1; background: #64a70b; color: #fff;
-    border: 0; border-radius: 8px; padding: 10px;
-    font-size: 13.5px; font-weight: 500;
-    font-family: inherit; cursor: pointer;
-  }
+  .nova-btn-confirm { flex: 1; background: #64a70b; color: #fff; border: 0; border-radius: 8px; padding: 10px; font-size: 13.5px; font-weight: 500; font-family: inherit; cursor: pointer; }
   .nova-btn-confirm:hover { background: #4d8208; }
-  .nova-btn-edit {
-    background: #fff; color: #3B6D11;
-    border: 1px solid rgba(100, 167, 11, 0.3);
-    border-radius: 8px; padding: 10px 16px;
-    font-size: 13.5px; font-weight: 500;
-    font-family: inherit; cursor: pointer;
-  }
+  .nova-btn-edit { background: #fff; color: #3B6D11; border: 1px solid rgba(100, 167, 11, 0.3); border-radius: 8px; padding: 10px 16px; font-size: 13.5px; font-weight: 500; font-family: inherit; cursor: pointer; }
   .nova-btn-edit:hover { background: #eaf3de; }
+  .ai-badge-inline { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; background: #eaf3de; color: #3B6D11; padding: 1px 6px; border-radius: 4px; font-weight: 500; vertical-align: middle; margin-left: 6px; }
 
-  .ai-badge-inline {
-    display: inline-flex; align-items: center; gap: 3px;
-    font-size: 10px; background: #eaf3de; color: #3B6D11;
-    padding: 1px 6px; border-radius: 4px;
-    font-weight: 500; vertical-align: middle; margin-left: 6px;
-  }
-
-  /* Commerce styles */
-  .nova-rec-card {
+  /* Services styles */
+  .service-rec-card {
     margin: 12px 12px 4px;
     background: #fff;
     border-radius: 14px;
     padding: 0;
-    border: 1px solid rgba(100, 167, 11, 0.22);
+    border: 1px solid rgba(12, 68, 124, 0.22);
     overflow: hidden;
   }
-  .nova-rec-header {
+  .service-rec-header {
     display: flex; align-items: center; gap: 10px;
     padding: 12px 14px 10px;
-    background: #f7fbf0;
-    border-bottom: 1px solid rgba(100, 167, 11, 0.15);
+    background: #f0f6fc;
+    border-bottom: 1px solid rgba(12, 68, 124, 0.15);
   }
-  .nova-rec-header-icon {
+  .service-rec-icon {
     width: 28px; height: 28px; border-radius: 50%;
-    background: #64a70b; display: flex;
+    background: #185FA5; display: flex;
     align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .nova-rec-header-text { flex: 1; min-width: 0; }
-  .nova-rec-title { font-size: 13px; font-weight: 600; color: #2c2c2a; }
-  .nova-rec-context { font-size: 11.5px; color: #5f5e5a; margin-top: 1px; line-height: 1.35; }
-  .nova-rec-dismiss {
-    background: transparent; border: 0;
-    color: #888780; cursor: pointer;
-    font-size: 18px; padding: 0 4px;
-    line-height: 1;
-  }
-  .product-card {
-    display: flex; gap: 12px;
+  .service-rec-text { flex: 1; min-width: 0; }
+  .service-rec-title { font-size: 13px; font-weight: 600; color: #2c2c2a; }
+  .service-rec-context { font-size: 11.5px; color: #5f5e5a; margin-top: 1px; line-height: 1.35; }
+  .service-category-row {
+    display: flex; gap: 8px;
     padding: 12px 14px;
-    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+    overflow-x: auto;
+    background: #fff;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  .product-card:last-of-type { border-bottom: 0; }
-  .product-image {
-    width: 64px; height: 64px;
-    border-radius: 8px;
-    background: #F4F6F9;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    overflow: hidden;
-  }
-  .product-image svg { color: #888780; }
-  .product-info { flex: 1; min-width: 0; }
-  .product-name {
-    font-size: 13.5px;
-    font-weight: 500;
+  .service-category-row::-webkit-scrollbar { display: none; }
+  .service-cat-chip {
+    background: #F0F2F8;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 12.5px;
     color: #2c2c2a;
-    line-height: 1.35;
-    margin-bottom: 3px;
-  }
-  .product-why {
-    font-size: 11.5px;
-    color: #3B6D11;
-    margin-bottom: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-family: inherit;
     font-weight: 500;
-    display: flex;
-    align-items: flex-start;
-    gap: 3px;
+    flex-shrink: 0;
   }
-  .product-meta {
+  .service-cat-chip.active {
+    background: #185FA5;
+    color: #fff;
+    border-color: #185FA5;
+  }
+
+  .pro-card {
+    background: #fff;
+    padding: 14px;
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+    display: flex;
+    gap: 12px;
+  }
+  .pro-card:last-child { border-bottom: 0; }
+  .pro-avatar {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: #e6f1fb;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #185FA5;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .pro-info { flex: 1; min-width: 0; }
+  .pro-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+  .pro-name {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #2c2c2a;
+  }
+  .pro-verified {
+    background: #eaf3de;
+    color: #3B6D11;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .pro-stars { font-size: 12.5px; color: #BA7517; font-weight: 500; margin-bottom: 3px; }
+  .pro-stars small { color: #888780; font-weight: 400; }
+  .pro-tagline { font-size: 12px; color: #5f5e5a; margin-bottom: 6px; line-height: 1.4; }
+  .pro-meta-row {
+    display: flex;
     gap: 8px;
-    font-size: 11px;
-    color: #888780;
-    margin-bottom: 6px;
+    align-items: center;
+    font-size: 11.5px;
+    color: #5f5e5a;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
   }
-  .product-stars { color: #BA7517; font-weight: 500; }
-  .product-actions {
-    display: flex; gap: 6px; align-items: center;
+  .pro-quote {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c2c2a;
   }
-  .product-price { font-size: 14px; font-weight: 600; color: #2c2c2a; }
-  .product-btn {
-    background: #64a70b; color: #fff;
-    border: 0; border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 12px; font-weight: 500;
-    cursor: pointer; font-family: inherit;
-    display: inline-flex; align-items: center; gap: 3px;
+  .pro-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
   }
-  .product-btn:hover { background: #4d8208; }
-  .product-btn.secondary {
-    background: #fff; color: #5f5e5a;
-    border: 1px solid #D3D1C7;
+  .pro-btn {
+    background: #185FA5;
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 11px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
   }
-  .product-btn.secondary:hover { background: #F4F6F9; color: #2c2c2a; }
-  .affiliate-disclosure {
+  .pro-btn:hover { background: #0C447C; }
+  .pro-btn.secondary {
+    background: #fff;
+    color: #185FA5;
+    border: 1px solid #185FA5;
+  }
+  .pro-btn.secondary:hover { background: #e6f1fb; }
+  .service-disclosure {
     padding: 8px 14px;
     background: #faf8f0;
     font-size: 10.5px;
@@ -387,28 +355,158 @@
     align-items: flex-start;
     gap: 6px;
   }
-  .affiliate-disclosure svg { color: #BA7517; flex-shrink: 0; margin-top: 1px; }
+  .service-disclosure svg { color: #BA7517; flex-shrink: 0; margin-top: 1px; }
 
-  .shopping-item {
-    display: flex; gap: 12px; align-items: center;
-    padding: 12px 14px;
-    background: #fff;
-    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+  /* Booking modal */
+  .booking-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: flex-end;
+    z-index: 30;
+    animation: fade-in 0.2s ease;
   }
-  .shopping-item:last-child { border-bottom: 0; }
-  .shopping-check {
-    width: 22px; height: 22px; border: 2px solid #B4B2A9;
-    border-radius: 6px; flex-shrink: 0;
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .booking-sheet {
+    background: #fff;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    max-height: 85%;
+    overflow-y: auto;
+    animation: slide-up 0.25s ease;
+  }
+  @keyframes slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .booking-sheet h3 { font-size: 18px; font-weight: 600; margin: 0 0 6px; }
+  .booking-sheet .booking-sub { font-size: 13px; color: #5f5e5a; margin: 0 0 16px; }
+  .booking-summary {
+    background: #F4F6F9;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+    font-size: 13.5px;
+  }
+  .booking-summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .booking-summary-row:last-child {
+    margin-bottom: 0;
+    padding-top: 6px;
+    border-top: 0.5px solid rgba(0,0,0,0.08);
+    font-weight: 600;
+  }
+  .booking-summary-label { color: #5f5e5a; }
+  .booking-summary-value { color: #2c2c2a; }
+  .crew-notify-box {
+    background: #fef3e3;
+    border: 1px solid rgba(186, 117, 23, 0.25);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    font-size: 12.5px;
+    color: #854F0B;
+    line-height: 1.5;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .crew-notify-box svg { flex-shrink: 0; margin-top: 1px; }
+  .booking-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .booking-btn-primary {
+    flex: 1;
+    background: #185FA5;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
     cursor: pointer;
   }
-  .shopping-check.checked {
-    background: #64a70b; border-color: #64a70b;
-    display: flex; align-items: center; justify-content: center;
+  .booking-btn-primary:hover { background: #0C447C; }
+  .booking-btn-secondary {
+    background: #fff;
+    color: #5f5e5a;
+    border: 1px solid #D3D1C7;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
   }
-  .shopping-content { flex: 1; min-width: 0; }
-  .shopping-name { font-size: 14.5px; color: #2c2c2a; margin-bottom: 2px; }
-  .shopping-name.checked { text-decoration: line-through; color: #888780; }
-  .shopping-meta { font-size: 11.5px; color: #888780; }
+  .booking-btn-secondary:hover { background: #F4F6F9; color: #2c2c2a; }
+
+  /* Completion card in chat */
+  .completion-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 0;
+    margin-top: 6px;
+    max-width: 82%;
+    border: 1px solid rgba(12, 68, 124, 0.2);
+    overflow: hidden;
+  }
+  .completion-hdr {
+    padding: 10px 12px 8px;
+    background: #f0f6fc;
+    border-bottom: 1px solid rgba(12, 68, 124, 0.12);
+    font-size: 11.5px;
+    color: #185FA5;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .completion-photo {
+    background: linear-gradient(135deg, #e8eef5 0%, #d4dde8 100%);
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .completion-photo-label {
+    position: absolute;
+    bottom: 8px; left: 8px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .completion-body {
+    padding: 10px 12px 12px;
+  }
+  .completion-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #2c2c2a;
+    margin-bottom: 3px;
+  }
+  .completion-note {
+    font-size: 12.5px;
+    color: #5f5e5a;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .completion-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #888780;
+  }
+  .completion-cost { color: #2c2c2a; font-weight: 600; font-size: 12.5px; }
 
   ::selection { background: #d4e8ec; color: #1e5861; }
 </style>
@@ -418,13 +516,14 @@
 <div class="nav-top">
   <div class="nav-top-inner">
     <div class="nav-top-brand">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
       CrewCares
     </div>
     <div class="nav-top-links">
       <a href="index.html">← Hub</a>
       <a href="feature.html">Nova</a>
       <a href="commerce.html">Commerce</a>
+      <a href="services.html">Services</a>
       <a href="analysis.html">Analysis</a>
     </div>
   </div>
@@ -433,8 +532,8 @@
 <h1 class="page-title">CrewCares — Clickable Prototype</h1>
 <p class="page-sub">Investor demo · all data is mocked</p>
 <div class="feature-highlight">
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
-  New: Nova suggests products after the cardiology visit · try it on Home
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  New: Book a pro &amp; see completion photos in chat · try the Services tab
 </div>
 
 <div class="cc-reset-bar" id="jump-bar"></div>
@@ -461,19 +560,17 @@
     novaPhase: 'idle',
     novaProposal: null,
     recDismissed: false,
+    bookingModal: null,
+    serviceCat: 'grab-bars',
     completedTasks: new Set(['t2']),
     shoppingList: [
       { id: 's1', name: 'Low-sodium chicken broth', added_by: 'Sarah', bought: false, source: 'Amazon' },
-      { id: 's2', name: 'Adult briefs — Small', added_by: 'Linda', bought: true, source: 'CVS' },
-      { id: 's3', name: 'Pill organizer (7-day, large print)', added_by: 'Nova', bought: false, source: 'Amazon', aiSuggested: true }
+      { id: 's2', name: 'Adult briefs — Small', added_by: 'Linda', bought: true, source: 'CVS' }
     ],
     tasks: [
       { id: 't1', title: 'Pick up prescription from CVS', status: 'todo', assignee: 'Sarah', due: 'Today' },
       { id: 't2', title: 'Call Dr. Martinez about follow-up', status: 'done', assignee: 'Brent', due: 'Yesterday' },
-      { id: 't3', title: 'Schedule PT session for next week', status: 'inprogress', assignee: 'Michael', due: 'Fri' },
-      { id: 't4', title: 'Buy groceries — low-sodium list', status: 'todo', assignee: 'Sarah', due: 'Tomorrow' },
-      { id: 't5', title: 'Set up medication reminder app', status: 'unassigned', assignee: null, due: 'This week' },
-      { id: 't6', title: 'Research in-home aides', status: 'inprogress', assignee: 'Brent', due: 'Next Mon' }
+      { id: 't3', title: 'Schedule PT session for next week', status: 'inprogress', assignee: 'Michael', due: 'Fri' }
     ],
     members: [
       { name: 'Brent', role: 'Crew Leader', initials: 'B', color: '#4395a2' },
@@ -484,33 +581,29 @@
     events: [
       { day: 8, title: 'Cardiology follow-up', time: '10:30 AM' },
       { day: 14, title: 'Home health visit', time: '2:00 PM' },
-      { day: 14, title: 'Pharmacy delivery', time: '4:00 PM' },
       { day: 22, title: 'Physical therapy', time: '11:00 AM' }
     ],
     chat: [
       { from: 'Sarah', text: 'Just left the pharmacy — picked up the new blood pressure meds.', color: '#e99797' },
-      { from: 'me', text: 'Thanks! Did the doctor say anything about the dose change?' },
-      { from: 'Sarah', text: 'Yes, she wants to start at half dose for the first week and then move up.', color: '#e99797' },
-      { from: 'Michael', text: "Good — that matches what PT suggested. I'll update Dad's chart.", color: '#867fb0' },
-      { from: 'me', text: "Perfect. I'll add it as a task so we track it." }
+      { from: 'me', text: "Thanks. Also — Dad's PT said he really needs a grab bar by the toilet. Can we find someone?" },
+      { from: 'Sarah', text: "I'll look on the Services tab. Will book through the app so we all see it.", color: '#e99797' }
     ]
   };
 
   const SCREENS = [
     { id: 'welcome', label: 'Welcome' },
     { id: 'create', label: 'Create crew' },
-    { id: 'code-sent', label: 'Confirmation' },
-    { id: 'join', label: 'Join crew' },
-    { id: 'home', label: 'Home (Nova)' },
+    { id: 'home', label: 'Home' },
     { id: 'tasks', label: 'Tasks' },
     { id: 'calendar', label: 'Calendar' },
     { id: 'chat', label: 'Chat' },
-    { id: 'shopping', label: 'Shopping' },
+    { id: 'services', label: 'Services (new)' },
     { id: 'members', label: 'Members' },
     { id: 'menu', label: 'Menu' }
   ];
 
   const SPARKLES = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>';
+  const CHECK = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
   function go(s){ state.screen = s; render(); }
   function setTab(t){
@@ -553,91 +646,6 @@
     return '<div class="cc-tab-bar">' + tabs.map(function(t){ return '<button class="cc-tab ' + (tab===t.id?'active':'') + '" data-tab="' + t.id + '" aria-label="' + t.label + '">' + icon[t.id] + '<span>' + t.label + '</span></button>'; }).join('') + '</div>';
   }
 
-  function parseIntent(text){
-    const t = text.toLowerCase();
-    const members = ['Sarah', 'Michael', 'Linda', 'Brent'];
-    let assignee = null;
-    for (let i = 0; i < members.length; i++) {
-      if (t.indexOf(members[i].toLowerCase()) !== -1) { assignee = members[i]; break; }
-    }
-
-    const hasTimePattern = /\b(at |by )?(\d{1,2})(:\d{2})?\s?(am|pm)\b/i.test(text);
-    const isSchedule = t.indexOf('schedule') !== -1 || t.indexOf('appointment') !== -1 || t.indexOf('meeting') !== -1 || (hasTimePattern && t.indexOf('remind') === -1);
-
-    if (isSchedule) {
-      const when = extractWhen(text) || 'Tomorrow · 2:00 PM';
-      const title = extractTitle(text) || 'New appointment';
-      return {
-        summary: "Here's what I'll set up. Review and confirm.",
-        items: [
-          { type: 'event', title: title, detail: when },
-          { type: 'chat', title: 'Post a note to crew chat', detail: 'So everyone sees the update' }
-        ]
-      };
-    }
-
-    if (t.indexOf('summary') !== -1 || t.indexOf('catch me up') !== -1 || t.indexOf('this week') !== -1 || t.indexOf('what\'s happen') !== -1 || t.indexOf('status') !== -1) {
-      return {
-        summary: "Here's where the crew is this week:",
-        items: [
-          { type: 'insight', title: '2 tasks completed, 4 in progress', detail: 'Sarah handled pharmacy pickup · Michael on PT coordination' },
-          { type: 'insight', title: 'Medication change is in motion', detail: 'Half dose this week per Dr. Martinez, full dose next week' },
-          { type: 'insight', title: '3 events upcoming', detail: 'Cardiology Nov 8 · Home Health Nov 14 · PT Nov 22' }
-        ]
-      };
-    }
-
-    if (t.indexOf('remind') !== -1 || t.indexOf('pick up') !== -1 || t.indexOf('need ') !== -1 || t.indexOf('buy') !== -1 || t.indexOf('get ') !== -1 || t.indexOf('call') !== -1 || t.indexOf('ask ') !== -1) {
-      const title = extractTitle(text) || 'New task';
-      const when = extractWhen(text) || 'This week';
-      return {
-        summary: "Got it. Here's what I'll set up:",
-        items: [
-          { type: 'task', title: title, detail: (assignee ? 'Assigned to ' + assignee : 'Unassigned') + ' · ' + when },
-          { type: 'chat', title: 'Let ' + (assignee || 'the crew') + ' know', detail: 'Small note in the crew chat' }
-        ]
-      };
-    }
-
-    const title = extractTitle(text) || text.slice(0, 40);
-    return {
-      summary: "I can help with that. Here's what I'd set up:",
-      items: [
-        { type: 'task', title: title, detail: (assignee ? 'Assigned to ' + assignee : 'Unassigned') + ' · This week' }
-      ]
-    };
-  }
-
-  function extractTitle(text){
-    let t = text.trim();
-    t = t.replace(/^(can you |please |could you |hey |)/i, '');
-    t = t.replace(/^(remind|tell|ask) (sarah|michael|linda|brent|the crew|dad|mom) (to |about |that |)/i, '');
-    t = t.replace(/^(add|create|schedule|set up) (a |an |)/i, '');
-    t = t.replace(/\bfor (sarah|michael|linda|brent|dad|mom)\b/i, '');
-    t = t.replace(/\btomorrow\b/gi, '').replace(/\btoday\b/gi, '').replace(/\bnext week\b/gi, '');
-    t = t.replace(/\bat \d{1,2}(:\d{2})?\s?(am|pm)\b/i, '').replace(/\s+/g, ' ').trim();
-    if (t.length > 0) t = t.charAt(0).toUpperCase() + t.slice(1);
-    if (t.length > 58) t = t.slice(0, 55) + '...';
-    return t;
-  }
-  function extractWhen(text){
-    const t = text.toLowerCase();
-    const parts = [];
-    if (t.indexOf('tomorrow') !== -1) parts.push('Tomorrow');
-    else if (t.indexOf('today') !== -1) parts.push('Today');
-    else if (t.indexOf('next week') !== -1) parts.push('Next week');
-    else if (t.indexOf('this week') !== -1) parts.push('This week');
-    else if (t.indexOf('monday') !== -1) parts.push('Monday');
-    else if (t.indexOf('tuesday') !== -1) parts.push('Tuesday');
-    else if (t.indexOf('wednesday') !== -1) parts.push('Wednesday');
-    else if (t.indexOf('thursday') !== -1) parts.push('Thursday');
-    else if (t.indexOf('friday') !== -1) parts.push('Friday');
-    else if (t.indexOf('weekend') !== -1) parts.push('This weekend');
-    const timeMatch = text.match(/\b(\d{1,2})(:\d{2})?\s?(am|pm)\b/i);
-    if (timeMatch) parts.push(timeMatch[0].trim());
-    return parts.length ? parts.join(' · ') : null;
-  }
-
   function welcome(){
     return statusBar() +
       '<div style="padding: 48px 32px 0; text-align: center; height: calc(100% - 44px); display: flex; flex-direction: column;">' +
@@ -647,41 +655,8 @@
         '<h1 style="font-size: 28px; font-weight: 500; margin: 0 0 10px; color: #2c2c2a;">CrewCares</h1>' +
         '<p style="font-size: 15px; color: #5f5e5a; margin: 0 0 48px; line-height: 1.45;">Bring your family together to care<br/>for the people you love.</p>' +
         '<div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-bottom: 40px;">' +
-          '<button class="cc-btn-primary" data-go="create">Create a crew</button>' +
-          '<button class="cc-btn-secondary" data-go="join">Join a crew</button>' +
+          '<button class="cc-btn-primary" data-go="home">Enter demo</button>' +
         '</div>' +
-      '</div>';
-  }
-
-  function createScreen(){
-    return statusBar() +
-      header('Create a crew', { back: 'welcome', rightLabel: 'Create', rightAction: 'create-submit', rightPrimary: true }) +
-      '<div class="cc-body" style="padding: 24px 20px;">' +
-        '<div class="cc-input-group"><label class="cc-label">Name the crew</label><input class="cc-input" value="' + state.crewName + '" placeholder="The crew name" data-field="crewName"/><p class="cc-hint">Try something like "Taking Care of Dad" or "The Siblings"</p></div>' +
-        '<div class="cc-input-group"><label class="cc-label">The crew leader\'s email</label><input class="cc-input" value="brent@example.com" type="email"/><p class="cc-hint">We will send an email to confirm it\'s you</p></div>' +
-        '<div class="cc-input-group"><label class="cc-label">Your name</label><input class="cc-input" value="' + state.userName + '"/></div>' +
-      '</div>';
-  }
-
-  function codeSentScreen(){
-    return statusBar() +
-      header('Confirmation code', { back: 'create' }) +
-      '<div class="cc-body" style="padding: 24px 20px; text-align: center;">' +
-        '<div style="width: 72px; height: 72px; border-radius: 50%; background: #eaf4f5; display: flex; align-items: center; justify-content: center; margin: 20px auto;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>' +
-        '<h2 style="font-size: 20px; font-weight: 500; margin: 0 0 10px;">Check your email</h2>' +
-        '<p style="font-size: 14px; color: #5f5e5a; line-height: 1.5; margin: 0 0 24px;">We sent a 5-digit code to<br/><strong style="color: #2c2c2a;">brent@example.com</strong></p>' +
-        '<div class="cc-code-boxes"><div class="cc-code-box filled">4</div><div class="cc-code-box filled">2</div><div class="cc-code-box filled">9</div><div class="cc-code-box filled">1</div><div class="cc-code-box filled">7</div></div>' +
-        '<p style="font-size: 13px; color: #888780; margin: 24px 0;">Didn\'t get it? <a href="#" style="color: #4395a2; text-decoration: none;">Resend code</a></p>' +
-        '<button class="cc-btn-primary" data-go="home">Continue</button>' +
-      '</div>';
-  }
-
-  function joinScreen(){
-    return statusBar() +
-      header('Join a crew', { back: 'welcome', rightLabel: 'Join', rightAction: 'join-submit', rightPrimary: true }) +
-      '<div class="cc-body" style="padding: 24px 20px;">' +
-        '<div class="cc-input-group"><label class="cc-label">Crew code</label><input class="cc-input" placeholder="5 digit code from email"/><p class="cc-hint">Enter the crew code that was sent to you in the invitation email</p></div>' +
-        '<div class="cc-input-group"><label class="cc-label">Your email</label><input class="cc-input" placeholder="you@example.com" type="email"/></div>' +
       '</div>';
   }
 
@@ -692,39 +667,6 @@
       'Catch me up on this week'
     ];
 
-    let body = '';
-    if (state.novaPhase === 'idle') {
-      body = '<div class="nova-input-wrap">' +
-          '<textarea class="nova-input" id="nova-input" rows="2" placeholder="Try: Remind Sarah to pick up prescription tomorrow" data-field="novaInput">' + state.novaInput + '</textarea>' +
-          '<button class="nova-send" data-action="nova-send" aria-label="Send"' + (state.novaInput.trim() ? '' : ' disabled') + '>' +
-            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>' +
-          '</button>' +
-        '</div>' +
-        '<div class="nova-suggestions">' +
-          suggestions.map(function(s){ return '<button class="nova-chip" data-suggestion="' + s.replace(/"/g, '&quot;').replace(/'/g, "&apos;") + '">' + s + '</button>'; }).join('') +
-        '</div>';
-    } else if (state.novaPhase === 'thinking') {
-      body = '<div class="nova-thinking"><span class="nova-dots"><span></span><span></span><span></span></span><span>Nova is thinking...</span></div>';
-    } else if (state.novaPhase === 'proposal' && state.novaProposal) {
-      const p = state.novaProposal;
-      const isInsight = p.items[0] && p.items[0].type === 'insight';
-      body = '<div class="nova-result">' +
-          '<div class="nova-result-head">' + SPARKLES + ' ' + p.summary + '</div>' +
-          p.items.map(function(item){
-            let icon = '';
-            if (item.type === 'task') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>';
-            else if (item.type === 'event') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>';
-            else if (item.type === 'chat') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg>';
-            else if (item.type === 'insight') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
-            return '<div class="nova-result-item"><div class="nova-result-icon">' + icon + '</div><div class="nova-result-text">' + item.title + '<small>' + item.detail + '</small></div></div>';
-          }).join('') +
-          (isInsight ?
-            '<div class="nova-actions"><button class="nova-btn-confirm" data-action="nova-dismiss">Got it</button></div>' :
-            '<div class="nova-actions"><button class="nova-btn-confirm" data-action="nova-confirm">Confirm</button><button class="nova-btn-edit" data-action="nova-dismiss">Dismiss</button></div>'
-          ) +
-        '</div>';
-    }
-
     return '<div class="nova-card">' +
       '<div class="nova-header">' +
         '<div class="nova-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg></div>' +
@@ -733,84 +675,32 @@
           '<div class="nova-sub">Type a request in plain English. I\'ll handle the rest.</div>' +
         '</div>' +
       '</div>' +
-      body +
+      '<div class="nova-input-wrap">' +
+        '<textarea class="nova-input" rows="2" placeholder="Try: Remind Sarah to pick up prescription tomorrow"></textarea>' +
+        '<button class="nova-send" disabled aria-label="Send"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>' +
+      '</div>' +
+      '<div class="nova-suggestions">' +
+        suggestions.map(function(s){ return '<button class="nova-chip">' + s + '</button>'; }).join('') +
+      '</div>' +
     '</div>';
   }
 
-  function pillBoxSvg(){
-    return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="4" x2="12" y2="20"/><circle cx="7.5" cy="8" r="0.5" fill="currentColor"/><circle cx="16.5" cy="8" r="0.5" fill="currentColor"/><circle cx="7.5" cy="16" r="0.5" fill="currentColor"/><circle cx="16.5" cy="16" r="0.5" fill="currentColor"/></svg>';
-  }
-  function bpCuffSvg(){
-    return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M8 6h8a2 2 0 0 1 2 2v3H6V8a2 2 0 0 1 2-2z"/><rect x="4" y="11" width="16" height="9" rx="1.5"/><path d="M9 16l2 2 4-4"/></svg>';
-  }
-  function scaleSvg(){
-    return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="5"/><path d="M12 9v3l2 1"/></svg>';
-  }
-
-  function novaRecommendationCard(){
+  function novaServiceSuggestion(){
     if (state.recDismissed) return '';
-    const products = [
-      {
-        name: 'EZY DOSE 7-Day Pill Organizer — Large Print',
-        why: 'Recommended for the new dose schedule Dr. Martinez prescribed',
-        rating: '4.6',
-        reviews: '12,847',
-        price: '$9.49',
-        icon: pillBoxSvg(),
-        id: 'rec1'
-      },
-      {
-        name: 'Omron Silver BP Monitor — Upper Arm, Bluetooth',
-        why: 'Approved by AHA; syncs readings so the crew can track trends',
-        rating: '4.5',
-        reviews: '8,204',
-        price: '$59.99',
-        icon: bpCuffSvg(),
-        id: 'rec2'
-      },
-      {
-        name: 'Digital Bathroom Scale with Large Display',
-        why: 'Weight check recommended after diuretic adjustment',
-        rating: '4.4',
-        reviews: '3,661',
-        price: '$24.99',
-        icon: scaleSvg(),
-        id: 'rec3'
-      }
-    ];
-
-    return '<div class="nova-rec-card">' +
-      '<div class="nova-rec-header">' +
-        '<div class="nova-rec-header-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg></div>' +
-        '<div class="nova-rec-header-text">' +
-          '<div class="nova-rec-title">After Dad\'s cardiology visit, these might help</div>' +
-          '<div class="nova-rec-context">Based on Dr. Martinez\'s notes and medication change</div>' +
+    return '<div class="service-rec-card">' +
+      '<div class="service-rec-header">' +
+        '<div class="service-rec-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>' +
+        '<div class="service-rec-text">' +
+          '<div class="service-rec-title">PT flagged a safety concern — grab bar needed</div>' +
+          '<div class="service-rec-context">From Dr. Chen\'s note after Dad\'s last PT visit</div>' +
         '</div>' +
-        '<button class="nova-rec-dismiss" data-action="dismiss-rec" aria-label="Dismiss">×</button>' +
       '</div>' +
-      products.map(function(p){
-        return '<div class="product-card">' +
-          '<div class="product-image">' + p.icon + '</div>' +
-          '<div class="product-info">' +
-            '<div class="product-name">' + p.name + '</div>' +
-            '<div class="product-why">' + SPARKLES + ' <span>' + p.why + '</span></div>' +
-            '<div class="product-meta">' +
-              '<span class="product-stars">★ ' + p.rating + '</span>' +
-              '<span>(' + p.reviews + ')</span>' +
-              '<span>·</span>' +
-              '<span>Amazon</span>' +
-            '</div>' +
-            '<div class="product-actions">' +
-              '<span class="product-price">' + p.price + '</span>' +
-              '<button class="product-btn" data-action="buy-product" data-product="' + p.id + '">Buy on Amazon →</button>' +
-              '<button class="product-btn secondary" data-action="add-to-list" data-product="' + p.id + '" data-name="' + p.name.replace(/"/g,'&quot;') + '">+ List</button>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-      }).join('') +
-      '<div class="affiliate-disclosure">' +
-        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>' +
-        '<span>We earn a small referral fee when you buy through Amazon — it helps keep CrewCares running. Prices and availability are set by Amazon.</span>' +
+      '<div style="padding: 14px;">' +
+        '<p style="font-size: 13.5px; color: #2c2c2a; margin: 0 0 10px; line-height: 1.45;">Want me to help you find a local pro to install a grab bar by the toilet? I\'ve checked 12 verified installers within 20 miles.</p>' +
+        '<div style="display:flex; gap:8px;">' +
+          '<button class="nova-btn-confirm" style="background:#185FA5;" data-go="services">Find a pro ›</button>' +
+          '<button class="nova-btn-edit" style="color:#5f5e5a; border-color:#D3D1C7;" data-action="dismiss-rec">Not now</button>' +
+        '</div>' +
       '</div>' +
     '</div>';
   }
@@ -818,7 +708,6 @@
   function homeScreen(){
     const upcoming = state.events.slice(0, 2);
     const myTasks = state.tasks.filter(function(t){ return t.assignee === 'Brent' && t.status !== 'done'; }).slice(0, 2);
-    const pendingList = state.shoppingList.filter(function(s){ return !s.bought; }).length;
 
     return statusBar() +
       header(state.crewName, { menu: true }) +
@@ -828,76 +717,160 @@
           '<h2 style="font-size: 24px; font-weight: 500; margin: 0;">Brent 👋</h2>' +
         '</div>' +
         novaCard() +
-        novaRecommendationCard() +
-        '<div class="cc-section-head" style="display:flex; justify-content:space-between; align-items:center;"><span>Crew shopping list</span><button class="cc-header-btn" style="color:#4395a2; padding:0;" data-go="shopping">' + pendingList + ' pending ›</button></div>' +
-        state.shoppingList.filter(function(s){ return !s.bought; }).slice(0,2).map(function(s){
-          return '<div class="cc-card" style="margin-bottom:8px; display:flex; align-items:center; gap:10px;">' +
-            '<div style="width:30px; height:30px; border-radius:8px; background:#F0F2F8; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5f5e5a" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>' +
-            '<div style="flex:1;">' +
-              '<p style="font-size:14px; margin:0;">' + s.name + (s.aiSuggested ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p>' +
-              '<p style="font-size:11.5px; color:#888780; margin:2px 0 0;">Added by ' + s.added_by + ' · ' + s.source + '</p>' +
-            '</div>' +
-          '</div>';
-        }).join('') +
+        novaServiceSuggestion() +
         '<div class="cc-section-head">Your tasks</div>' +
         myTasks.map(function(t){
-          return '<div class="cc-card" style="margin-bottom: 8px;"><div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;"><div style="flex: 1;"><p style="font-size: 15px; margin: 0 0 4px; color: #2c2c2a;">' + t.title + (t.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><p style="font-size: 12px; color: #888780; margin: 0;">Due ' + t.due + '</p></div><span class="cc-pill ' + t.status + '">' + (t.status === 'inprogress' ? 'In Progress' : t.status === 'todo' ? 'To-Do' : t.status) + '</span></div></div>';
+          return '<div class="cc-card" style="margin-bottom: 8px;"><div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;"><div style="flex: 1;"><p style="font-size: 15px; margin: 0 0 4px; color: #2c2c2a;">' + t.title + '</p><p style="font-size: 12px; color: #888780; margin: 0;">Due ' + t.due + '</p></div><span class="cc-pill ' + t.status + '">' + (t.status === 'inprogress' ? 'In Progress' : t.status === 'todo' ? 'To-Do' : t.status) + '</span></div></div>';
         }).join('') +
         '<div class="cc-section-head" style="display: flex; justify-content: space-between; align-items: center;"><span>Upcoming</span><button class="cc-header-btn" style="color:#4395a2; padding:0;" data-tab="calendar">See all</button></div>' +
         upcoming.map(function(e){
-          return '<div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;"><div style="width:42px; text-align:center;"><p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p><p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">' + e.day + '</p></div><div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;"><p style="font-size:15px; margin:0 0 2px;">' + e.title + (e.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><p style="font-size:12px; color:#888780; margin:0;">' + e.time + '</p></div></div>';
+          return '<div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;"><div style="width:42px; text-align:center;"><p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p><p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">' + e.day + '</p></div><div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;"><p style="font-size:15px; margin:0 0 2px;">' + e.title + '</p><p style="font-size:12px; color:#888780; margin:0;">' + e.time + '</p></div></div>';
         }).join('') +
       '</div>' +
       tabBar();
   }
 
-  function shoppingScreen(){
-    const pending = state.shoppingList.filter(function(s){ return !s.bought; });
-    const bought = state.shoppingList.filter(function(s){ return s.bought; });
+  function servicesScreen(){
+    const categories = [
+      { id: 'grab-bars', label: 'Grab bars', available: true },
+      { id: 'ramps', label: 'Ramps', available: true },
+      { id: 'bathroom', label: 'Bathroom safety', available: true },
+      { id: 'doorways', label: 'Doorway widening', available: true },
+      { id: 'handyman', label: 'Handyman · Phase 2', available: false },
+      { id: 'cleaning', label: 'Cleaning · Phase 2', available: false },
+      { id: 'yard', label: 'Yard work · Phase 2', available: false }
+    ];
 
-    return statusBar() +
-      header('Crew Shopping', { back: 'home' }) +
-      '<div class="cc-body" style="padding-bottom: 90px;">' +
-        '<div style="padding: 16px; background:#fff; border-bottom: 0.5px solid rgba(0,0,0,0.06);">' +
-          '<p style="font-size:13px; color:#5f5e5a; margin:0 0 4px;">Items the crew is buying for Dad.</p>' +
-          '<p style="font-size:12px; color:#888780; margin:0;">' + pending.length + ' pending · ' + bought.length + ' bought this month</p>' +
-        '</div>' +
-        (pending.length ? '<div class="cc-section-head">Pending</div>' +
-          '<div style="margin: 0 12px; background:#fff; border-radius:10px; overflow:hidden;">' +
-          pending.map(function(s){
-            return '<div class="shopping-item" data-shop="' + s.id + '">' +
-              '<div class="shopping-check"></div>' +
-              '<div class="shopping-content">' +
-                '<div class="shopping-name">' + s.name + (s.aiSuggested ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</div>' +
-                '<div class="shopping-meta">Added by ' + s.added_by + ' · ' + s.source + '</div>' +
-              '</div>' +
-              (s.source === 'Amazon' ? '<button class="product-btn" data-action="buy-item" data-shop="' + s.id + '">Amazon →</button>' : '') +
-            '</div>';
-          }).join('') + '</div>' : '') +
-        (bought.length ? '<div class="cc-section-head">Recently bought</div>' +
-          '<div style="margin: 0 12px; background:#fff; border-radius:10px; overflow:hidden;">' +
-          bought.map(function(s){
-            return '<div class="shopping-item" data-shop="' + s.id + '">' +
-              '<div class="shopping-check checked"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>' +
-              '<div class="shopping-content">' +
-                '<div class="shopping-name checked">' + s.name + '</div>' +
-                '<div class="shopping-meta">Bought by ' + s.added_by + ' · ' + s.source + '</div>' +
-              '</div>' +
-            '</div>';
-          }).join('') + '</div>' : '') +
+    const pros = [
+      {
+        id: 'p1',
+        name: 'Mike R.',
+        business: 'Denver Accessibility Solutions',
+        tagline: 'ADA-certified installer · 12 years experience',
+        rating: '4.9',
+        reviews: '284',
+        distance: '4.2 mi',
+        turnaround: 'Can come Thu',
+        quote: '$289',
+        initials: 'MR',
+        badges: ['Background-checked', 'Insured']
+      },
+      {
+        id: 'p2',
+        name: 'Alejandro V.',
+        business: 'A&V Home Modifications',
+        tagline: 'Specializes in aging-in-place retrofits',
+        rating: '4.8',
+        reviews: '156',
+        distance: '7.1 mi',
+        turnaround: 'Next week',
+        quote: '$245',
+        initials: 'AV',
+        badges: ['Background-checked']
+      },
+      {
+        id: 'p3',
+        name: 'Sarah J.',
+        business: 'Safe Home Senior Living',
+        tagline: 'Licensed contractor · Senior living specialist',
+        rating: '5.0',
+        reviews: '89',
+        distance: '3.8 mi',
+        turnaround: 'Today (rush)',
+        quote: '$349',
+        initials: 'SJ',
+        badges: ['Background-checked', 'Insured', 'Licensed']
+      }
+    ];
 
-        '<div class="affiliate-disclosure" style="margin: 16px 12px 0; border-radius: 8px; border: 0.5px solid rgba(186, 117, 23, 0.2); border-top: 0.5px solid rgba(186, 117, 23, 0.2);">' +
-          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>' +
-          '<span>When you buy through Amazon links here, CrewCares earns a small referral fee. This helps keep the app free for your crew. You can always buy from any other store — the app doesn\'t care where.</span>' +
+    const proCards = pros.map(function(p){
+      return '<div class="pro-card">' +
+        '<div class="pro-avatar">' + p.initials + '</div>' +
+        '<div class="pro-info">' +
+          '<div class="pro-name-row">' +
+            '<span class="pro-name">' + p.name + '</span>' +
+            '<span class="pro-verified">' + CHECK + ' Verified</span>' +
+          '</div>' +
+          '<div class="pro-stars">★ ' + p.rating + ' <small>(' + p.reviews + ' reviews)</small></div>' +
+          '<div class="pro-tagline">' + p.business + ' · ' + p.tagline + '</div>' +
+          '<div class="pro-meta-row">' +
+            '<span>' + p.distance + ' away</span>' +
+            '<span>·</span>' +
+            '<span>' + p.turnaround + '</span>' +
+          '</div>' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">' +
+            '<span class="pro-quote">Est. ' + p.quote + '</span>' +
+            '<div class="pro-actions">' +
+              '<button class="pro-btn secondary" data-action="view-pro" data-pro="' + p.id + '">Details</button>' +
+              '<button class="pro-btn" data-action="book-pro" data-pro="' + p.id + '" data-name="' + p.name + '" data-business="' + p.business + '" data-quote="' + p.quote + '">Book →</button>' +
+            '</div>' +
+          '</div>' +
         '</div>' +
       '</div>';
+    }).join('');
+
+    return statusBar() +
+      header('Home Services', { menu: true }) +
+      '<div class="cc-body" style="padding-bottom: 120px;">' +
+        '<div style="padding: 14px 16px 10px; background: #fff; border-bottom: 0.5px solid rgba(0,0,0,0.06);">' +
+          '<p style="font-size:13.5px; color:#2c2c2a; margin:0 0 4px;">Find vetted pros for home modifications.</p>' +
+          '<p style="font-size:12px; color:#5f5e5a; margin:0; line-height:1.45;">Powered by Thumbtack. All pros are background-checked and insured.</p>' +
+        '</div>' +
+        '<div class="service-category-row">' +
+          categories.map(function(c){
+            return '<button class="service-cat-chip ' + (c.id === state.serviceCat ? 'active' : '') + '" data-cat="' + c.id + '" ' + (!c.available ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : '') + '>' + c.label + '</button>';
+          }).join('') +
+        '</div>' +
+        '<div style="background: #fff; margin: 0 12px; border-radius: 12px; overflow: hidden; border: 0.5px solid rgba(0,0,0,0.06);">' +
+          '<div style="padding: 12px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center;">' +
+            '<div>' +
+              '<div style="font-size: 13.5px; font-weight: 600; color: #2c2c2a;">Grab bar installation</div>' +
+              '<div style="font-size: 11.5px; color: #5f5e5a; margin-top: 1px;">' + pros.length + ' pros available near 80126</div>' +
+            '</div>' +
+          '</div>' +
+          proCards +
+        '</div>' +
+
+        '<div class="service-disclosure" style="margin: 14px 12px 0; border-radius: 10px; border: 0.5px solid rgba(186, 117, 23, 0.2); border-top: 0.5px solid rgba(186, 117, 23, 0.2);">' +
+          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>' +
+          '<span>CrewCares earns a referral fee when you book through the app. All pros are independent — we don\'t employ them. Full pricing is set at the time of booking with the pro directly.</span>' +
+        '</div>' +
+      '</div>' +
+      tabBar() +
+      (state.bookingModal ? bookingModal() : '');
+  }
+
+  function bookingModal(){
+    const b = state.bookingModal;
+    return '<div class="booking-overlay" data-action="close-booking-backdrop">' +
+      '<div class="booking-sheet" onclick="event.stopPropagation();">' +
+        '<h3>Book ' + b.name + '</h3>' +
+        '<p class="booking-sub">' + b.business + '</p>' +
+
+        '<div class="booking-summary">' +
+          '<div class="booking-summary-row"><span class="booking-summary-label">Service</span><span class="booking-summary-value">Grab bar installation</span></div>' +
+          '<div class="booking-summary-row"><span class="booking-summary-label">Location</span><span class="booking-summary-value">Dad\'s house</span></div>' +
+          '<div class="booking-summary-row"><span class="booking-summary-label">Estimated time</span><span class="booking-summary-value">Thursday, 10 AM</span></div>' +
+          '<div class="booking-summary-row"><span class="booking-summary-label">Estimated cost</span><span class="booking-summary-value">' + b.quote + '</span></div>' +
+        '</div>' +
+
+        '<div class="crew-notify-box">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>' +
+          '<span><strong>The crew will be notified.</strong> When you book, a note goes to crew chat: "Brent booked Mike R. for grab bar install, Thursday 10 AM, $289." Anyone can object within 4 hours before it\'s confirmed.</span>' +
+        '</div>' +
+
+        '<div class="booking-actions">' +
+          '<button class="booking-btn-secondary" data-action="close-booking">Cancel</button>' +
+          '<button class="booking-btn-primary" data-action="confirm-booking">Confirm booking</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
   }
 
   function tasksScreen(){
     const grouped = {
       'To-Do': state.tasks.filter(function(t){ return t.status === 'todo'; }),
       'In Progress': state.tasks.filter(function(t){ return t.status === 'inprogress'; }),
-      'Unassigned': state.tasks.filter(function(t){ return t.status === 'unassigned'; }),
       'Done': state.tasks.filter(function(t){ return t.status === 'done'; })
     };
     const sections = Object.entries(grouped).filter(function(e){ return e[1].length > 0; }).map(function(entry){
@@ -906,12 +879,17 @@
         tasks.map(function(t, i){
           const done = state.completedTasks.has(t.id) || t.status === 'done';
           const member = state.members.find(function(m){ return m.name === t.assignee; });
-          return '<div class="cc-task-row" style="' + (i<tasks.length-1?'border-bottom:0.5px solid rgba(0,0,0,0.06);':'') + '" data-task="' + t.id + '"><div class="cc-checkbox ' + (done?'checked':'') + '">' + (done ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : '') + '</div><div style="flex:1;"><p style="font-size:15px; margin:0 0 4px; ' + (done?'text-decoration:line-through; color:#888780;':'color:#2c2c2a;') + '">' + t.title + (t.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><div style="display:flex; gap:8px; align-items:center;">' + (member ? '<div class="cc-avatar sm" style="background:' + member.color + '; width:20px; height:20px; font-size:9px;">' + member.initials + '</div><p style="font-size:12px; color:#888780; margin:0;">' + t.assignee + ' · ' + t.due + '</p>' : '<p style="font-size:12px; color:#888780; margin:0;">Unassigned · ' + t.due + '</p>') + '</div></div></div>';
+          return '<div class="cc-task-row" style="' + (i<tasks.length-1?'border-bottom:0.5px solid rgba(0,0,0,0.06);':'') + '"><div class="cc-checkbox ' + (done?'checked':'') + '">' + (done ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : '') + '</div><div style="flex:1;"><p style="font-size:15px; margin:0 0 4px; ' + (done?'text-decoration:line-through; color:#888780;':'color:#2c2c2a;') + '">' + t.title + '</p><div style="display:flex; gap:8px; align-items:center;">' + (member ? '<div class="cc-avatar sm" style="background:' + member.color + '; width:20px; height:20px; font-size:9px;">' + member.initials + '</div><p style="font-size:12px; color:#888780; margin:0;">' + t.assignee + ' · ' + t.due + '</p>' : '') + '</div></div></div>';
         }).join('') + '</div>';
     }).join('');
 
     return statusBar() + header('Tasks', { menu: true }) +
-      '<div class="cc-body" style="padding-bottom: 90px;">' + sections + '</div>' +
+      '<div class="cc-body" style="padding-bottom: 90px;">' +
+        sections +
+        '<div style="margin: 20px 12px;"><button class="cc-btn-secondary" style="border-color:#185FA5; color:#185FA5;" data-go="services">' +
+          '<span style="display:inline-flex; align-items:center; gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Need a pro? Find home services</span>' +
+        '</button></div>' +
+      '</div>' +
       tabBar();
   }
 
@@ -933,27 +911,55 @@
 
     return statusBar() + header('Calendar', { menu: true }) +
       '<div class="cc-body" style="padding-bottom: 90px;">' +
-        '<div style="padding: 16px; display:flex; justify-content:space-between; align-items:center;"><h2 style="font-size:20px; font-weight:500; margin:0;">November 2026</h2><div style="display:flex; gap:4px;"><button class="cc-header-btn" style="color:#5f5e5a; padding:4px 8px;">‹</button><button class="cc-header-btn" style="color:#5f5e5a; padding:4px 8px;">›</button></div></div>' +
+        '<div style="padding: 16px; display:flex; justify-content:space-between; align-items:center;"><h2 style="font-size:20px; font-weight:500; margin:0;">November 2026</h2></div>' +
         '<div style="margin: 0 12px; background: #fff; border-radius: 12px; padding: 10px;"><div style="display:grid; grid-template-columns: repeat(7, 1fr); text-align:center; margin-bottom:6px;">' +
           ['S','M','T','W','T','F','S'].map(function(d){ return '<div style="font-size:11px; color:#888780; padding:6px 0; font-weight:500;">' + d + '</div>'; }).join('') +
         '</div><div style="display:grid; grid-template-columns: repeat(7, 1fr); gap:2px;">' + grid + '</div></div>' +
         '<div class="cc-section-head">Upcoming events</div>' +
         state.events.map(function(e){
-          return '<div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;"><div style="width:42px; text-align:center;"><p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p><p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">' + e.day + '</p></div><div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;"><p style="font-size:15px; margin:0 0 2px;">' + e.title + (e.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><p style="font-size:12px; color:#888780; margin:0;">' + e.time + '</p></div></div>';
+          return '<div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;"><div style="width:42px; text-align:center;"><p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p><p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">' + e.day + '</p></div><div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;"><p style="font-size:15px; margin:0 0 2px;">' + e.title + '</p><p style="font-size:12px; color:#888780; margin:0;">' + e.time + '</p></div></div>';
         }).join('') +
       '</div>' + tabBar();
   }
 
+  function renderChatMessage(m){
+    if (m.from === 'me') {
+      return '<div class="cc-chat-row mine"><div class="cc-chat-bubble mine">' + m.text + '</div></div>';
+    } else if (m.from === 'Nova') {
+      return '<div><p class="cc-chat-sender ai">' + SPARKLES + ' Nova · AI care coordinator</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:#64a70b;">' + SPARKLES + '</div><div class="cc-chat-bubble ai">' + m.text + '</div></div></div>';
+    } else if (m.from === 'system-booking') {
+      return '<div><p class="cc-chat-sender service"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Service booking</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:#185FA5;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="cc-chat-bubble theirs" style="background:#f0f6fc; border: 1px solid rgba(12, 68, 124, 0.2); color:#185FA5;">' + m.text + '</div></div></div>';
+    } else if (m.from === 'pro-completion') {
+      return '<div><p class="cc-chat-sender service"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Mike R. · Job complete</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:#185FA5;">MR</div>' +
+        '<div class="completion-card">' +
+          '<div class="completion-hdr">' + CHECK + ' Job completed — photo from the pro</div>' +
+          '<div class="completion-photo">' +
+            '<svg width="60" height="60" viewBox="0 0 48 48" fill="none" stroke="#5f5e5a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">' +
+              '<rect x="6" y="12" width="36" height="28" rx="2"/>' +
+              '<path d="M6 20h36"/>' +
+              '<rect x="14" y="24" width="4" height="10" rx="1" fill="#888780"/>' +
+              '<rect x="30" y="24" width="4" height="10" rx="1" fill="#888780"/>' +
+              '<path d="M13 25 h22" stroke="#2c2c2a" stroke-width="3.5"/>' +
+            '</svg>' +
+            '<div class="completion-photo-label">Bathroom · 2:47 PM</div>' +
+          '</div>' +
+          '<div class="completion-body">' +
+            '<div class="completion-title">Grab bar installed by toilet</div>' +
+            '<div class="completion-note">Standard 12" ADA-compliant bar, mounted to studs. Everything tested and stable. Cleaned up before leaving.</div>' +
+            '<div class="completion-meta">' +
+              '<span>Today, 2:47 PM · 45 min job</span>' +
+              '<span class="completion-cost">$289</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div></div>';
+    } else {
+      return '<div><p class="cc-chat-sender">' + m.from + '</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:' + m.color + ';">' + m.from[0] + '</div><div class="cc-chat-bubble theirs">' + m.text + '</div></div></div>';
+    }
+  }
+
   function chatScreen(){
-    const messages = state.chat.map(function(m){
-      if (m.from === 'me') {
-        return '<div class="cc-chat-row mine"><div class="cc-chat-bubble mine">' + m.text + '</div></div>';
-      } else if (m.from === 'Nova') {
-        return '<div><p class="cc-chat-sender ai">' + SPARKLES + ' Nova · AI care coordinator</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:#64a70b;">' + SPARKLES + '</div><div class="cc-chat-bubble ai">' + m.text + '</div></div></div>';
-      } else {
-        return '<div><p class="cc-chat-sender">' + m.from + '</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:' + m.color + ';">' + m.from[0] + '</div><div class="cc-chat-bubble theirs">' + m.text + '</div></div></div>';
-      }
-    }).join('');
+    const messages = state.chat.map(renderChatMessage).join('');
     return statusBar() + header('Crew Chat', { menu: true }) +
       '<div class="cc-body" style="padding: 12px 0 130px;">' + messages + '</div>' +
       '<div class="cc-chat-input-row"><input class="cc-chat-input" placeholder="Message" value="' + state.chatDraft + '" data-field="chatDraft"/><button class="cc-send-btn" data-action="send-message" aria-label="Send">↑</button></div>' +
@@ -963,7 +969,7 @@
   function membersScreen(){
     return statusBar() + header('Crew Members', { menu: true, rightLabel: 'Invite', rightAction: 'invite', rightPrimary: true }) +
       '<div class="cc-body" style="padding-bottom: 90px;">' +
-        '<div style="padding: 20px 16px; text-align:center; background:#fff; margin-bottom: 12px;"><div class="cc-avatar lg" style="background:#4395a2; margin: 0 auto 12px;">TC</div><h2 style="font-size:18px; font-weight:500; margin: 0 0 4px;">' + state.crewName + '</h2><p style="font-size:13px; color:#888780; margin:0;">Crew code: <strong style="color:#2c2c2a;">7K4PM</strong> · ' + state.members.length + ' members + Nova</p></div>' +
+        '<div style="padding: 20px 16px; text-align:center; background:#fff; margin-bottom: 12px;"><div class="cc-avatar lg" style="background:#4395a2; margin: 0 auto 12px;">TC</div><h2 style="font-size:18px; font-weight:500; margin: 0 0 4px;">' + state.crewName + '</h2><p style="font-size:13px; color:#888780; margin:0;">Crew code: <strong style="color:#2c2c2a;">7K4PM</strong></p></div>' +
         state.members.map(function(m){
           return '<div class="cc-menu-item"><div class="cc-avatar" style="background:' + m.color + ';">' + m.initials + '</div><div style="flex:1;"><p style="font-size:15px; margin:0; color:#2c2c2a;">' + m.name + '</p><p style="font-size:12px; color:#888780; margin:2px 0 0;">' + m.role + '</p></div>' + (m.role === 'Crew Leader' ? '<span class="cc-pill" style="background:#eaf4f5; color:#4395a2;">Leader</span>' : '<span class="cc-dot-ind" title="Online"></span>') + '</div>';
         }).join('') +
@@ -977,21 +983,24 @@
         '<div style="padding: 20px 16px 12px; background:#fff;"><div style="display:flex; align-items:center; gap:12px;"><div class="cc-avatar lg" style="background:#4395a2;">B</div><div><p style="font-size:17px; font-weight:500; margin:0;">Brent</p><p style="font-size:13px; color:#888780; margin: 2px 0 0;">Crew Leader · ' + state.crewName + '</p></div></div></div>' +
         '<div style="margin: 12px 0 0;">' +
           '<div class="cc-menu-item" data-tab="members"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg><span style="flex:1;">Crew members</span><span style="color:#888780;">›</span></div>' +
-          '<div class="cc-menu-item" data-go="shopping"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span style="flex:1;">Crew shopping list</span><span style="color:#888780;">›</span></div>' +
+          '<div class="cc-menu-item" data-go="services"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span style="flex:1;">Home services <span style="background:#e6f1fb; color:#185FA5; font-size:10px; padding:1px 6px; border-radius:4px; margin-left:6px; font-weight:500;">New</span></span><span style="color:#888780;">›</span></div>' +
           '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64a70b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg><span style="flex:1;">Nova settings</span><span style="color:#888780;">›</span></div>' +
           '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span style="flex:1;">Invite new member</span><span style="color:#888780;">›</span></div>' +
           '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6"/></svg><span style="flex:1;">Settings</span><span style="color:#888780;">›</span></div>' +
-          '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="3" y="11" width="18" height="11" rx="2"/></svg><span style="flex:1;">Send feedback</span><span style="color:#888780;">›</span></div>' +
         '</div>' +
         '<div style="margin: 24px 16px;"><button class="cc-btn-secondary" style="color:#e99797; border-color:#e99797;" data-go="welcome">Leave crew</button></div>' +
       '</div>';
   }
 
   const RENDERERS = {
-    welcome: welcome, create: createScreen, 'code-sent': codeSentScreen,
-    join: joinScreen, home: homeScreen, tasks: tasksScreen,
-    calendar: calendarScreen, chat: chatScreen, members: membersScreen,
-    menu: menuScreen, shopping: shoppingScreen
+    welcome: welcome,
+    home: homeScreen,
+    tasks: tasksScreen,
+    calendar: calendarScreen,
+    chat: chatScreen,
+    members: membersScreen,
+    menu: menuScreen,
+    services: servicesScreen
   };
 
   function render(){
@@ -1006,139 +1015,84 @@
     if (body) body.scrollTop = state.screen === 'chat' ? 9999 : 0;
   }
 
-  function novaSend(){
-    const text = state.novaInput.trim();
-    if (!text) return;
-    state.novaPhase = 'thinking';
-    render();
+  function confirmBooking(){
+    const b = state.bookingModal;
+    if (!b) return;
+
+    state.chat.push({ from: 'system-booking', text: 'Brent booked ' + b.name + ' (' + b.business + ') for grab bar installation, Thursday 10 AM. Estimated cost: ' + b.quote + '. Crew can object within 4 hours.' });
+
     setTimeout(function(){
-      state.novaProposal = parseIntent(text);
-      state.novaPhase = 'proposal';
+      state.chat.push({ from: 'Sarah', text: 'Thank you for handling this — was worried we wouldn\'t get to it before the weekend.', color: '#e99797' });
       render();
-    }, 1100);
-  }
+    }, 300);
 
-  function novaConfirm(){
-    const p = state.novaProposal;
-    if (!p) return;
-    const originalInput = state.novaInput;
-    let chatSummary = '';
+    setTimeout(function(){
+      state.chat.push({ from: 'pro-completion', text: '' });
+      render();
+    }, 1200);
 
-    p.items.forEach(function(item){
-      if (item.type === 'task') {
-        const assigneeMatch = item.detail.match(/Assigned to (\w+)/);
-        const newTask = {
-          id: 't' + (state.tasks.length + 100),
-          title: item.title,
-          status: assigneeMatch ? 'todo' : 'unassigned',
-          assignee: assigneeMatch ? assigneeMatch[1] : null,
-          due: item.detail.split('·').pop().trim() || 'This week',
-          aiCreated: true
-        };
-        state.tasks.unshift(newTask);
-        chatSummary = 'Added "' + item.title + '"' + (assigneeMatch ? ' for ' + assigneeMatch[1] : '') + '.';
-      } else if (item.type === 'event') {
-        state.events.push({
-          day: 15,
-          title: item.title,
-          time: item.detail,
-          aiCreated: true
-        });
-        chatSummary = 'Put "' + item.title + '" on the calendar — ' + item.detail + '.';
-      }
-    });
+    setTimeout(function(){
+      state.chat.push({ from: 'Nova', text: 'The install is done. I marked "Grab bar install" as complete in tasks and logged the $289 to the shared care expense tracker.' });
+      render();
+    }, 2000);
 
-    if (chatSummary) {
-      state.chat.push({ from: 'Nova', text: chatSummary + ' (Based on Brent\'s note: "' + originalInput + '")' });
-    }
-
-    state.novaInput = '';
-    state.novaProposal = null;
-    state.novaPhase = 'idle';
-    render();
-  }
-
-  function novaDismiss(){
-    state.novaInput = '';
-    state.novaProposal = null;
-    state.novaPhase = 'idle';
+    state.bookingModal = null;
+    state.screen = 'chat';
+    state.tab = 'chat';
     render();
   }
 
   document.addEventListener('click', function(e){
-    const tgt = e.target.closest('[data-go],[data-tab],[data-action],[data-task],[data-jump],[data-suggestion],[data-shop]');
+    const tgt = e.target.closest('[data-go],[data-tab],[data-action],[data-task],[data-jump],[data-cat],[data-pro]');
     if (!tgt) return;
-    if (tgt.dataset.suggestion) {
-      state.novaInput = tgt.dataset.suggestion;
-      novaSend();
-      return;
-    }
+
     if (tgt.dataset.jump) {
       state.screen = tgt.dataset.jump;
       if (['home','tasks','calendar','chat','members'].indexOf(tgt.dataset.jump) !== -1) state.tab = tgt.dataset.jump;
       render();
       return;
     }
-    if (tgt.dataset.go) { go(tgt.dataset.go); return; }
-    if (tgt.dataset.tab) { setTab(tgt.dataset.tab); return; }
-    if (tgt.dataset.task) {
-      const id = tgt.dataset.task;
-      if (state.completedTasks.has(id)) state.completedTasks.delete(id); else state.completedTasks.add(id);
-      render();
+    if (tgt.dataset.go) {
+      go(tgt.dataset.go);
       return;
     }
-    const action = tgt.dataset.action;
-    if (action === 'create-submit') go('code-sent');
-    else if (action === 'join-submit') go('home');
-    else if (action === 'nova-send') novaSend();
-    else if (action === 'nova-confirm') novaConfirm();
-    else if (action === 'nova-dismiss') novaDismiss();
-    else if (action === 'dismiss-rec') { state.recDismissed = true; render(); }
-    else if (action === 'buy-product' || action === 'buy-item') {
-      alert('Demo: would open Amazon with affiliate tag. In production this deep-links to the product page.');
+    if (tgt.dataset.tab) { setTab(tgt.dataset.tab); return; }
+    if (tgt.dataset.cat) {
+      if (!tgt.disabled) { state.serviceCat = tgt.dataset.cat; render(); }
+      return;
     }
-    else if (action === 'add-to-list') {
-      const name = tgt.dataset.name;
-      if (name && !state.shoppingList.find(function(s){ return s.name === name; })) {
-        state.shoppingList.unshift({
-          id: 's' + Date.now(),
-          name: name,
-          added_by: 'Nova',
-          bought: false,
-          source: 'Amazon',
-          aiSuggested: true
-        });
-      }
+
+    const action = tgt.dataset.action;
+    if (action === 'dismiss-rec') { state.recDismissed = true; render(); }
+    else if (action === 'book-pro') {
+      state.bookingModal = {
+        pro: tgt.dataset.pro,
+        name: tgt.dataset.name,
+        business: tgt.dataset.business,
+        quote: tgt.dataset.quote
+      };
       render();
+    }
+    else if (action === 'close-booking' || action === 'close-booking-backdrop') {
+      state.bookingModal = null;
+      render();
+    }
+    else if (action === 'confirm-booking') {
+      confirmBooking();
+    }
+    else if (action === 'view-pro') {
+      alert('Demo: would open full pro profile — reviews, portfolio photos, credentials, direct messaging.');
     }
     else if (action === 'send-message') {
       const input = screen.querySelector('[data-field="chatDraft"]');
       const text = (input && input.value || '').trim();
       if (text) { state.chat.push({ from: 'me', text: text }); state.chatDraft = ''; render(); }
-    } else if (action === 'invite') {
-      alert('Demo: invite new crew member');
     }
   });
 
   document.addEventListener('input', function(e){
     const f = e.target.dataset && e.target.dataset.field;
-    if (f) {
-      state[f] = e.target.value;
-      if (f === 'novaInput') {
-        const btn = screen.querySelector('[data-action="nova-send"]');
-        if (btn) {
-          if (state.novaInput.trim()) btn.removeAttribute('disabled');
-          else btn.setAttribute('disabled', '');
-        }
-      }
-    }
-  });
-
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Enter' && !e.shiftKey && e.target.id === 'nova-input') {
-      e.preventDefault();
-      novaSend();
-    }
+    if (f) state[f] = e.target.value;
   });
 
   render();
