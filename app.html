@@ -13,12 +13,8 @@
     --color-background-tertiary: #eef0f4;
     --color-text-primary: #2c2c2a;
     --color-text-secondary: #5f5e5a;
-    --color-text-tertiary: #888780;
     --color-border-tertiary: rgba(0,0,0,0.1);
-    --color-border-secondary: rgba(0,0,0,0.2);
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-    --border-radius-md: 8px;
-    --border-radius-lg: 12px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -27,428 +23,295 @@
       --color-background-tertiary: #0f0f0f;
       --color-text-primary: #e8e8e8;
       --color-text-secondary: #a8a8a8;
-      --color-text-tertiary: #888;
       --color-border-tertiary: rgba(255,255,255,0.1);
-      --color-border-secondary: rgba(255,255,255,0.2);
     }
   }
   * { box-sizing: border-box; }
   html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+    margin: 0; padding: 0; min-height: 100vh;
     background: var(--color-background-tertiary);
     font-family: var(--font-sans);
     color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
   }
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 16px 40px;
-  }
-  h1.page-title {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0 0 4px;
-    color: var(--color-text-primary);
-  }
-  p.page-sub {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    margin: 0 0 20px;
-    text-align: center;
-  }
-  .cc-reset-bar {
+  body { display: flex; flex-direction: column; align-items: center; padding: 20px 16px 40px; }
+
+  .nav-top {
+    background: #4395a2;
+    padding: 12px 0;
+    width: 100%;
     max-width: 420px;
-    margin: 0 auto 20px;
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin-bottom: 16px;
+    border-radius: 10px;
   }
+  .nav-top-inner { max-width: 420px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-top-brand { color: #fff; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+  .nav-top-links { display: flex; gap: 4px; }
+  .nav-top-links a { color: rgba(255,255,255,0.95); text-decoration: none; font-size: 13px; padding: 5px 10px; border-radius: 6px; }
+  .nav-top-links a:hover { background: rgba(255,255,255,0.12); }
+
+  h1.page-title { font-size: 18px; font-weight: 500; margin: 0 0 4px; }
+  p.page-sub { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 12px; text-align: center; }
+  .feature-highlight {
+    background: rgba(100, 167, 11, 0.12); color: #3B6D11;
+    border: 1px solid rgba(100, 167, 11, 0.25);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 500; margin-bottom: 20px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  .cc-reset-bar { max-width: 420px; margin: 0 auto 20px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
   .cc-jump-btn {
     background: var(--color-background-secondary);
     border: 0.5px solid var(--color-border-tertiary);
-    border-radius: 999px;
-    padding: 5px 13px;
-    font-size: 12px;
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    font-family: inherit;
+    border-radius: 999px; padding: 5px 13px;
+    font-size: 12px; color: var(--color-text-secondary);
+    cursor: pointer; font-family: inherit;
   }
   .cc-jump-btn:hover { background: var(--color-background-primary); color: var(--color-text-primary); }
   .cc-jump-btn.active { background: #4395a2; color: #fff; border-color: #4395a2; }
   .cc-frame {
-    width: 390px;
-    max-width: 100%;
-    height: 780px;
-    margin: 0 auto;
-    background: #000;
-    border-radius: 44px;
-    padding: 12px;
-    position: relative;
-    border: 1px solid var(--color-border-tertiary);
+    width: 390px; max-width: 100%; height: 800px;
+    margin: 0 auto; background: #000;
+    border-radius: 44px; padding: 12px;
+    position: relative; border: 1px solid var(--color-border-tertiary);
   }
   @media (max-width: 420px) {
     body { padding: 0; }
-    .cc-reset-bar { display: none; }
-    .cc-frame {
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0;
-      padding: 0;
-      border: 0;
-    }
+    .cc-reset-bar, .nav-top, .page-title, .page-sub, .feature-highlight { display: none; }
+    .cc-frame { width: 100vw; height: 100vh; border-radius: 0; padding: 0; border: 0; }
     .cc-notch { display: none; }
     .cc-screen { border-radius: 0 !important; }
   }
   .cc-notch {
-    position: absolute;
-    top: 12px; left: 50%;
+    position: absolute; top: 12px; left: 50%;
     transform: translateX(-50%);
     width: 120px; height: 28px;
-    background: #000;
-    border-radius: 0 0 18px 18px;
-    z-index: 20;
+    background: #000; border-radius: 0 0 18px 18px; z-index: 20;
   }
   .cc-screen {
-    width: 100%; height: 100%;
-    background: #F0F2F8;
-    border-radius: 34px;
-    overflow: hidden;
-    position: relative;
+    width: 100%; height: 100%; background: #F0F2F8;
+    border-radius: 34px; overflow: hidden; position: relative;
     font-family: -apple-system, BlinkMacSystemFont, var(--font-sans);
     color: #2c2c2a;
   }
-  .cc-status {
-    height: 44px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 0 28px 6px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #000;
-    background: #F0F2F8;
-  }
+  .cc-status { height: 44px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 28px 6px; font-size: 15px; font-weight: 500; color: #000; background: #F0F2F8; }
   .cc-status-icons { display: flex; gap: 5px; align-items: center; }
-  .cc-header {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    background: #4395a2;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 500;
-  }
-  .cc-header-btn {
-    background: transparent;
-    border: 0;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-    padding: 6px 4px;
-    cursor: pointer;
-  }
+  .cc-header { height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #4395a2; color: #fff; font-size: 17px; font-weight: 500; }
+  .cc-header-btn { background: transparent; border: 0; color: #fff; font-size: 15px; font-weight: 400; padding: 6px 4px; cursor: pointer; }
   .cc-header-btn:hover { opacity: 0.85; }
   .cc-header-btn.primary { font-weight: 500; }
-  .cc-body {
-    height: calc(100% - 92px);
-    overflow-y: auto;
-    background: #F0F2F8;
-    -webkit-overflow-scrolling: touch;
-  }
+  .cc-body { height: calc(100% - 92px); overflow-y: auto; background: #F0F2F8; -webkit-overflow-scrolling: touch; }
   .cc-tab-bar {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 78px;
-    background: #fff;
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 78px; background: #fff;
     border-top: 0.5px solid rgba(0,0,0,0.1);
-    display: flex;
-    padding: 8px 0 22px;
+    display: flex; padding: 8px 0 22px;
   }
-  .cc-tab {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    background: transparent;
-    border: 0;
-    color: #888780;
-    font-size: 10px;
-    cursor: pointer;
-    font-family: inherit;
-    padding: 0;
-  }
+  .cc-tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: transparent; border: 0; color: #888780; font-size: 10px; cursor: pointer; font-family: inherit; padding: 0; }
   .cc-tab.active { color: #4395a2; }
   .cc-tab svg { width: 24px; height: 24px; }
-  .cc-btn-primary {
-    background: #4395a2;
-    color: #fff;
-    border: 0;
-    border-radius: 8px;
-    padding: 14px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    width: 100%;
-  }
+
+  .cc-btn-primary { background: #4395a2; color: #fff; border: 0; border-radius: 8px; padding: 14px 20px; font-size: 16px; font-weight: 500; font-family: inherit; cursor: pointer; width: 100%; }
   .cc-btn-primary:hover { background: #3a848f; }
-  .cc-btn-secondary {
-    background: #fff;
-    color: #4395a2;
-    border: 1px solid #4395a2;
-    border-radius: 8px;
-    padding: 14px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    width: 100%;
-  }
+  .cc-btn-secondary { background: #fff; color: #4395a2; border: 1px solid #4395a2; border-radius: 8px; padding: 14px 20px; font-size: 16px; font-weight: 500; font-family: inherit; cursor: pointer; width: 100%; }
   .cc-btn-secondary:hover { background: #eaf4f5; }
+
   .cc-input-group { margin-bottom: 20px; }
   .cc-label { display: block; font-size: 13px; color: #4a4a4a; margin: 0 0 6px; font-weight: 500; }
-  .cc-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #D3D1C7;
-    border-radius: 8px;
-    background: #fff;
-    font-size: 16px;
-    font-family: inherit;
-    color: #2c2c2a;
-  }
+  .cc-input { width: 100%; padding: 12px; border: 1px solid #D3D1C7; border-radius: 8px; background: #fff; font-size: 16px; font-family: inherit; color: #2c2c2a; }
   .cc-input:focus { outline: none; border-color: #4395a2; }
   .cc-hint { font-size: 12px; color: #888780; margin: 4px 0 0; font-style: italic; }
-  .cc-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 14px;
-    margin: 0 12px 10px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-  }
-  .cc-avatar {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    flex-shrink: 0;
-  }
+
+  .cc-card { background: #fff; border-radius: 10px; padding: 14px; margin: 0 12px 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+  .cc-avatar { width: 38px; height: 38px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: #fff; flex-shrink: 0; }
   .cc-avatar.lg { width: 56px; height: 56px; font-size: 20px; }
   .cc-avatar.sm { width: 28px; height: 28px; font-size: 11px; }
-  .cc-pill {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 500;
-  }
+  .cc-pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; }
   .cc-pill.todo { background: #fef3e3; color: #854F0B; }
   .cc-pill.progress, .cc-pill.inprogress { background: #e6f1fb; color: #185FA5; }
   .cc-pill.done { background: #eaf3de; color: #3B6D11; }
   .cc-pill.unassigned { background: #f1efe8; color: #5F5E5A; }
-  .cc-section-head {
-    padding: 16px 16px 8px;
-    font-size: 13px;
-    color: #888780;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .cc-chat-bubble {
-    max-width: 75%;
-    padding: 10px 14px;
-    border-radius: 18px;
-    font-size: 15px;
-    line-height: 1.35;
-    margin-bottom: 2px;
-  }
+  .cc-section-head { padding: 16px 16px 8px; font-size: 13px; color: #888780; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .cc-chat-bubble { max-width: 75%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.35; margin-bottom: 2px; }
   .cc-chat-bubble.mine { background: #4395a2; color: #fff; border-bottom-right-radius: 4px; }
   .cc-chat-bubble.theirs { background: #fff; color: #2c2c2a; border-bottom-left-radius: 4px; }
+  .cc-chat-bubble.ai { background: #eaf3de; color: #2c4f0c; border-bottom-left-radius: 4px; border: 1px solid rgba(100, 167, 11, 0.25); }
   .cc-chat-row { display: flex; padding: 2px 12px; }
   .cc-chat-row.mine { justify-content: flex-end; }
   .cc-chat-row.theirs { justify-content: flex-start; align-items: flex-end; gap: 6px; }
   .cc-chat-sender { font-size: 11px; color: #888780; margin: 6px 14px 2px; }
-  .cc-dot-ind {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #64a70b;
-    display: inline-block;
-  }
-  .cc-code-boxes {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  .cc-code-box {
-    width: 48px; height: 58px;
-    border: 1.5px solid #D3D1C7;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: 500;
-    background: #fff;
-    color: #2c2c2a;
-  }
+  .cc-chat-sender.ai { color: #3B6D11; font-weight: 500; display: flex; align-items: center; gap: 4px; margin-left: 50px; }
+  .cc-dot-ind { width: 8px; height: 8px; border-radius: 50%; background: #64a70b; display: inline-block; }
+
+  .cc-code-boxes { display: flex; gap: 8px; justify-content: center; margin: 20px 0; }
+  .cc-code-box { width: 48px; height: 58px; border: 1.5px solid #D3D1C7; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; background: #fff; color: #2c2c2a; }
   .cc-code-box.filled { border-color: #4395a2; }
-  .cc-fab {
-    position: absolute;
-    right: 16px;
-    bottom: 94px;
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: #4395a2;
-    color: #fff;
-    border: 0;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-family: inherit;
-  }
-  .cc-fab:hover { background: #3a848f; }
-  .cc-chat-input-row {
-    position: absolute;
-    bottom: 78px; left: 0; right: 0;
-    background: #fff;
-    border-top: 0.5px solid rgba(0,0,0,0.08);
-    padding: 8px 12px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .cc-chat-input {
-    flex: 1;
-    border: 1px solid #D3D1C7;
-    border-radius: 18px;
-    padding: 8px 14px;
-    font-size: 15px;
-    font-family: inherit;
-    background: #F4F6F9;
-    color: #2c2c2a;
-  }
-  .cc-send-btn {
-    background: #4395a2;
-    color: #fff;
-    border: 0;
-    border-radius: 50%;
-    width: 34px; height: 34px;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  .cc-calendar-day {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: #2c2c2a;
-    position: relative;
-    cursor: pointer;
-  }
+
+  .cc-chat-input-row { position: absolute; bottom: 78px; left: 0; right: 0; background: #fff; border-top: 0.5px solid rgba(0,0,0,0.08); padding: 8px 12px; display: flex; gap: 8px; align-items: center; }
+  .cc-chat-input { flex: 1; border: 1px solid #D3D1C7; border-radius: 18px; padding: 8px 14px; font-size: 15px; font-family: inherit; background: #F4F6F9; color: #2c2c2a; }
+  .cc-send-btn { background: #4395a2; color: #fff; border: 0; border-radius: 50%; width: 34px; height: 34px; font-size: 18px; cursor: pointer; }
+
+  .cc-calendar-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #2c2c2a; position: relative; cursor: pointer; }
   .cc-calendar-day.other-month { color: #D3D1C7; }
   .cc-calendar-day.today { background: #4395a2; color: #fff; border-radius: 50%; font-weight: 500; }
-  .cc-calendar-day.has-event::after {
-    content: "";
-    position: absolute;
-    bottom: 4px;
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: #e99797;
-  }
-  .cc-task-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 14px;
-  }
-  .cc-checkbox {
-    width: 22px; height: 22px;
-    border: 2px solid #B4B2A9;
-    border-radius: 6px;
-    flex-shrink: 0;
-    margin-top: 1px;
-    cursor: pointer;
-  }
-  .cc-checkbox.checked {
-    background: #64a70b;
-    border-color: #64a70b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .cc-menu-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 18px;
-    background: #fff;
-    border-bottom: 0.5px solid rgba(0,0,0,0.06);
-    cursor: pointer;
-    font-size: 15px;
-  }
+  .cc-calendar-day.has-event::after { content: ""; position: absolute; bottom: 4px; width: 4px; height: 4px; border-radius: 50%; background: #e99797; }
+
+  .cc-task-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; }
+  .cc-checkbox { width: 22px; height: 22px; border: 2px solid #B4B2A9; border-radius: 6px; flex-shrink: 0; margin-top: 1px; cursor: pointer; }
+  .cc-checkbox.checked { background: #64a70b; border-color: #64a70b; display: flex; align-items: center; justify-content: center; }
+
+  .cc-menu-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #fff; border-bottom: 0.5px solid rgba(0,0,0,0.06); cursor: pointer; font-size: 15px; }
   .cc-menu-item:hover { background: #F4F6F9; }
-  .cc-hamburger {
-    background: transparent; border: 0;
-    padding: 8px;
+
+  .cc-hamburger { background: transparent; border: 0; padding: 8px; cursor: pointer; display: flex; flex-direction: column; gap: 3px; }
+  .cc-hamburger span { width: 18px; height: 2px; background: #fff; border-radius: 1px; display: block; }
+
+  .cc-demo-dot { position: absolute; top: 14px; right: 14px; background: rgba(67, 149, 162, 0.95); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 999px; z-index: 15; font-weight: 500; pointer-events: none; }
+
+  .nova-card {
+    margin: 14px 12px 4px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid rgba(100, 167, 11, 0.22);
+    box-shadow: 0 1px 4px rgba(100, 167, 11, 0.08);
+  }
+  .nova-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .nova-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #64a70b;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .nova-title { flex: 1; min-width: 0; }
+  .nova-name { font-size: 14px; font-weight: 600; color: #2c2c2a; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .nova-badge { font-size: 10px; background: #eaf3de; color: #3B6D11; padding: 2px 7px; border-radius: 999px; font-weight: 500; }
+  .nova-sub { font-size: 12px; color: #5f5e5a; margin-top: 1px; line-height: 1.35; }
+
+  .nova-input-wrap { position: relative; }
+  .nova-input {
+    width: 100%;
+    border: 1px solid rgba(100, 167, 11, 0.25);
+    border-radius: 12px;
+    padding: 11px 44px 11px 14px;
+    font-size: 14.5px;
+    font-family: inherit; background: #fff; color: #2c2c2a;
+    resize: none; line-height: 1.4; box-sizing: border-box;
+  }
+  .nova-input:focus { outline: none; border-color: #64a70b; }
+  .nova-send {
+    position: absolute; right: 6px; top: 50%;
+    transform: translateY(-50%);
+    background: #64a70b; color: #fff;
+    border: 0; border-radius: 50%;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
   }
-  .cc-hamburger span {
-    width: 18px; height: 2px;
-    background: #fff;
-    border-radius: 1px;
-    display: block;
-  }
-  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .cc-demo-dot {
-    position: absolute;
-    top: 14px; right: 14px;
-    background: rgba(67, 149, 162, 0.95);
-    color: #fff;
-    font-size: 10px;
-    padding: 3px 8px;
+  .nova-send:hover { background: #4d8208; }
+  .nova-send:disabled { background: #B4B2A9; cursor: not-allowed; }
+
+  .nova-suggestions { display: flex; gap: 6px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
+  .nova-suggestions::-webkit-scrollbar { display: none; }
+  .nova-chip {
+    background: #f7fbf0;
+    border: 1px solid rgba(100, 167, 11, 0.3);
     border-radius: 999px;
-    z-index: 15;
-    font-weight: 500;
-    pointer-events: none;
+    padding: 6px 12px; font-size: 12px; color: #3B6D11;
+    cursor: pointer; white-space: nowrap;
+    font-family: inherit; font-weight: 500; flex-shrink: 0;
   }
+  .nova-chip:hover { background: #eaf3de; }
+
+  .nova-thinking {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 2px 2px;
+    color: #5f5e5a; font-size: 13px;
+  }
+  .nova-dots { display: inline-flex; gap: 4px; }
+  .nova-dots span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #64a70b; animation: nova-pulse 1.2s infinite ease-in-out;
+  }
+  .nova-dots span:nth-child(2) { animation-delay: 0.15s; }
+  .nova-dots span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes nova-pulse {
+    0%, 60%, 100% { opacity: 0.3; transform: scale(0.85); }
+    30% { opacity: 1; transform: scale(1); }
+  }
+
+  .nova-result {
+    margin-top: 12px; background: #f7fbf0; border-radius: 10px;
+    padding: 12px 14px; border: 1px solid rgba(100, 167, 11, 0.22);
+    animation: nova-slide 0.3s ease-out;
+  }
+  @keyframes nova-slide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .nova-result-head { font-size: 12.5px; color: #3B6D11; font-weight: 500; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
+  .nova-result-item {
+    display: flex; gap: 10px; padding: 9px 0;
+    border-top: 0.5px solid rgba(100, 167, 11, 0.15);
+    font-size: 13.5px; align-items: flex-start;
+  }
+  .nova-result-item:first-of-type { border-top: 0; padding-top: 0; }
+  .nova-result-icon {
+    width: 26px; height: 26px; border-radius: 7px;
+    background: #eaf3de; color: #3B6D11;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .nova-result-text { flex: 1; color: #2c2c2a; line-height: 1.45; }
+  .nova-result-text small { display: block; color: #5f5e5a; font-size: 11.5px; margin-top: 2px; }
+
+  .nova-actions { display: flex; gap: 8px; margin-top: 12px; }
+  .nova-btn-confirm {
+    flex: 1; background: #64a70b; color: #fff;
+    border: 0; border-radius: 8px; padding: 10px;
+    font-size: 13.5px; font-weight: 500;
+    font-family: inherit; cursor: pointer;
+  }
+  .nova-btn-confirm:hover { background: #4d8208; }
+  .nova-btn-edit {
+    background: #fff; color: #3B6D11;
+    border: 1px solid rgba(100, 167, 11, 0.3);
+    border-radius: 8px; padding: 10px 16px;
+    font-size: 13.5px; font-weight: 500;
+    font-family: inherit; cursor: pointer;
+  }
+  .nova-btn-edit:hover { background: #eaf3de; }
+
+  .ai-badge-inline {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10px; background: #eaf3de; color: #3B6D11;
+    padding: 1px 6px; border-radius: 4px;
+    font-weight: 500; vertical-align: middle; margin-left: 6px;
+  }
+
+  ::selection { background: #d4e8ec; color: #1e5861; }
 </style>
 </head>
 <body>
 
-<div style="background: #4395a2; padding: 12px 0; margin-bottom: 8px;">
-  <div style="max-width: 420px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between;">
-    <div style="color: #fff; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+<div class="nav-top">
+  <div class="nav-top-inner">
+    <div class="nav-top-brand">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
       CrewCares
     </div>
-    <div style="display: flex; gap: 4px;">
-      <a href="index.html" style="color: rgba(255,255,255,0.95); text-decoration: none; font-size: 13px; padding: 5px 10px; border-radius: 6px;">← Hub</a>
-      <a href="analysis.html" style="color: rgba(255,255,255,0.95); text-decoration: none; font-size: 13px; padding: 5px 10px; border-radius: 6px;">Analysis</a>
+    <div class="nav-top-links">
+      <a href="index.html">← Hub</a>
+      <a href="feature.html">Feature</a>
+      <a href="analysis.html">Analysis</a>
     </div>
   </div>
 </div>
 
 <h1 class="page-title">CrewCares — Clickable Prototype</h1>
 <p class="page-sub">Investor demo · all data is mocked</p>
+<div class="feature-highlight">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
+  New: Nova, your AI care coordinator
+</div>
 
 <div class="cc-reset-bar" id="jump-bar"></div>
 
@@ -469,8 +332,10 @@
     screen: 'welcome',
     crewName: 'Taking Care of Dad',
     userName: 'Brent',
-    userInitials: 'B',
     chatDraft: '',
+    novaInput: '',
+    novaPhase: 'idle',
+    novaProposal: null,
     completedTasks: new Set(['t2']),
     tasks: [
       { id: 't1', title: 'Pick up prescription from CVS', status: 'todo', assignee: 'Sarah', due: 'Today' },
@@ -493,10 +358,10 @@
       { day: 22, title: 'Physical therapy', time: '11:00 AM' }
     ],
     chat: [
-      { from: 'Sarah', text: 'Just left the pharmacy — picked up the new blood pressure meds.', time: '10:24 AM', color: '#e99797' },
+      { from: 'Sarah', text: 'Just left the pharmacy — picked up the new blood pressure meds.', color: '#e99797' },
       { from: 'me', text: 'Thanks! Did the doctor say anything about the dose change?' },
-      { from: 'Sarah', text: "Yes, she wants to start at half dose for the first week and then move up.", time: '10:26 AM', color: '#e99797' },
-      { from: 'Michael', text: "Good — that matches what PT suggested. I'll update Dad's chart.", time: '10:31 AM', color: '#867fb0' },
+      { from: 'Sarah', text: 'Yes, she wants to start at half dose for the first week and then move up.', color: '#e99797' },
+      { from: 'Michael', text: "Good — that matches what PT suggested. I'll update Dad's chart.", color: '#867fb0' },
       { from: 'me', text: "Perfect. I'll add it as a task so we track it." }
     ]
   };
@@ -506,7 +371,7 @@
     { id: 'create', label: 'Create crew' },
     { id: 'code-sent', label: 'Confirmation' },
     { id: 'join', label: 'Join crew' },
-    { id: 'home', label: 'Home' },
+    { id: 'home', label: 'Home (Nova)' },
     { id: 'tasks', label: 'Tasks' },
     { id: 'calendar', label: 'Calendar' },
     { id: 'chat', label: 'Chat' },
@@ -514,26 +379,22 @@
     { id: 'menu', label: 'Menu' }
   ];
 
+  const SPARKLES = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>';
+
   function go(s){ state.screen = s; render(); }
   function setTab(t){ state.tab = t; if (t === 'home') state.screen = 'home'; if (t === 'tasks') state.screen = 'tasks'; if (t === 'calendar') state.screen = 'calendar'; if (t === 'chat') state.screen = 'chat'; if (t === 'members') state.screen = 'members'; render(); }
 
   function statusBar(){
-    return `<div class="cc-status">
-      <span>9:41</span>
-      <span class="cc-status-icons">
-        <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="currentColor"/><rect x="5" y="5" width="3" height="6" rx="0.5" fill="currentColor"/><rect x="10" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="15" y="0" width="2" height="11" rx="0.5" fill="currentColor" opacity="0.4"/></svg>
-        <svg width="16" height="11" viewBox="0 0 16 11"><path d="M8 2.5c2 0 3.8.7 5.2 2l1.4-1.4A9.5 9.5 0 0 0 8 0C5 0 2.3 1 .4 3.1l1.4 1.4C3.2 3.2 5 2.5 8 2.5z" fill="currentColor"/><path d="M8 6c1.2 0 2.3.5 3.1 1.3l1.4-1.4A6.5 6.5 0 0 0 8 4a6.5 6.5 0 0 0-4.5 1.9l1.4 1.4C5.7 6.5 6.8 6 8 6z" fill="currentColor"/><circle cx="8" cy="9.5" r="1.5" fill="currentColor"/></svg>
-        <svg width="26" height="11" viewBox="0 0 26 11"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" fill="none" stroke="currentColor" opacity="0.5"/><rect x="2" y="2" width="17" height="7" rx="1" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="currentColor" opacity="0.5"/></svg>
-      </span>
-    </div>`;
+    return '<div class="cc-status"><span>9:41</span><span class="cc-status-icons"><svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="currentColor"/><rect x="5" y="5" width="3" height="6" rx="0.5" fill="currentColor"/><rect x="10" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="15" y="0" width="2" height="11" rx="0.5" fill="currentColor" opacity="0.4"/></svg><svg width="16" height="11" viewBox="0 0 16 11"><path d="M8 2.5c2 0 3.8.7 5.2 2l1.4-1.4A9.5 9.5 0 0 0 8 0C5 0 2.3 1 .4 3.1l1.4 1.4C3.2 3.2 5 2.5 8 2.5z" fill="currentColor"/><path d="M8 6c1.2 0 2.3.5 3.1 1.3l1.4-1.4A6.5 6.5 0 0 0 8 4a6.5 6.5 0 0 0-4.5 1.9l1.4 1.4C5.7 6.5 6.8 6 8 6z" fill="currentColor"/><circle cx="8" cy="9.5" r="1.5" fill="currentColor"/></svg><svg width="26" height="11" viewBox="0 0 26 11"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" fill="none" stroke="currentColor" opacity="0.5"/><rect x="2" y="2" width="17" height="7" rx="1" fill="currentColor"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="currentColor" opacity="0.5"/></svg></span></div>';
   }
 
-  function header(title, opts = {}){
-    const left = opts.back ? `<button class="cc-header-btn" data-go="${opts.back}">‹ Back</button>` :
-                 opts.menu ? `<button class="cc-hamburger" data-go="menu" aria-label="Menu"><span></span><span></span><span></span></button>` :
-                 `<span style="width:40px"></span>`;
-    const right = opts.rightLabel ? `<button class="cc-header-btn ${opts.rightPrimary ? 'primary' : ''}" data-action="${opts.rightAction||''}">${opts.rightLabel}</button>` : `<span style="width:40px"></span>`;
-    return `<div class="cc-header">${left}<span>${title}</span>${right}</div>`;
+  function header(title, opts){
+    opts = opts || {};
+    const left = opts.back ? '<button class="cc-header-btn" data-go="' + opts.back + '">‹ Back</button>' :
+                 opts.menu ? '<button class="cc-hamburger" data-go="menu" aria-label="Menu"><span></span><span></span><span></span></button>' :
+                 '<span style="width:40px"></span>';
+    const right = opts.rightLabel ? '<button class="cc-header-btn ' + (opts.rightPrimary ? 'primary' : '') + '" data-action="' + (opts.rightAction||'') + '">' + opts.rightLabel + '</button>' : '<span style="width:40px"></span>';
+    return '<div class="cc-header">' + left + '<span>' + title + '</span>' + right + '</div>';
   }
 
   function tabBar(){
@@ -546,181 +407,239 @@
       members: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="17" cy="6" r="3"/><path d="M22 20c0-2.8-1.8-5-4.5-5.5"/></svg>'
     };
     const tabs = [
-      {id:'home', label:'Home'},
-      {id:'tasks', label:'Tasks'},
-      {id:'calendar', label:'Calendar'},
-      {id:'chat', label:'Chat'},
+      {id:'home', label:'Home'}, {id:'tasks', label:'Tasks'},
+      {id:'calendar', label:'Calendar'}, {id:'chat', label:'Chat'},
       {id:'members', label:'Crew'}
     ];
-    return `<div class="cc-tab-bar">${tabs.map(t => `
-      <button class="cc-tab ${tab===t.id?'active':''}" data-tab="${t.id}" aria-label="${t.label}">
-        ${icon[t.id]}
-        <span>${t.label}</span>
-      </button>`).join('')}</div>`;
+    return '<div class="cc-tab-bar">' + tabs.map(function(t){ return '<button class="cc-tab ' + (tab===t.id?'active':'') + '" data-tab="' + t.id + '" aria-label="' + t.label + '">' + icon[t.id] + '<span>' + t.label + '</span></button>'; }).join('') + '</div>';
+  }
+
+  function parseIntent(text){
+    const t = text.toLowerCase();
+    const members = ['Sarah', 'Michael', 'Linda', 'Brent'];
+    let assignee = null;
+    for (let i = 0; i < members.length; i++) {
+      if (t.indexOf(members[i].toLowerCase()) !== -1) { assignee = members[i]; break; }
+    }
+
+    const hasTimePattern = /\b(at |by )?(\d{1,2})(:\d{2})?\s?(am|pm)\b/i.test(text);
+    const isSchedule = t.indexOf('schedule') !== -1 || t.indexOf('appointment') !== -1 || t.indexOf('meeting') !== -1 || (hasTimePattern && t.indexOf('remind') === -1);
+
+    if (isSchedule) {
+      const when = extractWhen(text) || 'Tomorrow · 2:00 PM';
+      const title = extractTitle(text) || 'New appointment';
+      return {
+        summary: "Here's what I'll set up. Review and confirm.",
+        items: [
+          { type: 'event', title: title, detail: when },
+          { type: 'chat', title: 'Post a note to crew chat', detail: 'So everyone sees the update' }
+        ]
+      };
+    }
+
+    if (t.indexOf('summary') !== -1 || t.indexOf('catch me up') !== -1 || t.indexOf('this week') !== -1 || t.indexOf('what\'s happen') !== -1 || t.indexOf('status') !== -1) {
+      return {
+        summary: "Here's where the crew is this week:",
+        items: [
+          { type: 'insight', title: '2 tasks completed, 4 in progress', detail: 'Sarah handled pharmacy pickup · Michael on PT coordination' },
+          { type: 'insight', title: 'Medication change is in motion', detail: 'Half dose this week per Dr. Martinez, full dose next week' },
+          { type: 'insight', title: '3 events upcoming', detail: 'Cardiology Nov 8 · Home Health Nov 14 · PT Nov 22' }
+        ]
+      };
+    }
+
+    if (t.indexOf('remind') !== -1 || t.indexOf('pick up') !== -1 || t.indexOf('need ') !== -1 || t.indexOf('buy') !== -1 || t.indexOf('get ') !== -1 || t.indexOf('call') !== -1 || t.indexOf('ask ') !== -1) {
+      const title = extractTitle(text) || 'New task';
+      const when = extractWhen(text) || 'This week';
+      return {
+        summary: "Got it. Here's what I'll set up:",
+        items: [
+          { type: 'task', title: title, detail: (assignee ? 'Assigned to ' + assignee : 'Unassigned') + ' · ' + when },
+          { type: 'chat', title: 'Let ' + (assignee || 'the crew') + ' know', detail: 'Small note in the crew chat' }
+        ]
+      };
+    }
+
+    const title = extractTitle(text) || text.slice(0, 40);
+    return {
+      summary: "I can help with that. Here's what I'd set up:",
+      items: [
+        { type: 'task', title: title, detail: (assignee ? 'Assigned to ' + assignee : 'Unassigned') + ' · This week' }
+      ]
+    };
+  }
+
+  function extractTitle(text){
+    let t = text.trim();
+    t = t.replace(/^(can you |please |could you |hey |)/i, '');
+    t = t.replace(/^(remind|tell|ask) (sarah|michael|linda|brent|the crew|dad|mom) (to |about |that |)/i, '');
+    t = t.replace(/^(add|create|schedule|set up) (a |an |)/i, '');
+    t = t.replace(/\bfor (sarah|michael|linda|brent|dad|mom)\b/i, '');
+    t = t.replace(/\btomorrow\b/gi, '').replace(/\btoday\b/gi, '').replace(/\bnext week\b/gi, '');
+    t = t.replace(/\bat \d{1,2}(:\d{2})?\s?(am|pm)\b/i, '').replace(/\s+/g, ' ').trim();
+    if (t.length > 0) t = t.charAt(0).toUpperCase() + t.slice(1);
+    if (t.length > 58) t = t.slice(0, 55) + '...';
+    return t;
+  }
+  function extractWhen(text){
+    const t = text.toLowerCase();
+    const parts = [];
+    if (t.indexOf('tomorrow') !== -1) parts.push('Tomorrow');
+    else if (t.indexOf('today') !== -1) parts.push('Today');
+    else if (t.indexOf('next week') !== -1) parts.push('Next week');
+    else if (t.indexOf('this week') !== -1) parts.push('This week');
+    else if (t.indexOf('monday') !== -1) parts.push('Monday');
+    else if (t.indexOf('tuesday') !== -1) parts.push('Tuesday');
+    else if (t.indexOf('wednesday') !== -1) parts.push('Wednesday');
+    else if (t.indexOf('thursday') !== -1) parts.push('Thursday');
+    else if (t.indexOf('friday') !== -1) parts.push('Friday');
+    else if (t.indexOf('weekend') !== -1) parts.push('This weekend');
+    const timeMatch = text.match(/\b(\d{1,2})(:\d{2})?\s?(am|pm)\b/i);
+    if (timeMatch) parts.push(timeMatch[0].trim());
+    return parts.length ? parts.join(' · ') : null;
   }
 
   function welcome(){
-    return statusBar() + `
-      <div style="padding: 48px 32px 0; text-align: center; height: calc(100% - 44px); display: flex; flex-direction: column;">
-        <div style="width: 88px; height: 88px; border-radius: 22px; background: #4395a2; margin: 20px auto 28px; display: flex; align-items: center; justify-content: center;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
-        </div>
-        <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 10px; color: #2c2c2a;">CrewCares</h1>
-        <p style="font-size: 15px; color: #5f5e5a; margin: 0 0 48px; line-height: 1.45;">Bring your family together to care<br/>for the people you love.</p>
-        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-bottom: 40px;">
-          <button class="cc-btn-primary" data-go="create">Create a crew</button>
-          <button class="cc-btn-secondary" data-go="join">Join a crew</button>
-        </div>
-      </div>`;
+    return statusBar() +
+      '<div style="padding: 48px 32px 0; text-align: center; height: calc(100% - 44px); display: flex; flex-direction: column;">' +
+        '<div style="width: 88px; height: 88px; border-radius: 22px; background: #4395a2; margin: 20px auto 28px; display: flex; align-items: center; justify-content: center;">' +
+          '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>' +
+        '</div>' +
+        '<h1 style="font-size: 28px; font-weight: 500; margin: 0 0 10px; color: #2c2c2a;">CrewCares</h1>' +
+        '<p style="font-size: 15px; color: #5f5e5a; margin: 0 0 48px; line-height: 1.45;">Bring your family together to care<br/>for the people you love.</p>' +
+        '<div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-bottom: 40px;">' +
+          '<button class="cc-btn-primary" data-go="create">Create a crew</button>' +
+          '<button class="cc-btn-secondary" data-go="join">Join a crew</button>' +
+        '</div>' +
+      '</div>';
   }
 
   function createScreen(){
     return statusBar() +
       header('Create a crew', { back: 'welcome', rightLabel: 'Create', rightAction: 'create-submit', rightPrimary: true }) +
-      `<div class="cc-body" style="padding: 24px 20px;">
-        <div class="cc-input-group">
-          <label class="cc-label">Name the crew</label>
-          <input class="cc-input" value="${state.crewName}" placeholder="The crew name" data-field="crewName"/>
-          <p class="cc-hint">Try something like "Taking Care of Dad" or "The Siblings"</p>
-        </div>
-        <div class="cc-input-group">
-          <label class="cc-label">The crew leader's email</label>
-          <input class="cc-input" value="brent@example.com" type="email"/>
-          <p class="cc-hint">We will send an email to confirm it's you</p>
-        </div>
-        <div class="cc-input-group">
-          <label class="cc-label">Your name</label>
-          <input class="cc-input" value="${state.userName}"/>
-        </div>
-      </div>`;
+      '<div class="cc-body" style="padding: 24px 20px;">' +
+        '<div class="cc-input-group"><label class="cc-label">Name the crew</label><input class="cc-input" value="' + state.crewName + '" placeholder="The crew name" data-field="crewName"/><p class="cc-hint">Try something like "Taking Care of Dad" or "The Siblings"</p></div>' +
+        '<div class="cc-input-group"><label class="cc-label">The crew leader\'s email</label><input class="cc-input" value="brent@example.com" type="email"/><p class="cc-hint">We will send an email to confirm it\'s you</p></div>' +
+        '<div class="cc-input-group"><label class="cc-label">Your name</label><input class="cc-input" value="' + state.userName + '"/></div>' +
+      '</div>';
   }
 
   function codeSentScreen(){
     return statusBar() +
       header('Confirmation code', { back: 'create' }) +
-      `<div class="cc-body" style="padding: 24px 20px; text-align: center;">
-        <div style="width: 72px; height: 72px; border-radius: 50%; background: #eaf4f5; display: flex; align-items: center; justify-content: center; margin: 20px auto;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <h2 style="font-size: 20px; font-weight: 500; margin: 0 0 10px;">Check your email</h2>
-        <p style="font-size: 14px; color: #5f5e5a; line-height: 1.5; margin: 0 0 24px;">
-          We sent a 5-digit code to<br/><strong style="color: #2c2c2a;">brent@example.com</strong>
-        </p>
-        <div class="cc-code-boxes">
-          <div class="cc-code-box filled">4</div>
-          <div class="cc-code-box filled">2</div>
-          <div class="cc-code-box filled">9</div>
-          <div class="cc-code-box filled">1</div>
-          <div class="cc-code-box filled">7</div>
-        </div>
-        <p style="font-size: 13px; color: #888780; margin: 24px 0;">Didn't get it? <a href="#" style="color: #4395a2; text-decoration: none;">Resend code</a></p>
-        <button class="cc-btn-primary" data-go="home">Continue</button>
-      </div>`;
+      '<div class="cc-body" style="padding: 24px 20px; text-align: center;">' +
+        '<div style="width: 72px; height: 72px; border-radius: 50%; background: #eaf4f5; display: flex; align-items: center; justify-content: center; margin: 20px auto;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>' +
+        '<h2 style="font-size: 20px; font-weight: 500; margin: 0 0 10px;">Check your email</h2>' +
+        '<p style="font-size: 14px; color: #5f5e5a; line-height: 1.5; margin: 0 0 24px;">We sent a 5-digit code to<br/><strong style="color: #2c2c2a;">brent@example.com</strong></p>' +
+        '<div class="cc-code-boxes"><div class="cc-code-box filled">4</div><div class="cc-code-box filled">2</div><div class="cc-code-box filled">9</div><div class="cc-code-box filled">1</div><div class="cc-code-box filled">7</div></div>' +
+        '<p style="font-size: 13px; color: #888780; margin: 24px 0;">Didn\'t get it? <a href="#" style="color: #4395a2; text-decoration: none;">Resend code</a></p>' +
+        '<button class="cc-btn-primary" data-go="home">Continue</button>' +
+      '</div>';
   }
 
   function joinScreen(){
     return statusBar() +
       header('Join a crew', { back: 'welcome', rightLabel: 'Join', rightAction: 'join-submit', rightPrimary: true }) +
-      `<div class="cc-body" style="padding: 24px 20px;">
-        <div class="cc-input-group">
-          <label class="cc-label">Crew code</label>
-          <input class="cc-input" placeholder="5 digit code from email"/>
-          <p class="cc-hint">Enter the crew code that was sent to you in the invitation email</p>
-        </div>
-        <div class="cc-input-group">
-          <label class="cc-label">Your email</label>
-          <input class="cc-input" placeholder="you@example.com" type="email"/>
-        </div>
-      </div>`;
+      '<div class="cc-body" style="padding: 24px 20px;">' +
+        '<div class="cc-input-group"><label class="cc-label">Crew code</label><input class="cc-input" placeholder="5 digit code from email"/><p class="cc-hint">Enter the crew code that was sent to you in the invitation email</p></div>' +
+        '<div class="cc-input-group"><label class="cc-label">Your email</label><input class="cc-input" placeholder="you@example.com" type="email"/></div>' +
+      '</div>';
+  }
+
+  function novaCard(){
+    const suggestions = [
+      'Remind Sarah to pick up prescription tomorrow',
+      'Schedule PT appointment Thursday at 2pm',
+      'Catch me up on this week'
+    ];
+
+    let body = '';
+    if (state.novaPhase === 'idle') {
+      body = '<div class="nova-input-wrap">' +
+          '<textarea class="nova-input" id="nova-input" rows="2" placeholder="Try: Remind Sarah to pick up prescription tomorrow" data-field="novaInput">' + state.novaInput + '</textarea>' +
+          '<button class="nova-send" data-action="nova-send" aria-label="Send"' + (state.novaInput.trim() ? '' : ' disabled') + '>' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<div class="nova-suggestions">' +
+          suggestions.map(function(s){ return '<button class="nova-chip" data-suggestion="' + s.replace(/"/g, '&quot;').replace(/'/g, "&apos;") + '">' + s + '</button>'; }).join('') +
+        '</div>';
+    } else if (state.novaPhase === 'thinking') {
+      body = '<div class="nova-thinking"><span class="nova-dots"><span></span><span></span><span></span></span><span>Nova is thinking...</span></div>';
+    } else if (state.novaPhase === 'proposal' && state.novaProposal) {
+      const p = state.novaProposal;
+      const isInsight = p.items[0] && p.items[0].type === 'insight';
+      body = '<div class="nova-result">' +
+          '<div class="nova-result-head">' + SPARKLES + ' ' + p.summary + '</div>' +
+          p.items.map(function(item){
+            let icon = '';
+            if (item.type === 'task') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>';
+            else if (item.type === 'event') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>';
+            else if (item.type === 'chat') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg>';
+            else if (item.type === 'insight') icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+            return '<div class="nova-result-item"><div class="nova-result-icon">' + icon + '</div><div class="nova-result-text">' + item.title + '<small>' + item.detail + '</small></div></div>';
+          }).join('') +
+          (isInsight ?
+            '<div class="nova-actions"><button class="nova-btn-confirm" data-action="nova-dismiss">Got it</button></div>' :
+            '<div class="nova-actions"><button class="nova-btn-confirm" data-action="nova-confirm">Confirm</button><button class="nova-btn-edit" data-action="nova-dismiss">Dismiss</button></div>'
+          ) +
+        '</div>';
+    }
+
+    return '<div class="nova-card">' +
+      '<div class="nova-header">' +
+        '<div class="nova-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg></div>' +
+        '<div class="nova-title">' +
+          '<div class="nova-name">Nova <span class="nova-badge">AI care coordinator</span></div>' +
+          '<div class="nova-sub">Type a request in plain English. I\'ll handle the rest.</div>' +
+        '</div>' +
+      '</div>' +
+      body +
+    '</div>';
   }
 
   function homeScreen(){
     const upcoming = state.events.slice(0, 2);
-    const myTasks = state.tasks.filter(t => t.assignee === 'Brent' && t.status !== 'done').slice(0, 2);
+    const myTasks = state.tasks.filter(function(t){ return t.assignee === 'Brent' && t.status !== 'done'; }).slice(0, 2);
     return statusBar() +
       header(state.crewName, { menu: true }) +
-      `<div class="cc-body" style="padding-bottom: 90px;">
-        <div style="padding: 18px 16px 0;">
-          <p style="font-size: 14px; color: #5f5e5a; margin: 0 0 4px;">Good morning,</p>
-          <h2 style="font-size: 24px; font-weight: 500; margin: 0;">Brent 👋</h2>
-        </div>
-
-        <div style="padding: 16px 12px 0;">
-          <div style="background: #4395a2; border-radius: 12px; padding: 16px; color: #fff;">
-            <p style="font-size: 12px; opacity: 0.85; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.5px;">This week's focus</p>
-            <p style="font-size: 16px; margin: 0 0 12px; line-height: 1.4;">Dad starts new blood pressure meds. Sarah is leading prescription pickup; Michael handling PT updates.</p>
-            <div style="display: flex;">
-              ${state.members.slice(0,3).map((m,i) => `<div class="cc-avatar sm" style="background:${m.color}; border:2px solid #4395a2; margin-left:${i===0?0:-8}px;">${m.initials}</div>`).join('')}
-            </div>
-          </div>
-        </div>
-
-        <div class="cc-section-head">Your tasks</div>
-        ${myTasks.map(t => `
-          <div class="cc-card" style="margin-bottom: 8px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-              <div style="flex: 1;">
-                <p style="font-size: 15px; margin: 0 0 4px; color: #2c2c2a;">${t.title}</p>
-                <p style="font-size: 12px; color: #888780; margin: 0;">Due ${t.due}</p>
-              </div>
-              <span class="cc-pill ${t.status}">${t.status === 'inprogress' ? 'In Progress' : t.status === 'todo' ? 'To-Do' : t.status}</span>
-            </div>
-          </div>
-        `).join('')}
-
-        <div class="cc-section-head" style="display: flex; justify-content: space-between; align-items: center;">
-          <span>Upcoming</span>
-          <button class="cc-header-btn" style="color:#4395a2; padding:0;" data-tab="calendar">See all</button>
-        </div>
-        ${upcoming.map(e => `
-          <div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;">
-            <div style="width:42px; text-align:center;">
-              <p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p>
-              <p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">${e.day}</p>
-            </div>
-            <div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;">
-              <p style="font-size:15px; margin:0 0 2px;">${e.title}</p>
-              <p style="font-size:12px; color:#888780; margin:0;">${e.time}</p>
-            </div>
-          </div>
-        `).join('')}
-      </div>` +
+      '<div class="cc-body" style="padding-bottom: 90px;">' +
+        '<div style="padding: 16px 16px 0;">' +
+          '<p style="font-size: 14px; color: #5f5e5a; margin: 0 0 2px;">Good morning,</p>' +
+          '<h2 style="font-size: 24px; font-weight: 500; margin: 0;">Brent 👋</h2>' +
+        '</div>' +
+        novaCard() +
+        '<div class="cc-section-head">Your tasks</div>' +
+        myTasks.map(function(t){
+          return '<div class="cc-card" style="margin-bottom: 8px;"><div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;"><div style="flex: 1;"><p style="font-size: 15px; margin: 0 0 4px; color: #2c2c2a;">' + t.title + (t.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><p style="font-size: 12px; color: #888780; margin: 0;">Due ' + t.due + '</p></div><span class="cc-pill ' + t.status + '">' + (t.status === 'inprogress' ? 'In Progress' : t.status === 'todo' ? 'To-Do' : t.status) + '</span></div></div>';
+        }).join('') +
+        '<div class="cc-section-head" style="display: flex; justify-content: space-between; align-items: center;"><span>Upcoming</span><button class="cc-header-btn" style="color:#4395a2; padding:0;" data-tab="calendar">See all</button></div>' +
+        upcoming.map(function(e){
+          return '<div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;"><div style="width:42px; text-align:center;"><p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p><p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">' + e.day + '</p></div><div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;"><p style="font-size:15px; margin:0 0 2px;">' + e.title + (e.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><p style="font-size:12px; color:#888780; margin:0;">' + e.time + '</p></div></div>';
+        }).join('') +
+      '</div>' +
       tabBar();
   }
 
   function tasksScreen(){
     const grouped = {
-      'To-Do': state.tasks.filter(t => t.status === 'todo'),
-      'In Progress': state.tasks.filter(t => t.status === 'inprogress'),
-      'Unassigned': state.tasks.filter(t => t.status === 'unassigned'),
-      'Done': state.tasks.filter(t => t.status === 'done')
+      'To-Do': state.tasks.filter(function(t){ return t.status === 'todo'; }),
+      'In Progress': state.tasks.filter(function(t){ return t.status === 'inprogress'; }),
+      'Unassigned': state.tasks.filter(function(t){ return t.status === 'unassigned'; }),
+      'Done': state.tasks.filter(function(t){ return t.status === 'done'; })
     };
-    const sections = Object.entries(grouped).filter(function(e){return e[1].length > 0;}).map(function(entry){
+    const sections = Object.entries(grouped).filter(function(e){ return e[1].length > 0; }).map(function(entry){
       const k = entry[0], tasks = entry[1];
-      return '<div class="cc-section-head">' + k + ' · ' + tasks.length + '</div>' +
-      '<div style="background: #fff; margin: 0 12px 8px; border-radius: 10px; overflow: hidden;">' +
+      return '<div class="cc-section-head">' + k + ' · ' + tasks.length + '</div><div style="background: #fff; margin: 0 12px 8px; border-radius: 10px; overflow: hidden;">' +
         tasks.map(function(t, i){
           const done = state.completedTasks.has(t.id) || t.status === 'done';
-          const member = state.members.find(function(m){return m.name === t.assignee;});
-          return '<div class="cc-task-row" style="' + (i<tasks.length-1?'border-bottom:0.5px solid rgba(0,0,0,0.06);':'') + '" data-task="' + t.id + '">' +
-            '<div class="cc-checkbox ' + (done?'checked':'') + '">' +
-              (done ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
-            '</div>' +
-            '<div style="flex:1;">' +
-              '<p style="font-size:15px; margin:0 0 4px; ' + (done?'text-decoration:line-through; color:#888780;':'color:#2c2c2a;') + '">' + t.title + '</p>' +
-              '<div style="display:flex; gap:8px; align-items:center;">' +
-                (member ? '<div class="cc-avatar sm" style="background:' + member.color + '; width:20px; height:20px; font-size:9px;">' + member.initials + '</div><p style="font-size:12px; color:#888780; margin:0;">' + t.assignee + ' · ' + t.due + '</p>' : '<p style="font-size:12px; color:#888780; margin:0;">Unassigned · ' + t.due + '</p>') +
-              '</div>' +
-            '</div>' +
-          '</div>';
-        }).join('') +
-      '</div>';
+          const member = state.members.find(function(m){ return m.name === t.assignee; });
+          return '<div class="cc-task-row" style="' + (i<tasks.length-1?'border-bottom:0.5px solid rgba(0,0,0,0.06);':'') + '" data-task="' + t.id + '"><div class="cc-checkbox ' + (done?'checked':'') + '">' + (done ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : '') + '</div><div style="flex:1;"><p style="font-size:15px; margin:0 0 4px; ' + (done?'text-decoration:line-through; color:#888780;':'color:#2c2c2a;') + '">' + t.title + (t.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><div style="display:flex; gap:8px; align-items:center;">' + (member ? '<div class="cc-avatar sm" style="background:' + member.color + '; width:20px; height:20px; font-size:9px;">' + member.initials + '</div><p style="font-size:12px; color:#888780; margin:0;">' + t.assignee + ' · ' + t.due + '</p>' : '<p style="font-size:12px; color:#888780; margin:0;">Unassigned · ' + t.due + '</p>') + '</div></div></div>';
+        }).join('') + '</div>';
     }).join('');
 
-    return statusBar() +
-      header('Tasks', { menu: true }) +
+    return statusBar() + header('Tasks', { menu: true }) +
       '<div class="cc-body" style="padding-bottom: 90px;">' + sections + '</div>' +
-      '<button class="cc-fab" data-action="add-task" aria-label="Add task">+</button>' +
       tabBar();
   }
 
@@ -730,141 +649,69 @@
     for (let d = 1; d <= 30; d++) days.push({ day: d });
     for (let i = 1; i <= 4; i++) days.push({ day: i, other: true });
 
-    const eventDays = new Set(state.events.map(e => e.day));
+    const eventDays = new Set(state.events.map(function(e){ return e.day; }));
     const today = 12;
-
-    const grid = days.map(d => {
+    const grid = days.map(function(d){
       let cls = 'cc-calendar-day';
       if (d.other) cls += ' other-month';
       if (!d.other && d.day === today) cls += ' today';
       if (!d.other && eventDays.has(d.day)) cls += ' has-event';
-      return `<div class="${cls}">${d.day}</div>`;
+      return '<div class="' + cls + '">' + d.day + '</div>';
     }).join('');
 
-    return statusBar() +
-      header('Calendar', { menu: true }) +
-      `<div class="cc-body" style="padding-bottom: 90px;">
-        <div style="padding: 16px; display:flex; justify-content:space-between; align-items:center;">
-          <h2 style="font-size:20px; font-weight:500; margin:0;">November 2026</h2>
-          <div style="display:flex; gap:4px;">
-            <button class="cc-header-btn" style="color:#5f5e5a; padding:4px 8px;">‹</button>
-            <button class="cc-header-btn" style="color:#5f5e5a; padding:4px 8px;">›</button>
-          </div>
-        </div>
-        <div style="margin: 0 12px; background: #fff; border-radius: 12px; padding: 10px;">
-          <div style="display:grid; grid-template-columns: repeat(7, 1fr); text-align:center; margin-bottom:6px;">
-            ${['S','M','T','W','T','F','S'].map(d => `<div style="font-size:11px; color:#888780; padding:6px 0; font-weight:500;">${d}</div>`).join('')}
-          </div>
-          <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap:2px;">${grid}</div>
-        </div>
-
-        <div class="cc-section-head">Upcoming events</div>
-        ${state.events.map(e => `
-          <div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;">
-            <div style="width:42px; text-align:center;">
-              <p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p>
-              <p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">${e.day}</p>
-            </div>
-            <div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;">
-              <p style="font-size:15px; margin:0 0 2px;">${e.title}</p>
-              <p style="font-size:12px; color:#888780; margin:0;">${e.time}</p>
-            </div>
-          </div>
-        `).join('')}
-       </div>
-       <button class="cc-fab" data-action="add-event" aria-label="Add event">+</button>` +
-      tabBar();
+    return statusBar() + header('Calendar', { menu: true }) +
+      '<div class="cc-body" style="padding-bottom: 90px;">' +
+        '<div style="padding: 16px; display:flex; justify-content:space-between; align-items:center;"><h2 style="font-size:20px; font-weight:500; margin:0;">November 2026</h2><div style="display:flex; gap:4px;"><button class="cc-header-btn" style="color:#5f5e5a; padding:4px 8px;">‹</button><button class="cc-header-btn" style="color:#5f5e5a; padding:4px 8px;">›</button></div></div>' +
+        '<div style="margin: 0 12px; background: #fff; border-radius: 12px; padding: 10px;"><div style="display:grid; grid-template-columns: repeat(7, 1fr); text-align:center; margin-bottom:6px;">' +
+          ['S','M','T','W','T','F','S'].map(function(d){ return '<div style="font-size:11px; color:#888780; padding:6px 0; font-weight:500;">' + d + '</div>'; }).join('') +
+        '</div><div style="display:grid; grid-template-columns: repeat(7, 1fr); gap:2px;">' + grid + '</div></div>' +
+        '<div class="cc-section-head">Upcoming events</div>' +
+        state.events.map(function(e){
+          return '<div class="cc-card" style="margin-bottom: 8px; display:flex; align-items:center; gap:14px;"><div style="width:42px; text-align:center;"><p style="font-size:11px; color:#e99797; margin:0; text-transform:uppercase; font-weight:500;">Nov</p><p style="font-size:22px; margin:0; font-weight:500; color:#2c2c2a;">' + e.day + '</p></div><div style="flex:1; border-left: 0.5px solid rgba(0,0,0,0.1); padding-left: 12px;"><p style="font-size:15px; margin:0 0 2px;">' + e.title + (e.aiCreated ? '<span class="ai-badge-inline">' + SPARKLES + ' Nova</span>' : '') + '</p><p style="font-size:12px; color:#888780; margin:0;">' + e.time + '</p></div></div>';
+        }).join('') +
+      '</div>' + tabBar();
   }
 
   function chatScreen(){
-    const messages = state.chat.map(m => {
+    const messages = state.chat.map(function(m){
       if (m.from === 'me') {
-        return `<div class="cc-chat-row mine"><div class="cc-chat-bubble mine">${m.text}</div></div>`;
+        return '<div class="cc-chat-row mine"><div class="cc-chat-bubble mine">' + m.text + '</div></div>';
+      } else if (m.from === 'Nova') {
+        return '<div><p class="cc-chat-sender ai">' + SPARKLES + ' Nova · AI care coordinator</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:#64a70b;">' + SPARKLES + '</div><div class="cc-chat-bubble ai">' + m.text + '</div></div></div>';
       } else {
-        return `<div><p class="cc-chat-sender">${m.from}</p>
-          <div class="cc-chat-row theirs">
-            <div class="cc-avatar sm" style="background:${m.color};">${m.from[0]}</div>
-            <div class="cc-chat-bubble theirs">${m.text}</div>
-          </div></div>`;
+        return '<div><p class="cc-chat-sender">' + m.from + '</p><div class="cc-chat-row theirs"><div class="cc-avatar sm" style="background:' + m.color + ';">' + m.from[0] + '</div><div class="cc-chat-bubble theirs">' + m.text + '</div></div></div>';
       }
     }).join('');
-    return statusBar() +
-      header('Crew Chat', { menu: true }) +
-      `<div class="cc-body" style="padding: 12px 0 130px;">${messages}</div>
-       <div class="cc-chat-input-row">
-         <input class="cc-chat-input" placeholder="Message" value="${state.chatDraft}" data-field="chatDraft"/>
-         <button class="cc-send-btn" data-action="send-message" aria-label="Send">↑</button>
-       </div>` +
+    return statusBar() + header('Crew Chat', { menu: true }) +
+      '<div class="cc-body" style="padding: 12px 0 130px;">' + messages + '</div>' +
+      '<div class="cc-chat-input-row"><input class="cc-chat-input" placeholder="Message" value="' + state.chatDraft + '" data-field="chatDraft"/><button class="cc-send-btn" data-action="send-message" aria-label="Send">↑</button></div>' +
       tabBar();
   }
 
   function membersScreen(){
-    return statusBar() +
-      header('Crew Members', { menu: true, rightLabel: 'Invite', rightAction: 'invite', rightPrimary: true }) +
-      `<div class="cc-body" style="padding-bottom: 90px;">
-        <div style="padding: 20px 16px; text-align:center; background:#fff; margin-bottom: 12px;">
-          <div class="cc-avatar lg" style="background:#4395a2; margin: 0 auto 12px;">TC</div>
-          <h2 style="font-size:18px; font-weight:500; margin: 0 0 4px;">${state.crewName}</h2>
-          <p style="font-size:13px; color:#888780; margin:0;">Crew code: <strong style="color:#2c2c2a;">7K4PM</strong> · ${state.members.length} members</p>
-        </div>
-        ${state.members.map(m => `
-          <div class="cc-menu-item">
-            <div class="cc-avatar" style="background:${m.color};">${m.initials}</div>
-            <div style="flex:1;">
-              <p style="font-size:15px; margin:0; color:#2c2c2a;">${m.name}</p>
-              <p style="font-size:12px; color:#888780; margin:2px 0 0;">${m.role}</p>
-            </div>
-            ${m.role === 'Crew Leader' ? '<span class="cc-pill" style="background:#eaf4f5; color:#4395a2;">Leader</span>' : '<span class="cc-dot-ind" title="Online"></span>'}
-          </div>
-        `).join('')}
-       </div>` +
-      tabBar();
+    return statusBar() + header('Crew Members', { menu: true, rightLabel: 'Invite', rightAction: 'invite', rightPrimary: true }) +
+      '<div class="cc-body" style="padding-bottom: 90px;">' +
+        '<div style="padding: 20px 16px; text-align:center; background:#fff; margin-bottom: 12px;"><div class="cc-avatar lg" style="background:#4395a2; margin: 0 auto 12px;">TC</div><h2 style="font-size:18px; font-weight:500; margin: 0 0 4px;">' + state.crewName + '</h2><p style="font-size:13px; color:#888780; margin:0;">Crew code: <strong style="color:#2c2c2a;">7K4PM</strong> · ' + state.members.length + ' members + Nova</p></div>' +
+        state.members.map(function(m){
+          return '<div class="cc-menu-item"><div class="cc-avatar" style="background:' + m.color + ';">' + m.initials + '</div><div style="flex:1;"><p style="font-size:15px; margin:0; color:#2c2c2a;">' + m.name + '</p><p style="font-size:12px; color:#888780; margin:2px 0 0;">' + m.role + '</p></div>' + (m.role === 'Crew Leader' ? '<span class="cc-pill" style="background:#eaf4f5; color:#4395a2;">Leader</span>' : '<span class="cc-dot-ind" title="Online"></span>') + '</div>';
+        }).join('') +
+        '<div class="cc-menu-item" style="border-top: 8px solid #F0F2F8; background: #f7fbf0;"><div class="cc-avatar" style="background:#64a70b;">' + SPARKLES + '</div><div style="flex:1;"><p style="font-size:15px; margin:0; color:#2c2c2a;">Nova</p><p style="font-size:12px; color:#3B6D11; margin:2px 0 0;">AI care coordinator</p></div><span class="cc-pill" style="background:#eaf3de; color:#3B6D11;">Always on</span></div>' +
+      '</div>' + tabBar();
   }
 
   function menuScreen(){
-    return statusBar() +
-      header('Menu', { back: 'home' }) +
-      `<div class="cc-body" style="padding-bottom: 20px;">
-        <div style="padding: 20px 16px 12px; background:#fff;">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div class="cc-avatar lg" style="background:#4395a2;">B</div>
-            <div>
-              <p style="font-size:17px; font-weight:500; margin:0;">Brent</p>
-              <p style="font-size:13px; color:#888780; margin: 2px 0 0;">Crew Leader · ${state.crewName}</p>
-            </div>
-          </div>
-        </div>
-        <div style="margin: 12px 0 0;">
-          <div class="cc-menu-item" data-tab="members">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
-            <span style="flex:1;">Crew members</span>
-            <span style="color:#888780;">›</span>
-          </div>
-          <div class="cc-menu-item">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span style="flex:1;">Invite new member</span>
-            <span style="color:#888780;">›</span>
-          </div>
-          <div class="cc-menu-item">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 8v4M12 16h.01"/></svg>
-            <span style="flex:1;">Health aide questions</span>
-            <span style="color:#888780;">›</span>
-          </div>
-          <div class="cc-menu-item">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-            <span style="flex:1;">Settings</span>
-            <span style="color:#888780;">›</span>
-          </div>
-          <div class="cc-menu-item">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="3" y="11" width="18" height="11" rx="2"/></svg>
-            <span style="flex:1;">Send feedback</span>
-            <span style="color:#888780;">›</span>
-          </div>
-        </div>
-        <div style="margin: 24px 16px;">
-          <button class="cc-btn-secondary" style="color:#e99797; border-color:#e99797;" data-go="welcome">Leave crew</button>
-        </div>
-      </div>`;
+    return statusBar() + header('Menu', { back: 'home' }) +
+      '<div class="cc-body" style="padding-bottom: 20px;">' +
+        '<div style="padding: 20px 16px 12px; background:#fff;"><div style="display:flex; align-items:center; gap:12px;"><div class="cc-avatar lg" style="background:#4395a2;">B</div><div><p style="font-size:17px; font-weight:500; margin:0;">Brent</p><p style="font-size:13px; color:#888780; margin: 2px 0 0;">Crew Leader · ' + state.crewName + '</p></div></div></div>' +
+        '<div style="margin: 12px 0 0;">' +
+          '<div class="cc-menu-item" data-tab="members"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg><span style="flex:1;">Crew members</span><span style="color:#888780;">›</span></div>' +
+          '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64a70b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg><span style="flex:1;">Nova settings</span><span style="color:#888780;">›</span></div>' +
+          '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span style="flex:1;">Invite new member</span><span style="color:#888780;">›</span></div>' +
+          '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6"/></svg><span style="flex:1;">Settings</span><span style="color:#888780;">›</span></div>' +
+          '<div class="cc-menu-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4395a2" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="3" y="11" width="18" height="11" rx="2"/></svg><span style="flex:1;">Send feedback</span><span style="color:#888780;">›</span></div>' +
+        '</div>' +
+        '<div style="margin: 24px 16px;"><button class="cc-btn-secondary" style="color:#e99797; border-color:#e99797;" data-go="welcome">Leave crew</button></div>' +
+      '</div>';
   }
 
   const RENDERERS = {
@@ -875,22 +722,89 @@
 
   function render(){
     screen.innerHTML = RENDERERS[state.screen]();
-    const sc = SCREENS.find(s => s.id === state.screen);
+    const sc = SCREENS.find(function(s){ return s.id === state.screen; });
     label.textContent = sc ? sc.label : state.screen;
-
-    jumpBar.innerHTML = SCREENS.map(s =>
-      `<button class="cc-jump-btn ${s.id===state.screen?'active':''}" data-jump="${s.id}">${s.label}</button>`
-    ).join('');
-
+    jumpBar.innerHTML = SCREENS.map(function(s){
+      return '<button class="cc-jump-btn ' + (s.id===state.screen?'active':'') + '" data-jump="' + s.id + '">' + s.label + '</button>';
+    }).join('');
     screen.scrollTop = 0;
     const body = screen.querySelector('.cc-body');
     if (body) body.scrollTop = state.screen === 'chat' ? 9999 : 0;
   }
 
+  function novaSend(){
+    const text = state.novaInput.trim();
+    if (!text) return;
+    state.novaPhase = 'thinking';
+    render();
+    setTimeout(function(){
+      state.novaProposal = parseIntent(text);
+      state.novaPhase = 'proposal';
+      render();
+    }, 1100);
+  }
+
+  function novaConfirm(){
+    const p = state.novaProposal;
+    if (!p) return;
+    const originalInput = state.novaInput;
+    let chatSummary = '';
+
+    p.items.forEach(function(item){
+      if (item.type === 'task') {
+        const assigneeMatch = item.detail.match(/Assigned to (\w+)/);
+        const newTask = {
+          id: 't' + (state.tasks.length + 100),
+          title: item.title,
+          status: assigneeMatch ? 'todo' : 'unassigned',
+          assignee: assigneeMatch ? assigneeMatch[1] : null,
+          due: item.detail.split('·').pop().trim() || 'This week',
+          aiCreated: true
+        };
+        state.tasks.unshift(newTask);
+        chatSummary = 'Added "' + item.title + '"' + (assigneeMatch ? ' for ' + assigneeMatch[1] : '') + '.';
+      } else if (item.type === 'event') {
+        state.events.push({
+          day: 15,
+          title: item.title,
+          time: item.detail,
+          aiCreated: true
+        });
+        chatSummary = 'Put "' + item.title + '" on the calendar — ' + item.detail + '.';
+      }
+    });
+
+    if (chatSummary) {
+      state.chat.push({ from: 'Nova', text: chatSummary + ' (Based on Brent\'s note: "' + originalInput + '")' });
+    }
+
+    state.novaInput = '';
+    state.novaProposal = null;
+    state.novaPhase = 'idle';
+    render();
+  }
+
+  function novaDismiss(){
+    state.novaInput = '';
+    state.novaProposal = null;
+    state.novaPhase = 'idle';
+    render();
+  }
+
   document.addEventListener('click', function(e){
-    const tgt = e.target.closest('[data-go],[data-tab],[data-action],[data-task],[data-jump]');
+    const tgt = e.target.closest('[data-go],[data-tab],[data-action],[data-task],[data-jump],[data-suggestion]');
     if (!tgt) return;
-    if (tgt.dataset.jump) { state.screen = tgt.dataset.jump; if (['home','tasks','calendar','chat','members'].includes(tgt.dataset.jump)) state.tab = tgt.dataset.jump; render(); return; }
+    if (tgt.dataset.suggestion) {
+      state.novaInput = tgt.dataset.suggestion;
+      novaSend();
+      return;
+    }
+    if (tgt.dataset.jump) {
+      state.screen = tgt.dataset.jump;
+      if (['home','tasks','calendar','chat','members'].indexOf(tgt.dataset.jump) !== -1) state.tab = tgt.dataset.jump;
+      render();
+      return;
+    }
     if (tgt.dataset.go) { go(tgt.dataset.go); return; }
     if (tgt.dataset.tab) { setTab(tgt.dataset.tab); return; }
     if (tgt.dataset.task) {
@@ -902,18 +816,37 @@
     const action = tgt.dataset.action;
     if (action === 'create-submit') go('code-sent');
     else if (action === 'join-submit') go('home');
+    else if (action === 'nova-send') novaSend();
+    else if (action === 'nova-confirm') novaConfirm();
+    else if (action === 'nova-dismiss') novaDismiss();
     else if (action === 'send-message') {
       const input = screen.querySelector('[data-field="chatDraft"]');
       const text = (input && input.value || '').trim();
       if (text) { state.chat.push({ from: 'me', text: text }); state.chatDraft = ''; render(); }
-    } else if (action === 'add-task' || action === 'add-event' || action === 'invite') {
-      alert('Demo action: ' + action);
+    } else if (action === 'invite') {
+      alert('Demo: invite new crew member');
     }
   });
 
   document.addEventListener('input', function(e){
     const f = e.target.dataset && e.target.dataset.field;
-    if (f) state[f] = e.target.value;
+    if (f) {
+      state[f] = e.target.value;
+      if (f === 'novaInput') {
+        const btn = screen.querySelector('[data-action="nova-send"]');
+        if (btn) {
+          if (state.novaInput.trim()) btn.removeAttribute('disabled');
+          else btn.setAttribute('disabled', '');
+        }
+      }
+    }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && !e.shiftKey && e.target.id === 'nova-input') {
+      e.preventDefault();
+      novaSend();
+    }
   });
 
   render();

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewCares — Meet Nova</title>
+<meta name="description" content="Nova — the AI care coordinator on the CrewCares home screen. Feature proposal and design rationale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4395a2;
+    --primary-dark: #2f7a86;
+    --primary-darker: #1e5861;
+    --primary-tint: #eaf4f5;
+    --primary-tint-2: #d4e8ec;
+    --green: #64a70b;
+    --green-dark: #3B6D11;
+    --green-tint: #eaf3de;
+    --green-tint-2: #f7fbf0;
+    --pink: #e99797;
+    --pink-tint: #fbeaea;
+    --amber-tint: #fef3e3;
+    --ink: #2c2c2a;
+    --ink-soft: #5f5e5a;
+    --ink-quiet: #888780;
+    --surface: #ffffff;
+    --surface-soft: #F4F6F9;
+    --surface-softer: #F0F2F8;
+    --border-soft: #eff1f5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--surface-softer);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  .topbar {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 0;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .topbar-inner {
+    max-width: 1040px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600; font-size: 17px; letter-spacing: -0.01em;
+  }
+  .brand-mark {
+    width: 32px; height: 32px; background: #fff;
+    border-radius: 8px; display: flex;
+    align-items: center; justify-content: center;
+    color: var(--primary);
+  }
+  .topbar-nav { display: flex; gap: 4px; }
+  .topbar-nav a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none; font-size: 14px;
+    padding: 6px 12px; border-radius: 6px;
+    transition: background 0.12s;
+  }
+  .topbar-nav a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--green-dark) 100%);
+    color: #fff;
+    padding: 64px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1040px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-text { max-width: 620px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; background: rgba(255,255,255,0.18);
+    border-radius: 999px; margin-bottom: 20px; font-weight: 500;
+  }
+  h1 {
+    font-size: 44px; line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0 0 14px; font-weight: 600;
+  }
+  .hero-sub {
+    font-size: 18px; opacity: 0.94;
+    margin: 0 0 24px; line-height: 1.5;
+  }
+  .hero-badge-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+  }
+  .hero-visual {
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px) {
+    h1 { font-size: 32px; }
+    .hero { padding: 48px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { width: 120px; height: 120px; margin: 0 auto; }
+  }
+
+  .container { max-width: 1040px; margin: 0 auto; padding: 56px 24px 96px; }
+  section { margin-bottom: 56px; scroll-margin-top: 72px; }
+  h2 {
+    font-size: 28px; line-height: 1.25;
+    letter-spacing: -0.015em; margin: 0 0 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 20px; margin: 28px 0 10px;
+    font-weight: 600; letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 14px; color: var(--ink-soft); font-size: 15.5px; }
+  p strong, li strong { color: var(--ink); font-weight: 600; }
+  ul { padding-left: 22px; margin: 0 0 16px; }
+  li { margin-bottom: 8px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; }
+
+  .tldr {
+    background: var(--green-tint-2);
+    border: 1px solid rgba(100, 167, 11, 0.22);
+    border-left: 4px solid var(--green);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 0 0 48px;
+  }
+  .tldr-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--green-dark); margin-bottom: 6px;
+  }
+  .tldr p { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.6; }
+  .tldr p strong { color: var(--ink); }
+
+  .three-beats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  @media (max-width: 720px) { .three-beats { grid-template-columns: 1fr; } }
+  .beat {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 22px 24px;
+    border-top: 3px solid var(--green);
+  }
+  .beat-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--green-tint); color: var(--green-dark);
+    font-weight: 600; font-size: 13px; margin-bottom: 10px;
+  }
+  .beat h4 { font-size: 15px; margin: 0 0 6px; font-weight: 600; }
+  .beat p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+  .walk {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 16px;
+  }
+  .walk-step {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .walk-step:last-child { border-bottom: 0; padding-bottom: 0; }
+  .walk-step:first-child { padding-top: 0; }
+  .walk-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--primary);
+    color: #fff; font-weight: 600; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .walk-content h4 { margin: 2px 0 4px; font-size: 15.5px; font-weight: 600; }
+  .walk-content p { margin: 0; font-size: 14.5px; line-height: 1.55; }
+  .walk-example {
+    background: var(--surface-soft);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 13.5px;
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Mono", Menlo, monospace;
+  }
+  .walk-example.nova {
+    background: var(--green-tint-2);
+    border: 1px solid rgba(100, 167, 11, 0.22);
+    color: var(--green-dark);
+    font-family: inherit;
+  }
+
+  .scope {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 16px;
+  }
+  @media (max-width: 720px) { .scope { grid-template-columns: 1fr; } }
+  .scope-card {
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .scope-card.v1 { background: var(--green-tint-2); border: 1px solid rgba(100, 167, 11, 0.22); }
+  .scope-card.later { background: var(--primary-tint); border: 1px solid var(--primary-tint-2); }
+  .scope-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .scope-card.v1 .scope-label { color: var(--green-dark); }
+  .scope-card.later .scope-label { color: var(--primary-darker); }
+  .scope-card h3 { margin: 0 0 12px; color: var(--ink); }
+  .scope-card ul { margin: 0; padding-left: 18px; }
+  .scope-card li { font-size: 14.5px; }
+
+  .risk-row {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--pink);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+  .risk-row h4 {
+    font-size: 14.5px; font-weight: 600;
+    margin: 0 0 4px; color: var(--ink);
+  }
+  .risk-row p { font-size: 14px; margin: 0; }
+
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .pitch-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border-top: 3px solid var(--primary);
+  }
+  .pitch-card h4 {
+    margin: 0 0 8px;
+    font-size: 15px; font-weight: 600;
+    color: var(--primary-dark);
+  }
+  .pitch-card p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--green-dark) 100%);
+    border-radius: 14px;
+    padding: 32px 36px;
+    color: #fff;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 720px) {
+    .cta-box { grid-template-columns: 1fr; }
+  }
+  .cta-box h3 { color: #fff; margin: 0 0 6px; font-size: 22px; }
+  .cta-box p { color: rgba(255,255,255,0.9); margin: 0; }
+  .cta-btn {
+    background: #fff;
+    color: var(--primary-dark);
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .cta-btn:hover { background: var(--surface-softer); }
+
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 13px;
+  }
+  .footer-brand { color: #fff; font-weight: 600; margin-bottom: 4px; display: block; }
+
+  ::selection { background: var(--primary-tint-2); color: var(--primary-darker); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+      </div>
+      <span>CrewCares</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="index.html">← Hub</a>
+      <a href="app.html">Prototype</a>
+      <a href="analysis.html">Analysis</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
+        New feature · Proposal
+      </span>
+      <h1>Meet Nova — your crew's AI care coordinator</h1>
+      <p class="hero-sub">A warm, knowledgeable assistant on the home screen. Type what the crew needs in plain English — Nova creates the task, schedules the event, and lets the right person know.</p>
+      <div class="hero-badge-row">
+        <span class="hero-badge">Natural language</span>
+        <span class="hero-badge">Creates tasks &amp; events</span>
+        <span class="hero-badge">Announced in crew chat</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tldr">
+    <div class="tldr-label">The short version</div>
+    <p>Instead of navigating menus to add a task, invite someone, or check the calendar, crew members just type what they want. <strong>Nova reads the intent, proposes the action, and posts a note to chat so the whole crew stays in sync.</strong> It's one input field that replaces a dozen interactions.</p>
+  </div>
+
+  <section id="why">
+    <h2>Why this feature</h2>
+    <p>Our competitive analysis surfaced a clear insight: Caring Village shipped an AI assistant called Julia in late 2025, and it's already moving AI from "nice differentiator" to "table stakes" in family caregiving. But Julia is built as a separate assistant tab — ask it a question, get an answer. Nova is different.</p>
+
+    <div class="three-beats">
+      <div class="beat">
+        <div class="beat-num">1</div>
+        <h4>It's embedded, not separate</h4>
+        <p>Nova lives on the home screen as the primary input, not hidden behind a tab. It becomes the default way to do anything in the app.</p>
+      </div>
+      <div class="beat">
+        <div class="beat-num">2</div>
+        <h4>It does things, not just answers them</h4>
+        <p>Julia gives advice. Nova creates tasks, schedules events, and posts to crew chat. The difference between a help desk and a colleague.</p>
+      </div>
+      <div class="beat">
+        <div class="beat-num">3</div>
+        <h4>It's visible to the whole crew</h4>
+        <p>When Nova does something, it posts a short note in crew chat. No surveillance, no surprise — everyone sees what the AI did and why.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="walkthrough">
+    <h2>How it works</h2>
+    <p>A concrete walkthrough. Brent opens CrewCares, sees the Nova card on the home screen, and types:</p>
+
+    <div class="walk">
+      <div class="walk-step">
+        <div class="walk-num">1</div>
+        <div class="walk-content">
+          <h4>The user types a natural-language intent</h4>
+          <p>Plain English works. Specific details work. Vague works too — Nova will ask for clarification if it needs to.</p>
+          <div class="walk-example">"Remind Sarah to pick up Dad's prescription tomorrow"</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">2</div>
+        <div class="walk-content">
+          <h4>Nova proposes actions before taking them</h4>
+          <p>Critical design choice: Nova always shows what it plans to do first. No surprise tasks appearing. Review, edit, then confirm.</p>
+          <div class="walk-example nova">Got it. Here's what I'll set up:<br/>✓ Pick up Dad's prescription — Assigned to Sarah · Tomorrow<br/>✓ Let Sarah know — Small note in crew chat</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">3</div>
+        <div class="walk-content">
+          <h4>On confirm, actions execute simultaneously</h4>
+          <p>The task appears in Sarah's list. A note appears in crew chat. The home screen updates. All visible to the whole crew.</p>
+          <div class="walk-example nova">In crew chat: "Nova added 'Pick up prescription' for Sarah based on Brent's note."</div>
+        </div>
+      </div>
+      <div class="walk-step">
+        <div class="walk-num">4</div>
+        <div class="walk-content">
+          <h4>Nova items are clearly labeled</h4>
+          <p>Every task, event, or chat message Nova created carries a small visible tag. Trust is built on transparency — the crew can always see what came from a human vs. the AI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="what-else">
+    <h2>What else Nova handles</h2>
+    <p>V1 supports three intent types — each solves a real friction in the current flow.</p>
+
+    <h3>Create tasks</h3>
+    <p>Parses assignee, due date, and action from a sentence. Handles "remind," "tell," "ask," "need to," and similar phrasings. Defaults gracefully when something's missing (unassigned task, "this week" due date).</p>
+    <div class="walk-example" style="margin-bottom:14px;">"Tell Michael to schedule the PT appointment by Friday"</div>
+
+    <h3>Schedule events</h3>
+    <p>Recognizes time expressions ("Thursday at 2pm," "tomorrow morning," "next week"). Extracts event type from context (appointment, visit, meeting). Adds to the shared calendar.</p>
+    <div class="walk-example" style="margin-bottom:14px;">"Dad has a cardiology follow-up Thursday at 10:30am"</div>
+
+    <h3>Weekly summaries</h3>
+    <p>A crew member who's been away can type "catch me up" or "what's happening this week" and get a concise summary of completed tasks, active work, medication changes, and upcoming events. No separate dashboard to check.</p>
+    <div class="walk-example">"Catch me up on this week"</div>
+  </section>
+
+  <section id="scope">
+    <h2>V1 scope vs. later</h2>
+    <p>Clear boundaries for the first release. Everything in "later" is on the roadmap but deliberately held back.</p>
+
+    <div class="scope">
+      <div class="scope-card v1">
+        <div class="scope-label">V1 ships with</div>
+        <h3>Core three capabilities</h3>
+        <ul>
+          <li>Create tasks from natural language</li>
+          <li>Schedule calendar events from natural language</li>
+          <li>Generate weekly summaries on demand</li>
+          <li>Post announcements to crew chat when actions happen</li>
+          <li>"Confirm before action" pattern for all creations</li>
+          <li>Visible Nova tag on all AI-created items</li>
+        </ul>
+      </div>
+      <div class="scope-card later">
+        <div class="scope-label">Later releases</div>
+        <h3>Deeper capabilities</h3>
+        <ul>
+          <li>Proactive suggestions from crew chat patterns</li>
+          <li>"Who should do this?" recommendations based on crew history</li>
+          <li>Medication reminder setup from natural language</li>
+          <li>Document summarization (discharge instructions, care plans)</li>
+          <li>Voice input on mobile</li>
+          <li>Cross-crew insights for users managing multiple care situations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="risks">
+    <h2>Risks we've thought about</h2>
+    <p>Nova is the right feature, but there are real pitfalls. These are the ones we're designing around.</p>
+
+    <div class="risk-row">
+      <h4>Demo magic vs. real-world reliability</h4>
+      <p>AI that "just works" in a prototype is easy. Reliably parsing "remind Michael to bring the oxygen tank when he visits on Sunday" every time is hard. Strategy: start narrow (three intent types), design for graceful failure, lean on the confirm step.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Trust when Nova gets it wrong</h4>
+      <p>The AI will occasionally misassign or misdate something. Our approach: low-friction undo, clear "Nova made this" tags, and never post to chat without a confirm step. Mistakes should feel normal, not alarming.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Privacy and scope boundaries</h4>
+      <p>Nova reads crew chat to generate summaries. We'll ship a clear toggle ("Let Nova read crew messages") and default to opt-in. The user controls what Nova sees.</p>
+    </div>
+
+    <div class="risk-row">
+      <h4>Avoiding feature creep in the pitch</h4>
+      <p>"AI that does everything" oversells. We're specific: v1 creates tasks, schedules events, summarizes the week. That's it. Vision talk about patterns and proactive suggestions is clearly flagged as later.</p>
+    </div>
+  </section>
+
+  <section id="pitch">
+    <h2>The investor framing</h2>
+    <p>Three reasons Nova strengthens the CrewCares investor story.</p>
+
+    <div class="pitch-grid">
+      <div class="pitch-card">
+        <h4>It's our answer to Julia</h4>
+        <p>"We have AI too" is table stakes. "Our AI is the primary input, not a help desk" is a position. Nova reframes the AI conversation instead of losing it.</p>
+      </div>
+      <div class="pitch-card">
+        <h4>It reinforces our wedge</h4>
+        <p>We compete on chat-first, family-first simplicity. Nova is an agentic extension of chat — not a clinical records feature. It makes the existing positioning stronger, not muddier.</p>
+      </div>
+      <div class="pitch-card">
+        <h4>It unlocks the "one surface" narrative</h4>
+        <p>Instead of shipping medications, journaling, and documents as separate features, we ship one agent that can orchestrate anything. One surface, infinite capability. Better product story, better engineering leverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-box">
+    <div>
+      <h3>See Nova live in the prototype</h3>
+      <p>The AI card is embedded on the home screen. Type an intent, watch the proposal, confirm, and see chat update.</p>
+    </div>
+    <a href="app.html" class="cta-btn">
+      Open prototype
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-brand">CrewCares</span>
+  <span>Feature proposal · Nova AI care coordinator · April 2026</span>
+</footer>
+
+</body>
+</html>
