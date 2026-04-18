@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewCares</title>
+<meta name="description" content="CrewCares — family caregiving coordination. Bring your family together to care for the people you love.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4395a2;
+    --primary-dark: #2f7a86;
+    --primary-darker: #1e5861;
+    --primary-tint: #eaf4f5;
+    --primary-tint-2: #d4e8ec;
+    --green: #64a70b;
+    --green-tint: #f0f7e3;
+    --pink: #e99797;
+    --pink-tint: #fbeaea;
+    --purple: #867fb0;
+    --purple-tint: #eeedf6;
+    --ink: #2c2c2a;
+    --ink-soft: #5f5e5a;
+    --ink-quiet: #888780;
+    --surface: #ffffff;
+    --surface-soft: #F4F6F9;
+    --surface-softer: #F0F2F8;
+    --border: #e4e6eb;
+    --border-soft: #eff1f5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--surface-softer);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  .topbar {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .topbar-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  .brand-mark {
+    width: 32px; height: 32px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+  .topbar-nav {
+    display: flex;
+    gap: 6px;
+  }
+  .topbar-nav a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.12s;
+  }
+  .topbar-nav a:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+
+  .hero {
+    background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 80px 24px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-icon {
+    width: 84px; height: 84px;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 22px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+  .hero-sub {
+    font-size: 20px;
+    opacity: 0.92;
+    margin: 0 auto;
+    max-width: 580px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .hero-tagline {
+    display: inline-block;
+    margin-top: 32px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .intro {
+    max-width: 760px;
+    margin: -40px auto 0;
+    position: relative;
+    z-index: 2;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 32px 36px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .intro h2 {
+    font-size: 22px;
+    margin: 0 0 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .intro p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  section {
+    padding: 72px 24px 24px;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .section-title h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+  .section-title p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .resource-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .resource-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+  .resource-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    border-color: var(--primary-tint-2);
+  }
+  .resource-card:hover::after {
+    transform: scaleX(1);
+  }
+  .resource-card.accent-pink::after { background: var(--pink); }
+  .resource-card.accent-green::after { background: var(--green); }
+  .resource-card.accent-purple::after { background: var(--purple); }
+
+  .resource-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--primary-tint);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .resource-card.accent-pink .resource-icon { background: var(--pink-tint); color: #993556; }
+  .resource-card.accent-green .resource-icon { background: var(--green-tint); color: #3B6D11; }
+  .resource-card.accent-purple .resource-icon { background: var(--purple-tint); color: #3C3489; }
+
+  .resource-card h3 {
+    font-size: 19px;
+    margin: 0 0 8px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .resource-card p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .resource-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary);
+    letter-spacing: -0.005em;
+  }
+  .resource-card-cta svg {
+    transition: transform 0.2s;
+  }
+  .resource-card:hover .resource-card-cta svg {
+    transform: translateX(4px);
+  }
+  .resource-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 11.5px;
+    color: var(--ink-quiet);
+  }
+  .resource-chip {
+    padding: 3px 10px;
+    background: var(--surface-soft);
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .resource-chip.live { background: var(--green-tint); color: #3B6D11; }
+  .resource-chip.draft { background: var(--pink-tint); color: #993556; }
+  .resource-chip.coming { background: var(--surface-soft); color: var(--ink-quiet); }
+
+  .pillars {
+    background: var(--surface);
+    padding: 64px 24px;
+    margin-top: 40px;
+  }
+  .pillar-grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .pillar {
+    padding: 20px;
+    text-align: left;
+  }
+  .pillar-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .pillar h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    letter-spacing: -0.005em;
+  }
+  .pillar p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    padding: 40px 24px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .footer-brand .brand-mark {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+  footer p {
+    margin: 0;
+    font-size: 13px;
+  }
+  footer a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 680px) {
+    h1 { font-size: 36px; }
+    .hero { padding: 56px 24px 72px; }
+    .hero-sub { font-size: 17px; }
+    .hero-icon { width: 68px; height: 68px; }
+    .hero-icon svg { width: 36px; height: 36px; }
+    .intro { padding: 24px; margin-top: -30px; }
+    .section-title h2 { font-size: 26px; }
+    section { padding: 56px 18px 18px; }
+    .topbar-nav a { padding: 6px 8px; font-size: 13px; }
+    .resource-card { padding: 24px 22px 20px; }
+  }
+
+  ::selection { background: var(--primary-tint-2); color: var(--primary-darker); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+      </div>
+      <span>CrewCares</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="app.html">Prototype</a>
+      <a href="analysis.html">Analysis</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-icon">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+    </div>
+    <h1>CrewCares</h1>
+    <p class="hero-sub">Bring your family together to care for the people you love.</p>
+    <span class="hero-tagline">The Signal of family caregiving</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="intro">
+    <h2>About this site</h2>
+    <p>This is the home for CrewCares materials — a clickable product prototype, a competitive analysis of the family caregiving market, and supporting documents for stakeholders. Built for investor reviews and partner conversations.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-title">
+    <div class="section-eyebrow">Resources</div>
+    <h2>Explore the materials</h2>
+    <p>Everything you need to understand the product, the market, and where CrewCares fits.</p>
+  </div>
+
+  <div class="card-grid">
+
+    <a href="app.html" class="resource-card">
+      <div class="resource-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <div class="resource-meta">
+        <span class="resource-chip live">Interactive</span>
+        <span class="resource-chip">iPhone-sized</span>
+      </div>
+      <h3>Product prototype</h3>
+      <p>A clickable iPhone-sized demo of the CrewCares app. Walk through onboarding, tasks, calendar, chat, and crew management with realistic seed data.</p>
+      <span class="resource-card-cta">
+        Open prototype
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a href="analysis.html" class="resource-card accent-pink">
+      <div class="resource-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <div class="resource-meta">
+        <span class="resource-chip live">Live</span>
+        <span class="resource-chip">April 2026</span>
+      </div>
+      <h3>Competitive analysis</h3>
+      <p>A clear-eyed look at the family caregiving market — five direct competitors, feature comparison, honest positioning, and strategic recommendations for investor conversations.</p>
+      <span class="resource-card-cta">
+        Read analysis
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <div class="resource-card accent-green" style="cursor: default; opacity: 0.78;">
+      <div class="resource-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <div class="resource-meta">
+        <span class="resource-chip coming">Coming soon</span>
+      </div>
+      <h3>Pitch deck</h3>
+      <p>A concise pitch deck covering the problem, market opportunity, product, team, traction, and ask. Investor-ready summary of everything in one place.</p>
+      <span class="resource-card-cta" style="opacity: 0.6;">In progress</span>
+    </div>
+
+    <div class="resource-card accent-purple" style="cursor: default; opacity: 0.78;">
+      <div class="resource-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="resource-meta">
+        <span class="resource-chip coming">Coming soon</span>
+      </div>
+      <h3>One-pager</h3>
+      <p>A single-page executive summary — the essence of CrewCares distilled to something that can be read in two minutes and shared easily.</p>
+      <span class="resource-card-cta" style="opacity: 0.6;">In progress</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="section-title">
+    <div class="section-eyebrow">What CrewCares stands for</div>
+    <h2>Built on four ideas</h2>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <h3>Family-first</h3>
+      <p>Built for the small, trusted crews that actually coordinate care — not broad communities or clinical villages.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <h3>Mobile-native</h3>
+      <p>Designed for how families already live on their phones. Chat is a first-class surface, not a bolt-on.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <h3>Opinionated simplicity</h3>
+      <p>One focused set of tools — crew, tasks, calendar, chat. Less to configure, faster to get started.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <h3>Warmth over features</h3>
+      <p>The "crew" metaphor matters. Caring for someone you love is emotional work. The tool should feel that way.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div class="brand-mark">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+    </div>
+    <span>CrewCares</span>
+  </div>
+  <p>Family caregiving, reimagined · April 2026</p>
+</footer>
+
+</body>
+</html>

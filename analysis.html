@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewCares — Competitive Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4395a2;
+    --primary-dark: #2f7a86;
+    --primary-darker: #1e5861;
+    --primary-tint: #eaf4f5;
+    --primary-tint-2: #d4e8ec;
+    --green: #64a70b;
+    --green-tint: #f0f7e3;
+    --pink: #e99797;
+    --pink-tint: #fbeaea;
+    --purple: #867fb0;
+    --purple-tint: #eeedf6;
+    --danger: #F26261;
+    --charcoal: #4a4a4a;
+    --ink: #2c2c2a;
+    --ink-soft: #5f5e5a;
+    --ink-quiet: #888780;
+    --surface: #ffffff;
+    --surface-soft: #F4F6F9;
+    --surface-softer: #F0F2F8;
+    --border: #e4e6eb;
+    --border-soft: #eff1f5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--surface-softer);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  .topbar {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .topbar-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  .brand-mark {
+    width: 32px; height: 32px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+  .topbar-meta {
+    font-size: 13px;
+    opacity: 0.85;
+  }
+  .hero {
+    background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 64px 24px 72px;
+  }
+  .hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 999px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  h1 {
+    font-size: 44px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    font-weight: 600;
+    max-width: 800px;
+  }
+  .hero-sub {
+    font-size: 18px;
+    opacity: 0.92;
+    margin: 0;
+    max-width: 680px;
+    line-height: 1.5;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 32px;
+    font-size: 13px;
+    opacity: 0.85;
+  }
+  .hero-meta-item { display: flex; gap: 6px; }
+  .hero-meta-label { opacity: 0.7; }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 48px;
+    padding: 48px 0 96px;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; gap: 24px; }
+    .toc { position: static; max-height: none; }
+    h1 { font-size: 34px; }
+    .hero { padding: 44px 24px 52px; }
+  }
+
+  .toc {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+  .toc-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-quiet);
+    margin: 0 0 14px;
+  }
+  .toc-list { list-style: none; padding: 0; margin: 0; }
+  .toc-list li { margin-bottom: 2px; }
+  .toc-list a {
+    display: block;
+    padding: 7px 12px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 13.5px;
+    border-radius: 6px;
+    border-left: 2px solid transparent;
+    transition: all 0.12s;
+  }
+  .toc-list a:hover {
+    background: var(--primary-tint);
+    color: var(--primary-dark);
+  }
+  .toc-list a.active {
+    color: var(--primary);
+    border-left-color: var(--primary);
+    background: var(--primary-tint);
+    font-weight: 500;
+  }
+
+  .content {
+    min-width: 0;
+  }
+  section {
+    scroll-margin-top: 72px;
+    margin-bottom: 56px;
+  }
+  h2 {
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+    font-weight: 600;
+    color: var(--ink);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 32px 0 8px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  h4 {
+    font-size: 15px;
+    margin: 18px 0 6px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  p { margin: 0 0 14px; color: var(--ink-soft); font-size: 15.5px; }
+  p strong, li strong { color: var(--ink); font-weight: 600; }
+  ul, ol { padding-left: 22px; margin: 0 0 16px; }
+  li { margin-bottom: 8px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; }
+
+  .callout {
+    background: var(--primary-tint);
+    border-left: 3px solid var(--primary);
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+  }
+  .callout p { margin: 0; color: var(--primary-darker); }
+  .callout strong { color: var(--primary-darker); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .stat-lbl {
+    font-size: 13px;
+    color: var(--ink-quiet);
+    margin-top: 4px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 28px 30px;
+    margin-bottom: 18px;
+    transition: box-shadow 0.15s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+  .competitor-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .competitor-logo {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+    flex-shrink: 0;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .competitor-title {
+    flex: 1;
+    min-width: 0;
+  }
+  .competitor-title h3 {
+    margin: 0 0 4px;
+  }
+  .competitor-tag {
+    font-size: 13px;
+    color: var(--ink-quiet);
+    font-style: italic;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 6px 0 12px;
+  }
+  .chip {
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--ink-soft);
+  }
+  .chip.price-free { background: var(--green-tint); color: #3B6D11; }
+  .chip.price-freemium { background: var(--primary-tint); color: var(--primary-darker); }
+  .chip.price-b2b { background: var(--purple-tint); color: #3C3489; }
+  .chip.new { background: var(--pink-tint); color: #993556; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+  .swot-block {
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .swot-block h5 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+  .swot-block ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .swot-block li {
+    font-size: 13.5px;
+    margin-bottom: 5px;
+    line-height: 1.5;
+  }
+  .swot-strengths { background: var(--green-tint); }
+  .swot-strengths h5 { color: #3B6D11; }
+  .swot-strengths li { color: #2a4f0c; }
+  .swot-weak { background: var(--pink-tint); }
+  .swot-weak h5 { color: #993556; }
+  .swot-weak li { color: #6e1f3a; }
+
+  .takeaway {
+    background: var(--primary-tint);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 14.5px;
+    color: var(--primary-darker);
+    line-height: 1.55;
+  }
+  .takeaway-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    background: var(--surface);
+    margin: 20px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    min-width: 720px;
+  }
+  th, td {
+    padding: 11px 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-soft);
+    vertical-align: middle;
+  }
+  th {
+    background: var(--surface-soft);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 13px;
+    letter-spacing: -0.005em;
+    position: sticky;
+    top: 0;
+  }
+  th:first-child, td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface-soft); }
+  .cc-col { background: var(--primary-tint) !important; color: var(--primary-darker); font-weight: 600 !important; }
+  .check { color: var(--green); font-weight: 600; font-size: 15px; }
+  .check.strong { color: #3B6D11; }
+  .dash { color: var(--ink-quiet); }
+  .partial { color: var(--ink-quiet); font-size: 12px; }
+
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .rec-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border-top: 3px solid var(--primary);
+  }
+  .rec-card h4 {
+    margin: 0 0 8px;
+    color: var(--primary-dark);
+    font-size: 15px;
+  }
+  .rec-card p { font-size: 14px; margin: 0; }
+
+  .sources {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 22px 24px;
+    font-size: 13.5px;
+  }
+  .sources ul { padding-left: 20px; margin: 8px 0 0; }
+  .sources li { font-size: 13px; margin-bottom: 5px; color: var(--ink-quiet); }
+
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 13px;
+  }
+  footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-brand {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  a.inline-link { color: var(--primary-dark); text-decoration: underline; text-decoration-color: var(--primary-tint-2); text-underline-offset: 3px; }
+  a.inline-link:hover { text-decoration-color: var(--primary); }
+
+  ::selection { background: var(--primary-tint-2); color: var(--primary-darker); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="3"/><path d="M21 21c0-2.5-1.5-4.5-4-5"/></svg>
+      </div>
+      <span>CrewCares</span>
+    </div>
+    <nav class="topbar-meta">
+      <a href="index.html" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 6px; margin-right: 4px;">← Hub</a>
+      <a href="app.html" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 6px;">Prototype</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Market &amp; Positioning · April 2026</span>
+    <h1>How CrewCares fits the family caregiving market</h1>
+    <p class="hero-sub">A clear-eyed look at the competitive landscape — where the category stands, who the real threats are, and how to win.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Prepared for</span> <strong>Investor &amp; stakeholder review</strong></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Scope</span> <strong>5 direct, 4 adjacent competitors</strong></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Sources</span> <strong>App stores, product pages, industry press</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="layout">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">Contents</p>
+      <ul class="toc-list">
+        <li><a href="#market">Market overview</a></li>
+        <li><a href="#competitors">Direct competitors</a></li>
+        <li><a href="#adjacent">Adjacent competitors</a></li>
+        <li><a href="#comparison">Feature comparison</a></li>
+        <li><a href="#positioning">Where CrewCares fits</a></li>
+        <li><a href="#recommendations">Recommendations</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+
+      <section id="market">
+        <h2>Market overview</h2>
+        <p>The family caregiving category is large, growing, and strikingly unconsolidated — no app has emerged as "the" solution the way Slack did for work chat or Notion did for docs.</p>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-num">63M</div>
+            <div class="stat-lbl">Americans serving as unpaid family caregivers (AARP/NAC, 2025)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">~19%</div>
+            <div class="stat-lbl">Of U.S. adult population, growing over the past decade</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">5+</div>
+            <div class="stat-lbl">Primary competitors, none with dominant share</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">0</div>
+            <div class="stat-lbl">Category-defining winner to date</div>
+          </div>
+        </div>
+
+        <h3>What's driving demand</h3>
+        <ul>
+          <li><strong>Aging population.</strong> The 65+ cohort continues to expand through 2030.</li>
+          <li><strong>Distance caregiving.</strong> Adult children increasingly live far from aging parents — remote coordination is now the default, not the exception.</li>
+          <li><strong>Digital normalization.</strong> Post-COVID, families coordinate everything in apps already. Caregiving is catching up.</li>
+          <li><strong>AI entered the space.</strong> As of late 2025, the leading player shipped an AI assistant. Expect this to become table stakes within 12 months.</li>
+        </ul>
+
+        <div class="callout">
+          <p><strong>The bottom line:</strong> The market is real and growing. The category is still up for grabs. The biggest risk is not incumbents — it's that most apps can't figure out how to monetize, so the "winner" may be whoever cracks distribution + business model, not just features.</p>
+        </div>
+      </section>
+
+      <section id="competitors">
+        <h2>Direct competitors</h2>
+        <p>Five apps compete for the same primary use case: families coordinating care for a loved one.</p>
+
+        <!-- Lotsa -->
+        <article class="card">
+          <div class="competitor-header">
+            <div class="competitor-logo" style="background: #867fb0;">LH</div>
+            <div class="competitor-title">
+              <h3>Lotsa Helping Hands</h3>
+              <div class="competitor-tag">The elder statesman — web-first community care calendar</div>
+            </div>
+          </div>
+          <div class="chip-row">
+            <span class="chip price-free">Free forever</span>
+            <span class="chip">Web + mobile</span>
+            <span class="chip">Community-oriented</span>
+          </div>
+          <p><strong>Core model:</strong> A coordinator creates a "community," invites family/friends/neighbors, and posts tasks — meals, rides, visits — that volunteers claim. Often used by churches, neighborhood groups, and schools rallying around one family in need.</p>
+          <div class="two-col">
+            <div class="swot-block swot-strengths">
+              <h5>Strengths</h5>
+              <ul>
+                <li>Free forever, no hidden tier</li>
+                <li>Proven model — widely recommended by hospitals and social workers</li>
+                <li>Good for rallying wider social circles beyond immediate family</li>
+              </ul>
+            </div>
+            <div class="swot-block swot-weak">
+              <h5>Weaknesses</h5>
+              <ul>
+                <li>Dated UX — no major refresh in years</li>
+                <li>No realtime chat — just task comments and announcements</li>
+                <li>Task-centric, not holistic — no meds, health records, or journaling</li>
+                <li>App store reviews mention bugs; mobile is clearly secondary</li>
+              </ul>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-label">Takeaway for CrewCares</div>
+            Lotsa is the incumbent but not a moving target. Its community-scale model is different from what a small nuclear family needs day-to-day. Tighter family focus + modern mobile UX is a legitimate differentiator.
+          </div>
+        </article>
+
+        <!-- Caring Village -->
+        <article class="card">
+          <div class="competitor-header">
+            <div class="competitor-logo" style="background: #4395a2;">CV</div>
+            <div class="competitor-title">
+              <h3>Caring Village</h3>
+              <div class="competitor-tag">The aggressive modernizer — all-in-one app with AI</div>
+            </div>
+          </div>
+          <div class="chip-row">
+            <span class="chip price-freemium">Freemium</span>
+            <span class="chip">iOS, Android, web</span>
+            <span class="chip new">AI assistant "Julia"</span>
+            <span class="chip">Feature-rich</span>
+          </div>
+          <p><strong>Core model:</strong> Invites family, friends, and professionals to a private "village." Major November 2025 relaunch added shared calendar, medication list, secure document storage, wellness journal, care plans, messaging, and an AI assistant named Julia that answers questions and summarizes updates. Premium tier unlocks multiple villages, more members, and increased storage.</p>
+          <div class="two-col">
+            <div class="swot-block swot-strengths">
+              <h5>Strengths</h5>
+              <ul>
+                <li>Most feature-complete product in the category</li>
+                <li>First meaningful AI play — early mover on what will become table stakes</li>
+                <li>Real freemium monetization path (most competitors are free-only)</li>
+                <li>Cross-platform: iOS, Android, web</li>
+              </ul>
+            </div>
+            <div class="swot-block swot-weak">
+              <h5>Weaknesses</h5>
+              <ul>
+                <li>Feature bloat risks overwhelming new users</li>
+                <li>App store reviews cite bugs ("super buggy and not user friendly")</li>
+                <li>Medical-model positioning skews clinical, less warm</li>
+              </ul>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-label">Takeaway for CrewCares</div>
+            Caring Village is the most direct competitor and they're out-shipping everyone. CrewCares needs a clear answer to "why not just use Caring Village" — likely simplicity, onboarding warmth, or a specific underserved sub-segment.
+          </div>
+        </article>
+
+        <!-- CaringBridge -->
+        <article class="card">
+          <div class="competitor-header">
+            <div class="competitor-logo" style="background: #64a70b;">CB</div>
+            <div class="competitor-title">
+              <h3>CaringBridge</h3>
+              <div class="competitor-tag">The communications hub — journal-style health updates</div>
+            </div>
+          </div>
+          <div class="chip-row">
+            <span class="chip price-free">Free (nonprofit)</span>
+            <span class="chip">GoFundMe integration</span>
+            <span class="chip">Strong hospital brand</span>
+          </div>
+          <p><strong>Core model:</strong> A caregiver creates a page for a loved one and posts journal-style updates. Family and friends read, comment, and send encouragement. Calendar and task features were added later. Partnered with GoFundMe for medical fundraising.</p>
+          <div class="two-col">
+            <div class="swot-block swot-strengths">
+              <h5>Strengths</h5>
+              <ul>
+                <li>Strong brand recognition in hospital and hospice contexts</li>
+                <li>Journal/guestbook format unique to serious illness coordination</li>
+                <li>Trusted nonprofit positioning</li>
+                <li>Integrated medical fundraising via GoFundMe</li>
+              </ul>
+            </div>
+            <div class="swot-block swot-weak">
+              <h5>Weaknesses</h5>
+              <ul>
+                <li>Communication-first, coordination-second — weak on tasks and scheduling</li>
+                <li>"Post update, get replies" feels more like a blog than a working tool</li>
+                <li>Skews toward acute medical events (surgery, cancer, hospice) vs. ongoing care</li>
+              </ul>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-label">Takeaway for CrewCares</div>
+            Not really a substitute. CaringBridge is where you announce that Dad is in the hospital. CrewCares is where you figure out who's driving him to PT on Thursday. A family could genuinely use both.
+          </div>
+        </article>
+
+        <!-- ianacare -->
+        <article class="card">
+          <div class="competitor-header">
+            <div class="competitor-logo" style="background: #e99797;">IA</div>
+            <div class="competitor-title">
+              <h3>ianacare</h3>
+              <div class="competitor-tag">The caregiver wellbeing platform — sold through employers</div>
+            </div>
+          </div>
+          <div class="chip-row">
+            <span class="chip price-b2b">B2B2C · Employer channel</span>
+            <span class="chip">Human navigators</span>
+            <span class="chip">Caregiver mental health focus</span>
+          </div>
+          <p><strong>Core model:</strong> Coordinate help requests with a team, access employer-sponsored caregiver benefits, connect with 1:1 trained "Caregiver Navigators," and tap peer support communities. Revenue comes from employer partnerships — companies pay to offer ianacare as an employee benefit.</p>
+          <div class="two-col">
+            <div class="swot-block swot-strengths">
+              <h5>Strengths</h5>
+              <ul>
+                <li>Unique B2B2C revenue model — sells to HR benefits teams</li>
+                <li>Caregiver mental health focus is differentiated</li>
+                <li>Human Caregiver Navigators — high-touch layer no one else matches</li>
+              </ul>
+            </div>
+            <div class="swot-block swot-weak">
+              <h5>Weaknesses</h5>
+              <ul>
+                <li>Full experience gated behind employer subscription</li>
+                <li>Task/help-request model less rich than Caring Village's coordination suite</li>
+                <li>Positioning skews emotional — may feel heavy for families that just want to divide tasks</li>
+                <li>Last major app update listed is August 2024 — may signal slow iteration</li>
+              </ul>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-label">Takeaway for CrewCares</div>
+            The employer channel is a meaningful moat — expensive for a competitor to replicate. But the consumer-facing product alone isn't overwhelming. If CrewCares targets direct-to-consumer, ianacare is adjacent at most.
+          </div>
+        </article>
+
+        <!-- CareSplit -->
+        <article class="card">
+          <div class="competitor-header">
+            <div class="competitor-logo" style="background: #1e5861;">CS</div>
+            <div class="competitor-title">
+              <h3>CareSplit</h3>
+              <div class="competitor-tag">The financial coordinator — emerging player (2024-2026)</div>
+            </div>
+          </div>
+          <div class="chip-row">
+            <span class="chip new">New / emerging</span>
+            <span class="chip">Venmo + Zelle integration</span>
+            <span class="chip">Sibling cost-splitting wedge</span>
+          </div>
+          <p><strong>Core model:</strong> Task coordination plus expense logging and cost splitting among siblings. Integrates with Venmo and Zelle for settling up. Positions itself as "the caregiving app that also does money."</p>
+          <div class="two-col">
+            <div class="swot-block swot-strengths">
+              <h5>Strengths</h5>
+              <ul>
+                <li>First mover on financial coordination in caregiving</li>
+                <li>Targets a specific, underserved pain point (sibling payment disputes)</li>
+                <li>Active go-to-market via competitive comparison content</li>
+              </ul>
+            </div>
+            <div class="swot-block swot-weak">
+              <h5>Weaknesses</h5>
+              <ul>
+                <li>New, small user base</li>
+                <li>Financial wedge may not be enough to win the primary use case</li>
+                <li>Payment integrations (Venmo, Zelle) are fragile and jurisdiction-limited</li>
+              </ul>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-label">Takeaway for CrewCares</div>
+            A signal, not a threat. Reveals that the category is being sliced into sub-problems because no one has won the whole thing. Financial coordination is a wedge CrewCares could incorporate later.
+          </div>
+        </article>
+      </section>
+
+      <section id="adjacent">
+        <h2>Adjacent competitors</h2>
+        <p>Not primary substitutes, but could expand into the category or are already shaping user expectations.</p>
+        <div class="rec-grid">
+          <div class="rec-card" style="border-top-color: var(--purple);">
+            <h4>Connected Caregiver</h4>
+            <p>Hardware + app combo. Sells bundled with medical alerts, pill dispensers, and remote monitoring devices (~$5/month each). App is a loss leader for hardware revenue — fundamentally different business model.</p>
+          </div>
+          <div class="rec-card" style="border-top-color: var(--green);">
+            <h4>Medisafe</h4>
+            <p>Medication-focused. Reminders, adherence tracking, drug interaction checks. Used alongside other apps, not as a replacement.</p>
+          </div>
+          <div class="rec-card" style="border-top-color: var(--pink);">
+            <h4>Cozi / Google Family / Apple Family</h4>
+            <p>General family coordination. Shared calendars and lists, but not built for caregiving. Many families try these first and find them insufficient for care complexity.</p>
+          </div>
+          <div class="rec-card" style="border-top-color: var(--charcoal);">
+            <h4>Group texts &amp; shared sheets</h4>
+            <p>The real incumbent. Most families coordinate care with improvised tools. Any competitor's first job is to be better than a group text — not just better than other apps.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>Feature comparison</h2>
+        <p>How CrewCares stacks up against the five direct competitors on capabilities families actually use.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th class="cc-col">CrewCares</th>
+                <th>Lotsa</th>
+                <th>Caring Village</th>
+                <th>CaringBridge</th>
+                <th>ianacare</th>
+                <th>CareSplit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Shared calendar</td><td class="cc-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td>Task assignment</td><td class="cc-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="partial">partial</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td>Realtime group chat</td><td class="cc-col"><span class="check strong">✓ first-class</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="partial">partial</span></td><td><span class="partial">partial</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td>Medication tracking</td><td class="cc-col"><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check strong">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+              <tr><td>Document storage</td><td class="cc-col"><span class="dash">—</span></td><td><span class="partial">limited</span></td><td><span class="check strong">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+              <tr><td>Wellness journaling</td><td class="cc-col"><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check strong">✓</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+              <tr><td>AI assistant</td><td class="cc-col"><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check strong">✓ Julia</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+              <tr><td>Human care navigator</td><td class="cc-col"><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check strong">✓</span></td><td><span class="dash">—</span></td></tr>
+              <tr><td>Expense splitting</td><td class="cc-col"><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check strong">✓</span></td></tr>
+              <tr><td>Fundraising integration</td><td class="cc-col"><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check strong">✓ GoFundMe</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+              <tr><td>Employer benefits channel</td><td class="cc-col"><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check strong">✓</span></td><td><span class="dash">—</span></td></tr>
+              <tr><td>Mobile-first UX</td><td class="cc-col"><span class="check strong">✓</span></td><td><span class="partial">partial</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="positioning">
+        <h2>Where CrewCares fits</h2>
+
+        <h3>Honest assessment</h3>
+        <p>On pure feature count, CrewCares is behind Caring Village. They ship medication tracking, wellness journaling, document storage, care plans, and an AI assistant — none of which CrewCares currently has.</p>
+
+        <h4>Potential advantages</h4>
+        <ul>
+          <li><strong>Simplicity / opinionated UX.</strong> A focused "crew + tasks + calendar + chat" model may be less overwhelming than an everything-app approach. Only an advantage if the execution is genuinely elegant — otherwise it just reads as "fewer features."</li>
+          <li><strong>Realtime chat as a first-class surface.</strong> Most competitors bolted on messaging; CrewCares built it in from the start. Families that already live in group texts understand the model immediately.</li>
+          <li><strong>The "crew" mental model.</strong> Emotionally richer than "village" or "community." <em>CrewCares is the Signal of caregiving — small, trusted groups with high active use.</em></li>
+          <li><strong>Category is still open.</strong> Lotsa is static. CaringBridge is communication-focused. Caring Village has a bug-prone reputation. Market leadership is genuinely up for grabs.</li>
+        </ul>
+
+        <h4>Risks to address</h4>
+        <ul>
+          <li><strong>Feature pressure from Caring Village.</strong> Every quarter you're not building, the gap widens. AI in particular will move from differentiator to table stakes within 12 months — Julia set that expectation.</li>
+          <li><strong>No monetization story yet.</strong> Most free competitors stay free because they can't charge. Caring Village has a premium tier; ianacare has an employer channel. CrewCares needs a business-model story, not just a product story.</li>
+          <li><strong>Slow word-of-mouth.</strong> Users are typically in crisis when they adopt — hospital social worker recommendations dominate. CrewCares has no pipeline into that yet.</li>
+          <li><strong>Fragile user base.</strong> Small user base plus recent rebuild window equals potential churn. Re-earning trust matters.</li>
+        </ul>
+      </section>
+
+      <section id="recommendations">
+        <h2>Strategic recommendations for the pitch</h2>
+        <div class="rec-grid">
+          <div class="rec-card">
+            <h4>Lead with the wedge, not the feature list</h4>
+            <p>Don't try to out-feature Caring Village. Lead with the specific family scenario CrewCares serves best — the "sibling crew" coordinating parent care across cities is a strong candidate. Tighter than Lotsa's community scale, warmer than CaringBridge's announcements, simpler than Caring Village's everything-app.</p>
+          </div>
+          <div class="rec-card">
+            <h4>Handle the Caring Village question directly</h4>
+            <p>When asked "why not just use Caring Village," answer with positioning, not features: <em>"Caring Village is a medical records system pretending to be a family app. We're a family app with roots in how families actually talk to each other."</em> Defensible even without parity.</p>
+          </div>
+          <div class="rec-card">
+            <h4>Have an AI story ready</h4>
+            <p>Julia is already the feature press coverage anchors on. Investors will ask. Candidates: AI that surfaces "who should do what" from crew patterns; AI summaries of what happened while a member was away; AI help drafting hard conversations (e.g., talking to a parent about giving up driving). Pick one. Be direct.</p>
+          </div>
+          <div class="rec-card">
+            <h4>Monetization candidates in the back pocket</h4>
+            <p><strong>Premium family plan</strong> (à la Caring Village: storage, more members, integrations). <strong>Employer benefit</strong> (à la ianacare: hard to sell, sticky once landed). <strong>Professional services layer</strong> (referral revenue from home aides, elder law attorneys, geriatric care managers). <strong>Insurance partnerships</strong> (Medicare Advantage plans actively seek caregiver tools). <strong>Fundraising</strong> (follow CaringBridge's GoFundMe lead).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <div class="sources">
+          <p style="margin-bottom:8px;">Competitive information drawn from public product pages, App Store and Google Play listings, and industry reporting as of April 2026.</p>
+          <ul>
+            <li>Caring Village product pages and App Store / Google Play listings</li>
+            <li>Lotsa Helping Hands product pages and App Store listings</li>
+            <li>CaringBridge product pages and third-party reviews</li>
+            <li>ianacare App Store listing and product pages</li>
+            <li>CareSplit comparison content (April 2026)</li>
+            <li>AARP / National Alliance for Caregiving 2025 Caregiving in the U.S. report (via secondary sources)</li>
+            <li>Industry roundups: Caring.com, A Place for Mom, StoryPoint, Caring Senior Service, Henry Ford Health, ElderLife Financial</li>
+          </ul>
+          <p style="margin:14px 0 0; font-size:12.5px; color:var(--ink-quiet); font-style:italic;">Caring Village Premium and CareSplit pricing are not publicly disclosed; figures referenced are qualitative.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-brand">CrewCares</span>
+  <span>Competitive Analysis · April 2026 · Prepared for investor &amp; stakeholder review</span>
+</footer>
+
+<script>
+  // Simple active-state TOC highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  function updateActiveToc() {
+    let current = '';
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) current = sec.id;
+    });
+    tocLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveToc, { passive: true });
+  updateActiveToc();
+  tocLinks.forEach(l => l.addEventListener('click', e => {
+    const id = l.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+    }
+  }));
+</script>
+
+</body>
+</html>
